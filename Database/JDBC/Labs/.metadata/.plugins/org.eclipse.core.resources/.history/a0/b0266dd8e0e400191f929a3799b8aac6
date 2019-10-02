@@ -1,0 +1,21 @@
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+/*
+ Statement stmt = conn.createStatement();
+ String sql = "select empno, ename, sal from emp";
+		
+ //3. 명령실행(처리) >> 조회
+ //select != insert, update, delete (결과 집합이 없다)
+ ResultSet rs = stmt.executeQuery(sql); // DB 서버에 생성된 결과집합(memory) 접근해서 Data read
+		
+ 
+ 
+ 
+*/
+public class Ex06_Oracle_Preparestatement {
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+}

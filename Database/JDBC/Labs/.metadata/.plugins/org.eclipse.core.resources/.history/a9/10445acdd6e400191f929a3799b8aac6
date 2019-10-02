@@ -1,0 +1,12 @@
+import java.sql.Connection;
+
+import kr.or.bit.utils.ConnectionHelper;
+
+public class Ex05_ConnectionHelper {
+	public static void main(String[] args) {
+		Connection conn = null;
+		conn = ConnectionHelper.getConnection("oracle");
+
+	}
+
+}

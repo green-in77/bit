@@ -1,0 +1,9 @@
+import java.sql.Connection;
+
+public class Ex05_ConnectionHelper {
+	public static void main(String[] args) {
+		Connection
+
+	}
+
+}

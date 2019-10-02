@@ -1,0 +1,18 @@
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+/*
+ Statement stmt = conn.createStatement();
+ String sql = "select empno, ename, sal from emp";
+ ResultSet rs = stmt.executeQuery(sql);
+ 
+ 장점 : query문을 바꿔서 실행이 가능하다.
+  
+ 
+*/
+public class Ex06_Oracle_Preparestatement {
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+}

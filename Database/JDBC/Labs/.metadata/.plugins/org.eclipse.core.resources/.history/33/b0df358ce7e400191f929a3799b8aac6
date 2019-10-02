@@ -1,0 +1,29 @@
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+
+import kr.or.bit.utils.SingletonHelper;
+
+public class Ex07_Oracle_Preparestatement_dml {
+	public static void main(String[] args) {
+		//insert into dememp(empno, ename, sal, deptno)
+		//values(?,?,?,?)
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			conn=SingletonHelper.getConnection("oracle");
+			String sql = "insert into dememp(empno, ename, sal, deptno) values(?,?,?,?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, 5555);
+			pstmt.setString(2, "±Ë¿ØΩ≈");
+			
+		}catch(Exception e){
+			
+		}finally {
+			
+		}
+
+	}
+
+}

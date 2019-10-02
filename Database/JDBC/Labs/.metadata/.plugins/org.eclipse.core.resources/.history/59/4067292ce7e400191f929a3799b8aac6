@@ -1,0 +1,11 @@
+
+public class Ex07_Oracle_Preparestatement_dml {
+	public static void main(String[] args) {
+		//insert into dememp(empno, ename, sal, deptno)
+		//values(?,?,?,?)
+		
+		
+
+	}
+
+}

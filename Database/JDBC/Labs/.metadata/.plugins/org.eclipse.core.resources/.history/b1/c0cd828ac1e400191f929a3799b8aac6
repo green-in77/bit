@@ -1,0 +1,14 @@
+/*
+ DML (insert, update, delete)
+ JDBC 작업
+ 1. 결과 집합이 없다. (반영만 함)
+  
+*/
+public class Ex02_Oracle_DML {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

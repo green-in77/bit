@@ -1,0 +1,67 @@
+import java.sql.Connection;
+import java.sql.SQLException;
+
+import kr.or.bit.utils.ConnectionHelper;
+import kr.or.bit.utils.SingletonHelper;
+
+public class Ex05_ConnectionHelper {
+	public static void main(String[] args) throws Exception {
+		/*
+		Connection conn = null;
+		conn = ConnectionHelper.getConnection("oracle");
+		System.out.println(conn.toString());
+		System.out.println(conn.getMetaData().getDatabaseProductName());
+		System.out.println(conn.getMetaData().getDatabaseProductVersion());
+		System.out.println("연결여부 : " + conn.isClosed());
+		
+		ConnectionHelper.close(conn);
+		System.out.println("연결여부 : " + conn.isClosed());
+		System.out.println();
+		
+		Connection conn2 = null;
+		conn2 = ConnectionHelper.getConnection("oracle","hr","1004");
+		System.out.println(conn2.toString());
+		System.out.println(conn2.getMetaData().getDatabaseProductName());
+		System.out.println(conn2.getMetaData().getDatabaseProductVersion());
+		System.out.println("연결여부 : " + conn2.isClosed());
+		
+		ConnectionHelper.close(conn2);
+		System.out.println("연결여부 : " + conn2.isClosed());
+		
+		System.out.println();
+		
+		conn2 = null;
+		conn2 = ConnectionHelper.getConnection("oracle","hr","1004");
+		System.out.println(conn2.toString());
+		System.out.println(conn2.getMetaData().getDatabaseProductName());
+		System.out.println(conn2.getMetaData().getDatabaseProductVersion());
+		System.out.println("연결여부 : " + conn2.isClosed());
+		
+		ConnectionHelper.close(conn2);
+		System.out.println("연결여부 : " + conn2.isClosed());
+		*/
+		//1.연결객체주소 oracle.jdbc.driver.T4CConnection@7fac631b
+		//2.연결객체주소 oracle.jdbc.driver.T4CConnection@5b87ed94
+		//하나의 APP 연결할때마다 객체를 생성하고 사용하는 것이 맞나??
+		//하나의 객체를 만들고 공유하는 방법.... = singleton >> JDBC 권장방법은 아님.... >> 수업용ㅋㅋㅋㅋㅋㅋ
+		
+		Connection conn3 = null;
+		conn3 = SingletonHelper.getConnection("oracle");
+		System.out.println(conn3.toString());
+		System.out.println(conn3.getMetaData().getDatabaseProductName());
+		System.out.println(conn3.getMetaData().getDatabaseProductVersion());
+		System.out.println("연결여부 : " + conn3.isClosed());
+		//oracle.jdbc.driver.T4CConnection@4629104a
+		
+		Connection conn4 = null;
+		conn4 = SingletonHelper.getConnection("oracle");
+		System.out.println(conn4.toString());
+		System.out.println(conn4.getMetaData().getDatabaseProductName());
+		System.out.println(conn4.getMetaData().getDatabaseProductVersion());
+		System.out.println("연결여부 : " + conn4.isClosed());
+		//oracle.jdbc.driver.T4CConnection@4629104a
+		
+		
+		
+	}
+}

@@ -1,0 +1,16 @@
+/*
+ DML (insert, update, delete)
+ JDBC 작업
+ 1. 결과 집합이 없다. (반영만 함 / resultSet (X))
+ 2. 반영에 대한 결과 return (반영된 행의 갯수 return)
+ 
+  
+*/
+public class Ex02_Oracle_DML {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

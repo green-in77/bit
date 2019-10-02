@@ -1,0 +1,23 @@
+/*
+ DML (insert, update, delete)
+ JDBC 작업
+ 1. 결과 집합이 없다. (반영만 함 / resultSet (X))
+ 2. 반영에 대한 결과 return (반영된 행의 갯수 return)
+ ex) JAVA 코드
+ update emp set sal=0 >> 반영 >> return 14 (14개 행 반영됨)
+ update emp set sal=100 where empno=9999 >> 실행했지만 반영되지않음 >> return 0
+ 
+ KEY POINT
+ DB작업
+ insert, update, delete >> 트랜잭션 >> 반드시 commit, rollback 강제 : 전체반영, 전체취소
+ 
+ JDBC API 통해서 DML 작업 >> default >> auto commit
+ java code로 DML 작업하면 무조건 실제 반영됨 >> 자동 커밋....
+ 필요하면 commit, rollback java 코드에서 제어 가능 >> auto commit 옵션 >> false >> 반드시 commit, rollback 해줘야 함.  
+*/
+public class Ex02_Oracle_DML {
+	public static void main(String[] args) {
+		
+
+	}
+}
