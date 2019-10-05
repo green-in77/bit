@@ -21,12 +21,12 @@ public class Fibonacci {
 		System.out.printf("%d %d ",n1,n2);
 		
 		while((n1+n2)<n) {
-			result = n1 + n2;
-			n1 = n2;
+			result = n1 + n2; //앞의 두 수를 더하면 피보나치 수열..
+			n1 = n2; //한칸씩 앞으로 오면서 더해야하기 때문에 순서 정리
 			n2 = result;
 			System.out.printf("%d ",result);
-			if(result%2==0) {
-				sum += result;
+			if(result%2==0) { //피보나치 수의 결과가 짝수면
+				sum += result;//더해주기
 			}
 		}
 		System.out.printf("\n위의 수열 중 짝수의 합 : %d ",sum);
