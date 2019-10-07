@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<style type="text/css">
+		/*
+			css의 적용은 기존에 존재하는 태그(요소)외에도 가능하다.
+			h1,h2,h3 자원들 >> 선택자(selector)
+			*선택자*
+			1. 기존에 있는 태그들
+			2. . >> class 반영
+			3. # >> id 반영
+		*/
+		h1,h2,h3 {color:red;} /* 다중선택자 */
+		#kglim {color:gold;} /* id */
+		.hong {color:blue;}  /* class */
+	</style>
+</head>
+<body>
+	<h1>선택자1</h1>
+	<h2>선택자</h2>
+	
+	<p id="kglim">id라는 속성을 사용해서 css를 반영합니다.</p>
+	
+</body>
+</html>

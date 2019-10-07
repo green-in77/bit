@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>목록태그</title>
+</head>
+<body>
+	<h3>리스트 태그</h3>
+	<ul type="circle"> <!-- 순서가 없는 리스트 -->
+		<li>Coffee</li> <!-- ○ Coffee -->
+		<li>Tea</li> <!-- ○ Tea -->
+		<li>Milk</li> <!-- ○ Milk -->
+	</ul>
+	<br>
+	<ul type="disc"> <!-- 순서가 없는 리스트 -->
+		<li>Coffee</li> <!-- ● Coffee -->
+		<li>Tea</li> <!-- ● Tea -->
+		<li>Milk</li> <!-- ● Milk -->
+	</ul>
+	<br>
+	<ul type="square"> <!-- 순서가 없는 리스트 -->
+		<li>Coffee</li> <!-- ■ Coffee -->
+		<li>Tea</li> <!-- ■ Tea -->
+		<li>Milk</li> <!-- ■ Milk -->
+	</ul>
+	<br>
+	<ul type="none"> <!-- 순서가 없는 리스트 -->
+		<li>Coffee</li> <!--  Coffee -->
+		<li>Tea</li> <!--  Tea -->
+		<li>Milk</li> <!--  Milk -->
+	</ul>
+	<br>
+	
+	
+	
+	<ol><!-- 순서가 있는 리스트 -->
+		<li>Coffee</li> <!-- 1.Coffee -->
+		<li>Tea</li> <!-- 2.Tea -->
+		<li>Milk</li> <!-- 3.Milk -->
+	</ol>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>테이블 표 만들기</title>
+	<style type="text/css">
+		table {
+ 			/*font-family: arial, sans-serif;*/
+  			border-collapse: collapse; /*테이블 border 경계 합치기*/
+  			/*width: 100%;*/
+		}
+		
+		td {
+  			border: 1px solid #dddddd; /*테두리*/
+  			/*text-align: left; *//*정렬 왼쪽*/
+  			/*padding: 8px;*/ /*글자와 칸의 간격*/
+		}
+	</style>
+</head>
+<body>
+
+</body>
+</html>
