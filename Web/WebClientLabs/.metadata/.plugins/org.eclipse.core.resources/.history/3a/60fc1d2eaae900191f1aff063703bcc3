@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style type="text/css">
+	* {
+ 		 box-sizing: border-box;
+	}
+		.head,.foot {
+			width : 95%;
+    		background-color: black;
+    		clear: left;
+    		margin : 10px;
+    		padding: 5%;
+		}
+		
+		.center {
+			background-color : gray;
+			float: left;
+			margin : 10px;
+			padding: 5%;
+			margin-bottom: 20px;
+			width : 33.3%
+		}
+	
+	</style>
+</head>
+<body>
+	<div class="head"></div>
+	<div class="center" ></div>
+	<div class="center" style="width:55%; height:10%;"></div>
+	<div class="center" ></div>
+	<div class="foot"></div>
+</body>
+</html>
