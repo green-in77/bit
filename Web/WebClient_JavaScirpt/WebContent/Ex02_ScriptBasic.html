@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript">
+		//javaScript 해석,출력 >> 웹브라우져
+		//웹브라우져(해석기 + 다양한 API(객체 : 내장객체))
+		//window 내장객체(웹브라우져..사용)
+		//window 객체 생략(내부적으로 인식)
+		window.document.write("방가방가<br>");
+		document.write("window 는 생략가능<br>");
+		
+		console.log(10+10);
+		console.log("디버깅, 결과확인, 오류메세지확인 용도로 사용");
+		
+		document.write("<b>Hello World</b><br>");
+		document.write("<table border='1'>");
+		document.write("<tr><td>AA</td><td>BB</td></tr>");
+		document.write("</table>");
+		
+		var num; //타입 변수명 (타입을 정의하지 않음) //undefined은 오류가 아니라 값이 없다는 뜻..
+		//let element ecma6버전..
+		num = 100; //값을 갖는 시점에 타입이 설정
+		console.log(typeof(num)); //타입확인 : number (java instansof)
+		
+		//var element = window.document.forms[0].elements[0];
+		//<input type="text" name="userid" value="hong">
+		//alert(element);
+		//Uncaught TypeError: Cannot read property 'elements' of undefined at Ex02_ScriptBasic.html:27
+		//form이 만들어지기 전에 해당 구문이 실행되게 때문에 해당 값을 찾을 수 없음.
+		
+		//★★페이지에 있는 코드가 순차적으로 실행된다.★★ 순서가 중요하다!!!!!!!!!!!!
+		
+		function data(){ //함수는 호출해야 실행되기 때문에 문제 없음.
+			var element = window.document.forms[0].elements[0];
+			alert(element);
+		}
+		
+	</script>
+</head>
+<body>
+	<form action="#" method="get" name="myform">
+		ID:<input type="text" name="userid" value="hongaaa"><br>
+		PW:<input type="password" name="pwd" value="1111"><br>
+		<input type="submit" value="전송">
+	</form>
+	
+	<input type="button" value="클릭해봐" onclick="data()">
+	
+	
+</body>
+	<script type="text/javascript">
+		//form 생성된 후 실행
+		var element = window.document.forms[0].elements[0];
+		//elements[0] : <input type="text" name="userid" value="hong">
+		//alert(element); //[object HTMLInputElement]
+		
+		console.log(element); //<input type="text" name="userid" value="hong">
+		console.log(element.name); //userid
+		console.log(element.value); //hong
+		console.log(element.value.length); //4
+		
+		//form 태그가 자신의 이름을 가지고 있다. name="myform"
+		//window.document.폼이름.요소이름
+		//window.document.폼이름.요소이름.값
+		
+		var ele = window.document.myform.userid;
+		//ele = <input type="text" name="userid" value="hong">
+		console.log("ele : " + ele); //[object HTMLInputElement]
+		console.log("input userid : " + ele.value); //hong
+		
+		var val = window.document.myform.userid.value; //value="hong"
+		console.log("val : " + val); //hong
+		
+		console.log(typeof(val)); //string
+		
+		if(val.length < 5){ //id의 길이가 5미만이면
+			alert("다시 입력해");
+			ele.value="";
+		}
+		
+		
+	</script>
+</html>
