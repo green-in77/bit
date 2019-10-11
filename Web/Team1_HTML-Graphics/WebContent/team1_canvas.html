@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Html Canvas</title>
+	<style>
+		* {
+ 			 box-sizing: border-box; /*너비와 높이에 채우기 및 테두리 포함*/
+		}
+
+		div {
+			width: 33.3%;
+			height: 310px;
+			float: left;
+		}
+		div.text {
+			width: 100%;
+			height: 60px;
+			font-size: 10pt;
+		}
+	</style>
+</head>
+<body> 
+	<div style="width: 100%; height:75pt; text-align: center; border:3px dotted salmon; overflow: auto;">
+		<h3 style="margin-top:5px; margin-bottom: 5px">canvas : 그림이 그려질 수 있는 빈 박스</h3>
+		<p style="margin-top: 10px; margin-bottom: 0px">JavaScript를 통해 박스안에 그림(경로, 상자, 원, 텍스트,이미지 등)을 그릴 수 있다.</p>
+		<p style="margin: 0px">convas는 그냥 빈 박스다. 빈 박스안에 JavaScript를 사용해서 그린다.</p>
+	</div>
+	
+	<div>
+		<canvas id="Canvas" width="400" height="200" style="border:4px dotted indianred; margin-top: 10px">
+			너의 브라우저는 HTML5를 지원하지 않아!!!!!!!!!!
+		</canvas>
+        
+        <script>
+            var canvas = document.getElementById("Canvas");
+            var context = canvas.getContext("2d");
+            context.strokeStyle=" mediumpurple";
+            
+            for(var i=0; i<4; i++){
+                context.font=(10+i*10) + "px forte";
+                context.strokeText("Javascript 재미없어.",10, 30+i*50);   
+            }        
+        </script>
+        
+		<div class="text" style="padding-top: 20px;">
+        canvas id="컨버스이름" width가로(픽셀) / height세로(픽셀)<br>
+        strokeStyle="색상명" : 선 색상<br>
+        strokText : 글씨의 외곽선을 그린다.
+        </div>
+  
+	</div>
+	
+	<div>
+	
+		<canvas id="myCanvas" width="400" height="200" style="border:4px dotted indianred; margin-top: 10px">
+			너의 브라우저는 HTML5를 지원하지 않아!!!!!!!!!!
+		</canvas>
+		<div class="text">
+			getContext : 컨버스에 그릴 수 있는 속성을 가져옴<br>
+			moveTo : 포커스이동 / stroke() : 출력<br>
+			beginPath : Path경로시작 / closePath() : Path 시작점으로 이동<br>
+			lineTo:선을 그려준다 <br>
+			arc(x,y,반지름,시작값,끝값,시계방향) : 원을 그려준다
+		 </div>
+	
+	<script> //다이아몬드 그리기
+		var c = document.getElementById("myCanvas"); //myCanvas ID를 가진 요소를 가져옴
+		var ctx = c.getContext("2d"); //컨버스에 그릴 수 있는 속성을 가져옴
+		ctx.beginPath(); //Path 경로 시작
+		ctx.moveTo(200,0); //포커스이동
+		ctx.lineTo(0,100); //선을 그려준다
+		ctx.lineTo(200,200);
+		ctx.lineTo(400,100);
+		ctx.closePath(); //시작점으로 이동
+		//ctx.lineTo(200,0); //시작점으로 이동
+		ctx.stroke(); //출력
+
+		ctx.beginPath();
+		ctx.arc(200,100,50,0,5*Math.PI); //원 그리기
+		ctx.stroke();
+
+		ctx.beginPath(); //팩맨..
+    	ctx.arc(37, 37, 13, Math.PI / 7, -Math.PI / 7, false);
+    	ctx.lineTo(31, 37);
+    	ctx.fill();
+		 
+		//몬스터..//////////////////////////////////////////////////////////////////////////////////////////////////////////
+		ctx.beginPath();
+    	ctx.moveTo(83, 116);
+    	ctx.lineTo(83, 102);
+    	ctx.bezierCurveTo(83, 94, 89, 88, 97, 88);
+    	ctx.bezierCurveTo(105, 88, 111, 94, 111, 102);
+    	ctx.lineTo(111, 116);
+    	ctx.lineTo(106.333, 111.333);
+    	ctx.lineTo(101.666, 116);
+    	ctx.lineTo(97, 111.333);
+    	ctx.lineTo(92.333, 116);
+    	ctx.lineTo(87.666, 111.333);
+    	ctx.lineTo(83, 116);
+    	ctx.fill();
+
+    	ctx.fillStyle = 'white';
+    	ctx.beginPath();
+    	ctx.moveTo(91, 96);
+    	ctx.bezierCurveTo(88, 96, 87, 99, 87, 101);
+    	ctx.bezierCurveTo(87, 103, 88, 106, 91, 106);
+    	ctx.bezierCurveTo(94, 106, 95, 103, 95, 101);
+    	ctx.bezierCurveTo(95, 99, 94, 96, 91, 96);
+    	ctx.moveTo(103, 96);
+    	ctx.bezierCurveTo(100, 96, 99, 99, 99, 101);
+    	ctx.bezierCurveTo(99, 103, 100, 106, 103, 106);
+    	ctx.bezierCurveTo(106, 106, 107, 103, 107, 101);
+    	ctx.bezierCurveTo(107, 99, 106, 96, 103, 96);
+    	ctx.fill();
+
+		ctx.fillStyle = 'black';
+    	ctx.beginPath();
+    	ctx.arc(101, 102, 2, 0, Math.PI * 2, true);
+    	ctx.fill();
+
+    	ctx.beginPath();
+    	ctx.arc(89, 102, 2, 0, Math.PI * 2, true);
+    	ctx.fill();
+		//몬스터..//////////////////////////////////////////////////////////////////////////////////////////////////////////
+	</script> 
+	</div>
+	
+	<div>
+		<canvas id="myCanvas2" width="400" height="200" style="border:4px dotted indianred  ; margin-top: 10px">
+			너의 브라우저는 HTML5를 지원하지 않아!!!!!!!!!!
+		</canvas>
+		<div class="text">
+			createLinearGradient(시작점x1,시작점y1,끝점x2,끝점y2) : 선형<br>
+			createRadialGradient(x1,y1,1번 반지름,x2,y2,2번 반지름) : 원형<br>
+			addColorStop : 그라데이션 색 설정(0~1 사이 그라데이션)<br>
+			fillStyle : 채우기 / strokeStyle : 선 색상 /lineWidth : 선 두께 <br>
+			strokeRect / fillRect(여백x, 여백y, W, H) : 테두리만 / 채워진 도형<br>
+		 </div>
+
+		<script>
+			//테두리 그라데이션
+			var c = document.getElementById("myCanvas2");
+			var ctx = c.getContext("2d");
+			
+			var grd = ctx.createLinearGradient(0,0,380,0);
+			grd.addColorStop(0,"violet");
+			grd.addColorStop(0.5,"darkslateblue");
+			grd.addColorStop(1,"indianred");
+
+			ctx.strokeStyle=grd;
+			ctx.lineWidth=5;
+			ctx.strokeRect(5,5,390,190);
+
+			//선형그라데이션
+			var grd = ctx.createLinearGradient(0,0,380,0); //(시작점 x1, 시작점 y1, 끝점 x2, 끝점 y2)
+			grd.addColorStop(0,"indianred"); //그라데이션 색 설정
+			grd.addColorStop(1,"white");
+			// Fill with gradient
+			ctx.fillStyle = grd;
+			ctx.fillRect(10,15,380,80);
+
+			//원형그라데이션
+			var grd = ctx.createRadialGradient(200,145,30,185,215,300); //원형그라데이션 만들기(x1,y1,1번원의 반지름 r,x2,y2,1번원의 반지름 r1)
+			grd.addColorStop(0,"indianred"); //그라데이션 색 설정
+			grd.addColorStop(1,"white");
+			// Fill with gradient
+			ctx.fillStyle = grd;
+			ctx.fillRect(10,105,380,80);
+		</script>		
+	</div>    
+    
+<!--    여기서부터 첫 번째 캔버스 -->
+    <div>
+        <canvas id="canvas_1" width="400" height="200" style="border:4px dotted indianred  ; margin-top: 10px">
+        </canvas>  
+        
+        <div class="text">
+        roundedRect(시작점 x, 시작점 y, 사각형 w, 사각형 h, 곡선의정도)
+        <br> : 모서리가 둥근 사각형<br>
+        fillStyle : 채우기 <br>
+        fillRect (시작점 x, 시작점 y, 사각형 x, 사각형 y) : 사각형
+        </div>
+        
+    <script>
+          function draw_1() { //자바스크립트 함수(그림그려준다) 사각형 두개 겹쳐있는 것
+          var canvas = document.getElementById("canvas_1");
+          if (canvas.getContext) {
+          var ctx = canvas.getContext("2d");
+        
+            ctx.fillStyle = "indianred";
+            ctx.fillRect (200, 20, 120, 120);
+
+            ctx.fillStyle = "rgba(0, 0, 200, 0.5)";
+            ctx.fillRect (250, 60, 120, 120);
+      }
+    }   
+    draw_1();//함수호출
+
+    function draw_pack() { //팩맨...
+        var canvas = document.getElementById('canvas_1');
+        if (canvas.getContext) {
+        var ctx = canvas.getContext('2d');
+
+        roundedRect(ctx, 12, 12, 150, 150, 15);
+        roundedRect(ctx, 19, 19, 150, 150, 9);
+        roundedRect(ctx, 53, 53, 49, 33, 10);
+        roundedRect(ctx, 53, 119, 49, 16, 6);
+        roundedRect(ctx, 135, 53, 49, 33, 10);
+        roundedRect(ctx, 135, 119, 25, 49, 10);
+
+        ctx.beginPath();
+        ctx.arc(37, 37, 13, Math.PI / 7, -Math.PI / 7, false);
+        ctx.lineTo(31, 37);
+        ctx.fillStyle="black";
+        ctx.fill();
+
+        for (var i = 0; i < 8; i++) {
+          ctx.fillRect(51 + i * 16, 35, 4, 4);
+        }
+
+        for (i = 0; i < 6; i++) {
+          ctx.fillRect(115, 51 + i * 16, 4, 4);
+        }
+
+        for (i = 0; i < 8; i++) {
+          ctx.fillRect(51 + i * 16, 99, 4, 4);
+        }
+
+        ctx.beginPath();
+        ctx.moveTo(83, 116);
+        ctx.lineTo(83, 102);
+        ctx.bezierCurveTo(83, 94, 89, 88, 97, 88);
+        ctx.bezierCurveTo(105, 88, 111, 94, 111, 102);
+        ctx.lineTo(111, 116);
+        ctx.lineTo(106.333, 111.333);
+        ctx.lineTo(101.666, 116);
+        ctx.lineTo(97, 111.333);
+        ctx.lineTo(92.333, 116);
+        ctx.lineTo(87.666, 111.333);
+        ctx.lineTo(83, 116);
+        ctx.fill();
+
+        ctx.fillStyle = 'white';
+        ctx.beginPath();
+        ctx.moveTo(91, 96);
+        ctx.bezierCurveTo(88, 96, 87, 99, 87, 101);
+        ctx.bezierCurveTo(87, 103, 88, 106, 91, 106);
+        ctx.bezierCurveTo(94, 106, 95, 103, 95, 101);
+        ctx.bezierCurveTo(95, 99, 94, 96, 91, 96);
+        ctx.moveTo(103, 96);
+        ctx.bezierCurveTo(100, 96, 99, 99, 99, 101);
+        ctx.bezierCurveTo(99, 103, 100, 106, 103, 106);
+        ctx.bezierCurveTo(106, 106, 107, 103, 107, 101);
+        ctx.bezierCurveTo(107, 99, 106, 96, 103, 96);
+        ctx.fill();
+
+        ctx.fillStyle = 'black';
+        ctx.beginPath();
+        ctx.arc(101, 102, 2, 0, Math.PI * 2, true);
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.arc(89, 102, 2, 0, Math.PI * 2, true);
+        ctx.fill();
+      }
+    }
+        
+      
+    function roundedRect(ctx, x, y, width, height, radius) {
+      ctx.beginPath();
+      ctx.moveTo(x, y + radius);
+      ctx.lineTo(x, y + height - radius);
+      ctx.arcTo(x, y + height, x + radius, y + height, radius);
+      ctx.lineTo(x + width - radius, y + height);
+      ctx.arcTo(x + width, y + height, x + width, y + height-radius, radius);
+      ctx.lineTo(x + width, y + radius);
+      ctx.arcTo(x + width, y, x + width - radius, y, radius);
+      ctx.lineTo(x + radius, y);
+      ctx.arcTo(x, y, x, y + radius, radius);
+      ctx.stroke();
+    }        
+           
+    draw_pack();   
+        
+    </script>  
+    </div>
+    
+<!--    여기서부터 2번째 캔버스 -->
+    <div>
+        <canvas id="canvas_2" width="400" height="200" style="border:4px dotted indianred  ; margin-top: 10px">
+        </canvas>
+        
+        <div class="text">
+        fill(): 도형의 안쪽을 채워넣는다.<br>
+        stroke(): 안을 비우고 도형의 선만 그린다.<br>
+        bezierCurveTo(기준x1, 기준y1, 기준x2, 기준y2, 종료x3 , 종료y3)<br>
+         : 곡선을 그리게 해주는 함수. <br>
+        </div>
+        
+        <script>
+            function draw_circle() {
+                var canvas = document.getElementById('canvas_2');
+                if (canvas.getContext) {
+                    var ctx = canvas.getContext('2d');
+
+                    for (var i = 0; i < 4; i++) {
+                        for (var j = 0; j < 3; j++) {
+                            ctx.beginPath();
+                            var x = 65 + j * 50; // x coordinate
+                            var y = 25 + i * 50; // y coordinate
+                            var radius = 20; // Arc radius
+                            var startAngle = 0; // Starting point on circle
+                            var endAngle = Math.PI + (Math.PI * j) / 2; // End point on circle
+                            var anticlockwise = i % 2 == 0 ? false : true; // clockwise or anticlockwise
+
+                            ctx.arc(x, y, radius, startAngle, endAngle, anticlockwise);
+
+                            if (i > 1) {
+                                ctx.fill();
+                            } else {
+                                ctx.stroke();
+                            }   
+                        }
+                    }
+                }
+            }    
+          
+            draw_circle(); 
+            
+            function draw_heart() {
+                var canvas = document.getElementById('canvas_2');
+                if (canvas.getContext) {
+                    var ctx = canvas.getContext('2d');
+                    // Cubic curves example
+                    ctx.beginPath();
+                    ctx.moveTo(305, 40);
+                    ctx.bezierCurveTo(305, 37, 300, 25, 280, 25);
+                    ctx.bezierCurveTo(250, 25, 250, 62.5, 250, 62.5);
+                    ctx.bezierCurveTo(250, 80, 270, 102, 305, 120);
+                    ctx.bezierCurveTo(340, 102, 360, 80, 360, 62.5);
+                    ctx.bezierCurveTo(360, 62.5, 360, 25, 330, 25);
+                    ctx.bezierCurveTo(315, 25, 305, 37, 305, 40);
+                    ctx.fill();
+                }
+            }    
+         
+            draw_heart();
+            
+        </script>    
+    </div>
+ 
+    <div>
+        <canvas id="canvas_3" width="400" height="200" style="border:4px dotted indianred  ; margin-top: 10px">
+        </canvas>
+        
+        <div class="text">
+            var img = new Image():이미지 객체를 생성<br>
+            img.onload = function(){} : 이미지 로딩이 완료되면 실행<br>
+            drawImage(img객체,시작점 x, 시작점 y, 이미지 w ,이미지 h) <br>
+            img.src="이미지 경로" : img 객체에 들어갈 이미지소스의 경로
+        </div>
+        
+        <script>
+            var canvas = document.getElementById("canvas_3");
+            var context = canvas.getContext("2d");
+            
+            var img = new Image();
+            
+            img.onload = function(){
+                context.drawImage(img,36,20,330,160);
+            }
+            
+            img.src="images/강아지.jpg";
+            
+        </script>
+            
+    </div>
+    <hr>
+    <h3 style="text-align: center;margin:0px"><a href="Exdraw.html">그림그리기도 할 수 있다고 한다........</a></h3>
+</body>
+</html>
