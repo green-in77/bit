@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>사용자 정의 함수 : 내장함수</title>
+	<script type="text/javascript">
+		//java : public void print() {}
+		//java : public String print() {return "";}
+		//java : public int print(int num, int num2){return num+num2;}
+		
+		//javascript
+		//function 함수명(파라메터){실행블럭} : void(x), return type(x))
+		
+		//호출에 의해서 실행됨
+		function callConfirm(){//사용자 정의 함수
+			if(window.confirm("작업내용")){ //confirm 내장함수 //확인,취소 버튼이 있는 popup창
+				window.alert("삭제합니다."); //alert 내장함수 // popup창
+			}else{
+				alert("취소합니다.");
+			}
+		}
+		
+		function showPopup(){ //open 내장함수
+			window.open("Ex06_popup.html","zipcode", "width=200px,height=200px");
+			//window.open(URL, name, specs, replace)
+			//window.close() > close the correct window(현재창 닫기)
+			//https://www.w3schools.com/jsref/met_win_open.asp
+			//specs 브라우져마다 지원여부가 다름
+			//specs : 주소창, 창 크기조절 옵션 .......
+		}
+		
+		function myFunction(){
+			var mywindow = window.open("Ex06_popup.html","MsgWindow", "width=200px,height=200px");
+			//mywindow = 현재 띄워진 popup창을 가르킨다.
+			mywindow.document.write("<p>this is 'Msgwindow'</p>");
+		}
+		
+		//java : public String goUrlTime(String url){return "";}
+		function goUrlTime(url){ //parameter는 type을 갖지 않는다.
+			window.setTimeout("location.href='"+url+"'",3000); //3초뒤 url로 이동
+			//location.href="http:www.daum.net" 이 코드가 실행되면 특정 url로 이동
+		}
+		//function 함수이름(변수명,변수명,변수명....){}
+		function myfun(a,b){
+			return a+b;
+		}
+		
+		var result = myfun(100,200); //script 내부에서 함수 호출
+		console.log("myfun : " + result);
+		
+		//익명함수(함수릐 주소를 리턴 객체...)
+		changeColor = function(){ //function 이름{}
+			window.document.bgColor="silver";
+			window.document.fgColor="red";
+			//<body bgcolor="silver" text="red">
+		}
+		
+	</script>
+</head>
+<body>
+	<h3>내장함수와 사용자정의 함수 사용하기</h3>
+	<button onclick="callConfirm()">클릭 사건 발생(함수 호출)</button>
+	<br>
+	<button onclick="showPopup()">팝업창</button>
+	<br>
+	<button onclick="myFunction()">팝업객체</button>
+	<br>
+	<button onclick="goUrlTime('http://www.daum.net')">주소이동</button>
+	<br>
+	<button onclick="changeColor()">익명함수</button>
+	
+
+</body>
+</html>

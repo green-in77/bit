@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>유효성 검증</title>
+	<script type="text/javascript">
+		//유효성검증
+		//1. Client 서버전송 >> 서버검증 >> 검증여부 Client 보낸다
+		//2. Client 에서 검증 >> 검증 완료 서버 전송 >> 서버 반영여부 Client 보낸다.
+		//최대한 할 수 있는 부분은 2번... 서버 전송 수 줄인다(POINT)
+		
+		//2. javascript 담당
+		//유효성체크
+		
+		function send(){
+			//var element = document.forms[0].elements[0].value;
+			//form name속성이 있다면
+			var inputuserid = document.Loginform.txtuserid;
+			//inputuserid = <input type="text" name="txtuserid">
+			console.log(inputuserid);
+			console.log(inputuserid.value);
+			
+			//DOM Script
+			var userpw = document.getElementById("txtuserpw");
+			console.log(userpw.value);
+			
+			//검증(원하는 코드로 작성)
+			if(inputuserid.value == "" || !(inputuserid.value.length >= 3 && inputuserid.value.length <=10) ){
+				alert("다시입력해");
+				//document.Loginform.txtuserid.focus();
+				inputuserid.focus(); //포커스를 맞추고
+				inputuserid.select(); //기존 입력값 블럭잡기
+			}else {
+				alert("검증완료");
+				//서버로 전송하는 코드....
+				document.Loginform.action = "Ex09_login.jsp";
+				document.Loginform.submit(); //form submit() 함수 내장
+			}	
+			
+		}
+		
+	</script>
+</head>
+<body>
+	<form action="" method="get" name="Loginform">
+		ID : <input type="text" name="txtuserid"><br>
+		<!-- name 속성이 없으면 server 에서 값을 받지 못한다.(id는 css등 에서 사용) -->
+		PW : <input type="password" name="txtuserpw" id="txtuserpw"><br>
+		<!-- submit, image, button(별도의 함수 필요-함수내부에서 submit) -->
+		<input type="button" value="전송" onclick="send()">
+		
+	</form>
+</body>
+</html>
