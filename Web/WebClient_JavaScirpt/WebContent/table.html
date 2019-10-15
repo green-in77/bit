@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>동적테이블</title>
+	<style type="text/css">
+		table{width: 100%}
+		table,tr,th,td {border: 1px solid; border-collapse: collapse;}
+		td{background-color: gold; text-align: center;}
+	</style>
+	<script type="text/javascript">
+		
+		window.onload = function(){
+			var btnCreate = document.getElementById("btnCreate");
+			var trnum,tdnum,table,tr,td,text;
+			
+			btnCreate.onclick = function() {
+				trnum = document.getElementById("tr").value
+				tdnum = document.getElementById("td").value
+				table = document.createElement("table");
+				table.setAttribute("id","Tab");
+				
+				for (var i = 0; i<trnum;i++){
+					tr = document.createElement("tr");
+					table.appendChild(tr);
+					for(var j = 0; j<tdnum;j++){
+						td = document.createElement("td");
+						text=document.createTextNode((i+1)+"행"+(j+1)+"열");
+						td.appendChild(text);
+						tr.appendChild(td);
+					}
+					table.appendChild(tr);
+				}
+				document.body.appendChild(table);	
+			}
+			
+			
+			btnRemove.onclick = function() {
+				
+				//document.getElementById(id) >> id를 식별자로
+				//document.getElementsByName(name) >> name을 식별자로
+				//document.getElementsByClassName(name) >> classname을 식별자로
+				var del = document.getElementsByTagName("table");
+				
+				console.log(del);
+				console.log(del.length)
+				console.log(del[del.length-1]);
+				
+				if(del.length > 0){
+					document.body.removeChild(del[del.length-1]);	
+				}else {
+					alert("모두 삭제되었습니다.");
+				}
+				
+			}
+			
+		}
+	</script>
+</head>
+<body>
+	행의 수 : <input type="text" id="tr"><br>
+	열의 수 : <input type="text" id="td"><br>
+	<input type="button" value="동적테이블 생성" id="btnCreate">
+	<input type="button" value="동적테이블 제거" id="btnRemove"><br>
+	
+</body>
+</html>

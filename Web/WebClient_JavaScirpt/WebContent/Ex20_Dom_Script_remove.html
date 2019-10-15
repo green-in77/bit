@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+		.democlass {
+		color: red;
+		}
+	</style>
+</head>
+<body>
+
+	<h1 class="democlass">Hello World</h1>
+	<h1 class="democlass">Hello World</h1>
+	<h1 class="democlass">Hello World</h1>
+
+
+	<p id="demo">Click the button to remove the class attribute from
+		the h1 element.</p>
+
+	<button onclick="myFunction()">Try it</button>
+
+	<script>
+		function myFunction() {
+			var arr = document.getElementsByTagName("H1"); //body의 모든 h1요소를 가져옴(배열로 저장)
+			for ( var index in arr) { //배열의 index를 가져온다....
+				arr[index].removeAttribute("class"); //index로 찾아가서 속성을 지운다!!!!
+			}
+		}
+	</script>
+
+</body>
+</html>
