@@ -1,6 +1,0 @@
-INDEX VERSION 1.4+C:\SmartWeb\Web\WebClientLabs\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-889149064.index
-332364803.index
-3436011830.index
-2744742364.index
-2120468405.index
