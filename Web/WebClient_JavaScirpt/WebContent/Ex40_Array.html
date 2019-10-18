@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript">
+		//javascript Array : 정적 + collection
+		//java : int[] arr = {10,20,30}; 고정배열
+		//java : Coollection >> ArrayList list = new ArrayList();
+		//list.add(), list.get()....
+		
+		var array = ['포도','사과'];
+		document.write(array.toString() + "<br>"); //포도,사과
+		document.write(array + "<br>"); //포도,사과 (기본 toString 처리되어 출력)
+		
+		for (var i = 0; i < array.length; i++ ){
+			document.write(array[i]+"<br>");
+		}
+		
+		//동적기능
+		//java : array[0] >> 포도, array[1] >> 사과 : 방 2개
+		
+		array[2] = "바나나"; //동적★★★★★★
+		document.write(array + " / "+ array.length + "<br>"); //포도,사과 (기본 toString 처리되어 출력)
+		
+		array[10] = "애플망고"; //만들어짐 3~9까지 빈 값으로 생김...
+		document.write(array + " / "+ array.length + "<br>"); //포도,사과 (기본 toString 처리되어 출력) // length 11
+		document.write(array[9] + " / "+ array.length + "<br>"); //undefined // 공간만 있고 정의된 것이 없다.
+		
+		array[9] = "배";
+		document.write("초기화 " + array[9] + " / "+ array.length + "<br>"); //배
+		
+		var array2 = ["one", "two", "three"];
+		document.write(array2.length + "<br>");
+		
+		array2.length = 2; //강제로 길이를 줄이는 것은 가능하지만 안에 있던 데이터가 날아감...위험하다.
+		for(var index in array2){
+			document.write("<br>"+array2[index]+"<br>");
+		}
+		
+		array2.length = 4; //다시 길이를 늘릴 수 있지만 없어졌던 값은 돌아오지 않는다...
+		document.write(array2 + "<br>");
+		document.write(array2[2]+ "<br>");//undefined
+		
+		//POINT (Stack 구조) Last In First Out 후입선출
+		array2.push("Four"); //마지막 방 다음으로 들어감(undefined 되어있는 방을 채우는 것이 아님.)
+		document.write("push : " + array2.toString()+"<br>");
+		
+		document.write(array2.pop()+"<br>"); //Four
+		document.write(array2.pop()+"<br>"); //undefined
+		
+		//배열 선언시에....
+		var list = [];
+		list.push("A");
+		list.push("B");
+		list.push("C");
+		list.push("D");
+		
+		document.write(list.pop()+"<br>"); //D
+	</script>
+</head>
+<body>
+
+</body>
+</html>

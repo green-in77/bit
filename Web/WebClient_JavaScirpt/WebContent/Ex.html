@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>구리시, 남양주시, 연천군, 가평군, 여주시</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+	<script type="text/javascript">
+		var guri = {"JobFndtnSportPolocy":[{"head":[{"list_total_count":2},{"RESULT":{"CODE":"INFO-000","MESSAGE":"정상 처리되었습니다."}},{"api_version":"1.0"}]},{"row":[{"PBLANC_TITLE":" 구리시 2019년 사회적경제조직 청년일자리사업 참여기업 모집(5차)","INST_NM":"구리시청","RECRUT_BEGIN_DE":"2019-07-30","RECRUT_END_DE":"2019-12-31","DIV_CD":"07","DIV_NM":"기업지원","REGION_CD":"4131","REGION_NM":"구리시","DETAIL_PAGE_URL":"https://www.jobaba.net/sprtPlcy/info/view.do?seq=5183&cntType=O"},{"PBLANC_TITLE":" 구리시 2019년 사회적경제조직 청년일자리사업 참여자 모집(5차)","INST_NM":"구리시청","RECRUT_BEGIN_DE":"2019-07-30","RECRUT_END_DE":"2019-12-31","DIV_CD":"01","DIV_NM":"구직활동","REGION_CD":"4131","REGION_NM":"구리시","DETAIL_PAGE_URL":"https://www.jobaba.net/sprtPlcy/info/view.do?seq=5182&cntType=O"}]}]}
+		var namyangju = {"JobFndtnSportPolocy":[{"head":[{"list_total_count":6},{"RESULT":{"CODE":"INFO-000","MESSAGE":"정상 처리되었습니다."}},{"api_version":"1.0"}]},{"row":[{"PBLANC_TITLE":" 남양주시 2019년 청년일드림사업 사업장 모집(3차)","INST_NM":"남양주시청","RECRUT_BEGIN_DE":"2019-06-18","RECRUT_END_DE":"2019-12-31","DIV_CD":"07","DIV_NM":"기업지원","REGION_CD":"4136","REGION_NM":"남양주시","DETAIL_PAGE_URL":"https://www.jobaba.net/sprtPlcy/info/view.do?seq=5063&cntType=O"},{"PBLANC_TITLE":" 남양주시 2019년 청년일드림사업 참여자 모집(3차)","INST_NM":"남양주시청","RECRUT_BEGIN_DE":"2019-06-18","RECRUT_END_DE":"2019-12-31","DIV_CD":"01","DIV_NM":"구직활동","REGION_CD":"4136","REGION_NM":"남양주시","DETAIL_PAGE_URL":"https://www.jobaba.net/sprtPlcy/info/view.do?seq=5062&cntType=O"},{"PBLANC_TITLE":"2019년 찾아가는 취업스터디","INST_NM":"남양주 일자리센터","RECRUT_BEGIN_DE":"2019-04-02","RECRUT_END_DE":"2019-12-31","DIV_CD":"01","DIV_NM":"구직활동","REGION_CD":"4136","REGION_NM":"남양주시","DETAIL_PAGE_URL":"https://www.jobaba.net/sprtPlcy/info/view.do?seq=4894&cntType=O"},{"PBLANC_TITLE":" 남양주시 청년 강소기업 탐방 참여자 모집","INST_NM":"남양주고용복지플러스센터","RECRUT_BEGIN_DE":"2019-09-06","RECRUT_END_DE":"2019-11-25","DIV_CD":"01","DIV_NM":"구직활동","REGION_CD":"4136","REGION_NM":"남양주시","DETAIL_PAGE_URL":"https://www.jobaba.net/sprtPlcy/info/view.do?seq=5315&cntType=O"},{"PBLANC_TITLE":" 남양주시 스터디룸 대여서비스 JOB 공간더하기","INST_NM":"남양주시청","RECRUT_BEGIN_DE":null,"RECRUT_END_DE":null,"DIV_CD":"01","DIV_NM":"구직활동","REGION_CD":"4136","REGION_NM":"남양주시","DETAIL_PAGE_URL":"https://www.jobaba.net/sprtPlcy/info/view.do?seq=4636&cntType=O"},{"PBLANC_TITLE":" 남양주시 이력서 사진 촬영 서비스 두드림 사진관","INST_NM":"남양주시청","RECRUT_BEGIN_DE":null,"RECRUT_END_DE":null,"DIV_CD":"01","DIV_NM":"구직활동","REGION_CD":"4136","REGION_NM":"남양주시","DETAIL_PAGE_URL":"https://www.jobaba.net/sprtPlcy/info/view.do?seq=4634&cntType=O"}]}]}
+		var gapyeong = {"JobFndtnSportPolocy":[{"head":[{"list_total_count":2},{"RESULT":{"CODE":"INFO-000","MESSAGE":"정상 처리되었습니다."}},{"api_version":"1.0"}]},{"row":[{"PBLANC_TITLE":" 가평군 2019년 지역주도형 청년 일자리 사업 참여 기업 모집","INST_NM":"가평군청","RECRUT_BEGIN_DE":"2019-02-01","RECRUT_END_DE":null,"DIV_CD":"07","DIV_NM":"기업지원","REGION_CD":"4182","REGION_NM":"가평군","DETAIL_PAGE_URL":"https://www.jobaba.net/sprtPlcy/info/view.do?seq=4685&cntType=O"},{"PBLANC_TITLE":" 가평군 2019년 지역주도형 청년 일자리 사업 참여 청년 모집","INST_NM":"가평군청","RECRUT_BEGIN_DE":"2019-02-01","RECRUT_END_DE":null,"DIV_CD":"01","DIV_NM":"구직활동","REGION_CD":"4182","REGION_NM":"가평군","DETAIL_PAGE_URL":"https://www.jobaba.net/sprtPlcy/info/view.do?seq=4684&cntType=O"}]}]}
+		var yeoju = {"JobFndtnSportPolocy":[{"head":[{"list_total_count":2},{"RESULT":{"CODE":"INFO-000","MESSAGE":"정상 처리되었습니다."}},{"api_version":"1.0"}]},{"row":[{"PBLANC_TITLE":" 여주시 2019년 여주 청년 일자리 창출 지원 사업 기업 모집 (9차) ","INST_NM":"여주시청","RECRUT_BEGIN_DE":"2019-10-07","RECRUT_END_DE":"2019-10-18","DIV_CD":"07","DIV_NM":"기업지원","REGION_CD":"4167","REGION_NM":"여주시","DETAIL_PAGE_URL":"https://www.jobaba.net/sprtPlcy/info/view.do?seq=5376&cntType=O"},{"PBLANC_TITLE":" 여주시 2019년 여주 청년 일자리 창출 지원 사업 참여청년 모집 (9차)","INST_NM":"여주시청","RECRUT_BEGIN_DE":"2019-10-07","RECRUT_END_DE":"2019-10-18","DIV_CD":"01","DIV_NM":"구직활동","REGION_CD":"4167","REGION_NM":"여주시","DETAIL_PAGE_URL":"https://www.jobaba.net/sprtPlcy/info/view.do?seq=5375&cntType=O"}]}]}
+				
+		var lo = [guri,namyangju,gapyeong,yeoju];
+		
+		//console.log(namyangju);
+		//console.log(gapyeong);
+		//console.log(yeoju);
+		
+		window.onload = function(){
+			var tbody = document.getElementById("tbody");			
+			
+			for (var l = 0; l < lo.length ; l++){
+				var loc = lo[l];                                                                                                                                                                                                                              
+				//console.log(loc.JobFndtnSportPolocy[1].row.length);
+				for (var i = 0; i < loc.JobFndtnSportPolocy[1].row.length;i++){
+					var tr = document.createElement("tr");
+				
+					var td = document.createElement("td");
+					var REGION_NM = document.createTextNode(loc.JobFndtnSportPolocy[1].row[i].REGION_NM);
+					
+					var td2 = document.createElement("td");
+					var PBLANC_TITLE = document.createTextNode(loc.JobFndtnSportPolocy[1].row[i].PBLANC_TITLE);
+					
+					var td3 = document.createElement("td");
+					var INST_NM =document.createTextNode(loc.JobFndtnSportPolocy[1].row[i].INST_NM);
+					
+					var td4 = document.createElement("td");
+					var RECRUT_BEGIN_DE = document.createTextNode(loc.JobFndtnSportPolocy[1].row[i].RECRUT_BEGIN_DE);
+					
+					var td5 = document.createElement("td");
+					var RECRUT_END_DE = document.createTextNode(loc.JobFndtnSportPolocy[1].row[i].RECRUT_END_DE);
+					
+					var td6 = document.createElement("td");
+					var DETAIL_PAGE_URL = document.createTextNode(loc.JobFndtnSportPolocy[1].row[i].DETAIL_PAGE_URL);
+					
+					
+					td.appendChild(REGION_NM);
+					td2.appendChild(PBLANC_TITLE);
+					td3.appendChild(INST_NM);
+					td4.appendChild(RECRUT_BEGIN_DE);
+					td5.appendChild(RECRUT_END_DE);
+					td6.appendChild(DETAIL_PAGE_URL);
+
+					tr.appendChild(td);
+					tr.appendChild(td2);
+					tr.appendChild(td3);
+					tr.appendChild(td4);
+					tr.appendChild(td5);
+					tr.appendChild(td6);
+					
+					tbody.appendChild(tr);
+				}	
+			}
+		}
+		
+	</script>
+</head>
+<body>
+	<div class="text-center">
+		<br>
+ 		<h2>구리시, 남양주시, 연천군, 가평군, 여주시</h2>
+  		<p>경기도일자리재단_일자리 관련 지원정책</p>            
+  		<table class="table table-hover" id="table">
+    		<thead>
+      			<tr>
+			        <th>지역명</th>
+			        <th>공고명</th>
+			        <th>기관명</th>
+			        <th>모집시작일자</th>
+			        <th>모집종료일자</th>
+			        <th>상세페이지</th>
+      			</tr>
+    		</thead>
+    		<tbody id="tbody">	
+    		</tbody>
+  		</table>
+	</div>
+</body>
+</html>
