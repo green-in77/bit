@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Html SVG</title>
+<style>
+* {
+	box-sizing: border-box; /*너비와 높이에 채우기 및 테두리 포함*/
+}
+
+div {
+	width: 33.3%;
+	height: 310px;
+	float: left;
+}
+
+div.text {
+	width: 100%;
+	height: 60px;
+	font-size: 10pt;
+}
+</style>
+</head>
+<body>
+	<div
+		style="width: 100%; height: 75pt; text-align: center; border: 3px dotted salmon; overflow: auto;">
+		<h3 style="margin-top: 5px; margin-bottom: 5px">SVG : 백터(vector)
+			이미지를 표현하기 위한 포맷으로 w3c에서 만든 백터 이미지 표준입니다.</h3>
+		<p style="margin: 0px">SVG 코드 설명 : 1. SVG 이미지는 svg 요소로 시작합니다 2.svg
+			요소의 너비와 높이 속성은 SVG 이미지의 너비와 높이를 정의합니다</p>
+	</div>
+
+	<div>
+		<svg width="400" height="200"
+			style="border: 4px dotted indianred; margin-top: 10px">
+  <circle cx="200" cy="100" r="60" stroke="green" stroke-width="4"
+				fill="yellow" />
+        
+		<div class="text" overflow="auto" display="block">
+        1.circle 요소는 원을 그리는 데 사용됩니다<br>
+        2. cx 및 cy 속성은 원 중심의 x 및 y 좌표를 정의합니다.<br>
+        3. r 속성은 원의 반지름을 정의합니다<br>
+        4. 획 및 획 너비 속성은 모양의 윤곽이 나타나는 방식을 제어합니다.<br>
+        5. 채우기(fill) 속성은 원 안의 색상은 노란색으로 설정했습니다<br>
+        </div>
+  
+	
+	
+	</div>
+
+	<div>
+		<svg width="400" height="200" viewBox="0 0 400 200" display="inline-block" 
+			style="border: 4px dotted indianred; margin-top: 10px">
+  <rect x="55" y="45" width="300" height="120" align="center" display="inline-block"
+				style="fill:rgb(0,0,255); stroke-width:10; stroke:rgb(0,0,0)" />
+</svg>
+		<div class="text" overflow="auto", display="block">
+			1. rect 요소의 (width:400 height:110) 사각형의 높이와 너비를 정의함.<br>
+			2. style 속성은 사각형의 CSS 속성을 정의하는 데 사용.<br>
+			3. fill 사각형의 채우기 색상을 정의함. (fill:rgb(0,0,255))<br>
+			4. 사각형 테두리(stroke-width)의 너비를 4로 지정.<br>
+			5. 사각형 테두리의 색상(stroke)을 정의합니다.<br>
+		</div>
+
+	</div>
+
+	   <div>
+      <svg width="400" height="200" id="myCanvas2"
+         style="border: 4px dotted indianred; margin-top: 10px">
+     <rect x="110" y= "20" rx="20" ry="20" width="150" height="150"
+         style="fill:red;stroke:black;stroke-width:5; opacity:0.5; viewBox="0 0 400 200" preserveAspectRatio="xMaxYMax meet"/>
+      </svg>
+      <div class="text">
+        1. x,y속성은 사각형의 왼쪽 및 상단의 위치를 정의 <br>
+        2. 사각형 테두리(stroke-width)의 너비를 5로 지정.<br>
+        3. 획 색상의 자체 투명도(opacity )를 0.5 지정 <br>
+        4.viewBox : 커버 할 svg의 사각형 영역을 정의합니다.<br>
+        5. preserveAspectRatio : 뷰포트가 변경되면 스트레치하는 방법을 정의.
+      </div>
+</div>
+	
+<div>
+      <svg width="400" height="200" id="canvas_1"
+         style="border: 4px dotted indianred; margin-top: 10px">
+      <polygon points="180,00 120,188 270,68 90,68 240,188"
+         style="fill:lime;stroke:purple;stroke-width:5;fill-rule:evenodd; ;" />
+</svg>
+    
+      <div class="text">
+        1. 라임색 채우기 <br>
+        2. 선색 : 보라색 <br>
+        3. 테두리(stroke-width)의 너비를 5로 지정 <br>
+        4. fill-rule : 채우기 규칙 속성을 "evenodd"로 지정.
+      </div>
+</div>
+	<!--    여기서부터 2번째 캔버스 -->
+	<div>
+		<svg width="400" height="200" id="canvas_2"
+			style="border: 4px dotted indianred; margin-top: 10px">
+			<defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:rgb(255,255,0);stop-opacity:1" />
+      <stop offset="100%" style="stop-color:rgb(255,0,0);stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <ellipse cx="200" cy="90" rx="85" ry="55" fill="url(#grad1)" />
+  <text fill="#ffffff" font-size="45" font-family="Verdana" x="150"
+			y="105">SVG</text>
+        </svg>
+
+		<div class="text">
+			1. linearGradient 요소는 선형 그래디언트를 정의<br>
+			2. linearGradient 요소는 defs 태그 내에 중첩되어야함<br>
+			3. 그라디언트의 색상 범위는 둘 이상의 색상으로 구성 될 수 있다<br>
+			4. 각 색상은 stop 태그로 지정됩니다<br>
+			5. 오프셋 속성은 그라디언트 색상이 시작되고 끝나는 위치를 정의<br>
+		</div>
+
+	</div>
+
+<div>
+      <svg width="400" height="200" id="canvas_3"
+         style="border: 4px dotted indianred; margin-top: 10px">
+         <g fill="none">
+    <path stroke="red" d="M5 70 l500 0" />
+    <path stroke="black" d="M5 90 l500 0" />
+    <path stroke="blue" d="M5 110 l500 0" />
+  </g>
+         
+        </svg>
+
+      <div class="text">
+         1. 획 속성은 요소의 선, 텍스트 또는 윤곽선의 색상<br>
+         2. g 태그 안에 path태그를 넣어야한다.<br>
+         3. 선에도 그라디언트 속성을 넣을 수 있다.<br>
+      </div>
+      </div>
+	<hr>
+	<h3 style="text-align: center; margin: 0px">
+		Question
+	</h3>
+	<hr>
+	<div>
+	<svg width="400" height="200" id="canvas_3"
+         style="border: 4px dotted indianred; margin-top: 10px">
+         <rect x="95" y="0" rx="30" ry="30" width="200" height="200"
+			style="fill:black;stroke:yellow;stroke-width:3px;opacity:0.5" />
+</svg>
+<div class="text">
+         1. 모서리가 둥근 사각형을 만드세요 svg크기의 가로는 400, 높이는 200이다<br>
+          x좌표는 95 y좌표는 0 rx좌표는 30 ry좌표는 30입니다. 사각형의 크기는 200*200입니다 <br>
+		   내부 색은 검정색으로 하며 투명도는 0.5입니다. 테두리 색은 노란색입니다. <br>
+		   테두리 width는 3입니다<br>
+      </div>
+</div>
+<div>
+<svg width="400" height="200" id="canvas_3"
+         style="border: 4px dotted indianred; margin-top: 10px">
+         <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:rgb(255,255,0);stop-opacity:1" />
+      <stop offset="100%" style="stop-color:rgb(255,0,0);stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <ellipse cx="210" cy="90" rx="85" ry="55" fill="url(#grad1)" />
+  <text fill="#ffffff" font-size="45" font-family="Verdana" x="140"
+			y="105">LOL</text>
+         </svg>
+         <div class="text">
+         2. 높이 200에 너비가 400인 로고를 만드세요 <br>
+         	그라데이션을 x2좌표 기준으로 100%을 잡고 나머지는 0%로 잡습니다 <br>
+		도형은 eclipse로 만드시고 그 좌표는 cx=210, cy=90, rx=85, ry=55이며 <br>
+		채우기는 그라데이션이며 왼쪽 색은 rgb(255,255,0) 오른쪽색은(255,0,0)입니다 opacity=1<br>
+		텍스트는 흰색, 폰트사이즈는 45이며 폰트체는 verdana입니다<br>
+		 좌표는 x=140, y=105이며 글자는 LOL을 출력하세요.<br>
+      </div>
+         </div>
+		<div>
+         <svg width="400" height="200" id="canvas_3"
+         style="border: 4px dotted indianred; margin-top: 10px">
+         <polygon points="180,10 120,188 270,68 90,68 240,188"
+         style="fill:#5d1451;stroke:#14868c;stroke-width:8;fill-rule:evenodd;" />
+         
+         </svg>
+         
+         
+         <div class="text">
+         3. 채우기 색은 #b22222,라인의 색을 #f45905으로 하는<br>
+         	별의 테두리의 너비를 5로 지정하고 <br>
+         	채우기 규칙 속성을 "evenodd"로 변경하십시오
+         	polygon좌표는 "180,10 120,188 270,68 90,68 240,188"이다.
+         </div>
+         </div>
+         <div>
+         <svg width="400" height="200" id="canvas_3"
+         style="border: 4px dotted indianred; margin-top: 10px">
+          <circle cx="190" cy="90" r="50" stroke="#7c0a02" stroke-width="5"
+         fill="#f1d4d4" />
+
+         
+         </svg>
+         
+         
+         <div class="text">
+                 4. 도형의 총 넓이의 가로는 100,높이는 100 , 선이 색은 #233714<br>
+                 안의 색은 #fc7fb2,두께는 5의 원을 만들어라. <br>
+         x좌표는 190, y좌표는 90,반지름은 50이다
+         </div>
+         </div>
+
+</body>
+</html>

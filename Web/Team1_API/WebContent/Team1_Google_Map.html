@@ -1,0 +1,305 @@
+<html>
+<head>
+<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Scoop Themes | Colupsus Landing Page Documentation">
+    <meta name="author" content="Scoop Themes">
+
+    <title>SevenApp Responsive</title>
+
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+<title>Google Map 의 클릭한 좌표값을 알아내자</title>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript">
+
+var map;
+function initialize() {
+var myLatlng = new google.maps.LatLng(37.20959739504577,126.97947084903717);
+var myOptions = {  
+zoom: 18,    
+center: myLatlng,
+mapTypeId: google.maps.MapTypeId.ROADMAP,
+
+} 
+
+map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+//클릭했을 때 이벤트
+google.maps.event.addListener(map, 'click', function(event) {
+placeMarker(event.latLng);
+infowindow.setContent("latLng: " + event.latLng); // 인포윈도우 안에 클릭한 곳위 좌표값을 넣는다.
+infowindow.setPosition(event.latLng);             // 인포윈도우의 위치를 클릭한 곳으로 변경한다.
+
+});
+//클릭 했을때 이벤트 끝
+
+
+//인포윈도우의 생성
+ var infowindow = new google.maps.InfoWindow(
+ { content: 'Clicked latLng',
+ size: new google.maps.Size(50,50),
+ position: myLatlng
+ }); 
+ infowindow.open(map);
+
+
+} // function initialize() 함수 끝
+
+// 마커 생성 합수
+function placeMarker(location)
+{
+var clickedLocation = new google.maps.LatLng(location);
+var marker = new google.maps.Marker({       position: location,        map: map   });
+map.setCenter(location);
+}
+
+ 
+
+ </script>
+ </head>
+ 
+<body onload="initialize()">
+
+  <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="index.html">
+                        <img src="img/123.png"style="width:80%;height:50px">
+                    </a>
+                </li>
+                <li class="main-search">
+                    <form>
+                        <input type="text" class="form-control" placeholder="Search here...">
+                        <span class="fa fa-search"></span>
+                    </form>
+                </li>
+                <li><a href="#GettingStarted">Google Map Index</a>
+                </li>
+                <li><a href="#MainStructure">Basic<span class="fa fa-angle-down"></span></a>
+                    <ul>
+                        <li><a href="#PageHead">1. Load the Google API</a></li>
+                        <li><a href="#Header">2. Set Map Properties</a></li>
+                        <li><a href="#Sections">3. Create a Map Container</a></li>
+                        <li><a href="#Footer">4. Create a Map Object</a></li>
+                        <li><a href="#Fist">5. Google API Key</a></li>
+                   		
+                    </ul>
+                </li>
+                
+
+        </div>
+
+        <!-- Page content -->
+        <div id="map_canvas" style="width:100%; height:60%"></div>
+        <div id="googleMap" style="width:100%;height:50px;float:left"></div>
+        
+        <div id="page-content-wrapper">
+            <div class="content-header">
+                <a id="menu-toggle" href="#" class="btn btn-default">
+                    <span class="fa fa-bars"></span>
+                </a>
+                <h1 id="GettingStarted;"style="float:left">
+                    Google Map API
+                </h1>
+            </div>
+            <!-- Keep all page content within the page-content inset div! -->
+            <div class="page-content inset">
+
+                <div id="OverView">
+                    <div class="row">
+                        <div class="col-md-12">
+                           <br><br>
+                        </div>
+                    </div>
+
+
+                </div>
+                <!--Overview-->
+
+                <div id="MainStructure">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3>Index</h3>
+                            <p>구글 맵 AIP 사용법  <code>Basic</code>, <code>Overlays</code>, <code>Events</code>, <code>Controls</code> and <code>Type</code></p>
+                        </div>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="row" id="PageHead">
+                    <div class="col-md-12">
+                        <h3>1. Load the Google API</h3>
+                        <p><b>구글 맵스 API는 자바스크립트 라이브러리(JavaScript library)입니다.</b></p>
+<pre>&ltscript type="text/javascript"
+   src="http://maps.google.com/maps/api/js?sensor=false"&gt&lt/script&gt //구글맵 API를 사용하기 위한 js코드 불러오기
+&ltscript type="text/javascript"&gt
+</pre>
+
+                    </div>
+                </div>
+
+                <div class="row" id="Header">
+                    <div class="col-md-12">
+                        <h3>2. Set Map Properties</h3>
+                        <p><b>맵을 초기화해주기 위한 함수(function)를 만듭니다.</b></p>
+<pre>function initialize() {   
+   // 초기 위도 경도, 구글 맵 시작시 Zoom 정도, 구글 맵 시작시 중심점, Roadmap 타입의 지도 사용
+   var myLatlng = new google.maps.LatLng(37.20959739504577,126.97947084903717);
+   var myOptions = {  
+   zoom: 18,    
+   center: myLatlng,
+   mapTypeId: google.maps.MapTypeId.ROADMAP
+   } 
+</pre>
+                    </div>
+                </div>
+
+
+                <div class="row" id="Sections">
+                    <div class="col-md-12">
+                        <h3>3. Create a Map Container</h3>
+                        <p><b>맵을 담기 위한 태그를 생성합니다.</b></p>
+                       
+<pre>
+var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions); 
+</pre>
+                    </div>
+                </div>
+
+				<div class="row" id="Footer">
+					<div class="col-md-12">
+						<h3>4. Create a Map Object</h3>
+						<p></p>
+						<pre>//클릭할때 표시할 문자와 위도 경도를 함께 출력
+google.maps.event.addListener(map, 'click', function(event) {	// 클릭을 하면 여기서 정의된 (event 를 parameter로 받는) 함수를 실행한다. 
+      placeMarker(event.latLng);      
+      infowindow.setContent("Hi! GoogleMap... &ltbr&gt " + event.latLng); // 인포윈도우 안에 클릭한 곳위 좌표값을 넣는다.
+      infowindow.setPosition(event.latLng);             		// 인포윈도우의 위치를 클릭한 곳으로 변경한다.
+   }
+);
+
+// infowindows 변수에 InfoWindow 기능을 담는다.
+var infowindow = new google.maps.InfoWindow({
+   content: 'Lol! googleMaps... ',      // 표시할 메세지 입력
+   size: new google.maps.Size(50,50),   // InfoWindow Size 정의
+   position: myLatlng });             	// 표시 위치를 위에서 정의된 myLatLng로 정의
+   infowindow.open(map,);            	// 지도 위에서 infowindow 실행
+}
+
+// 마커 생성 합수
+function placeMarker(location) { 	// 마커를 location 위치에 놓는 함수 정의
+   var clickedLocation = new google.maps.LatLng(location);      // clickedLocation 변수에 선택한 위치의 위도와 경도를 넣음
+   var marker = new google.maps.Marker({ position: location, animation:google.maps.Animation.BOUNCE, map: map });
+   // marker 변수에 위치는 현재 선택된 위치의 위도와 경도, 마커는 움직이는 기능, 지도위에 표시 의 기능을 넣음
+   map.setCenter(location);  		// 현재 선택된 위치를 지도의 중심으로 재설정
+}
+</pre>
+					</div>
+				</div>
+				<div class="row" id="Fist">
+					<div class="col-md-12">
+						<h3>5.Google API Key</h3>
+						<p>
+							<b>과다 트래픽을 위한 계획이 있다면, 구글로부터 무료 API 키를 얻길 바랍니다.</b>
+						</p>
+						<pre>
+&ltscript src="http://maps.googleapis.com/maps/api/js<b>?key=YOUR_KEY</b>"&gt &lt/script&gt
+</pre>
+					</div>
+					
+				</div>
+				<p>구글은 어떤 구글 API 든 웹 사이트에 불러올 수 있게 해줍니다.
+만약 과다 트래픽을 위한 계획이 있다면, 구글로부터 무료 API 키를 얻길 바랍니다.
+<br><a href="https://console.developers.google.com">https://console.developers.google.com</a> 이 링크에서 받길 바랍니다.
+발급받은 키를 아래와 같이 사용하시길 바랍니다.</p>
+				<!--Main Structure-->
+
+				
+
+                  
+                        <h3>전체 코드 구현</h3>
+<pre>&lthtml&gt
+&lthead&gt
+&lttitle&gtLat Lng 표시&lt/title&gt
+&ltmeta charset="utf-8" name="viewport" content="initial-scale=1.0, user-scalable=no" /&gt
+&ltscript type="text/javascript"
+   src="http://maps.google.com/maps/api/js?sensor=false"&gt&lt/script&gt
+&ltscript type="text/javascript"&gt
+
+var map;
+function initialize() {   
+   // 초기 위도 경도, 구글 맵 시작시 Zoom 정도, 구글 맵 시작시 중심점, Roadmap 타입의 지도 사용
+   var myLatlng = new google.maps.LatLng(37.20959739504577,126.97947084903717);
+   var myOptions = {  
+   zoom: 18,    
+   center: myLatlng,
+   mapTypeId: google.maps.MapTypeId.ROADMAP
+   } 
+   
+// 맵에 대한 정의
+map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+//클릭할때 표시할 문자와 위도 경도를 함께 출력
+google.maps.event.addListener(map, 'click', function(event) {      // 클릭을 하면 여기서 정의된 (event 를 parameter로 받는) 함수를 실행한다. 
+      placeMarker(event.latLng);      
+      infowindow.setContent("Hi! GoogleMap... &ltbr&gt " + event.latLng); // 인포윈도우 안에 클릭한 곳위 좌표값을 넣는다.
+      infowindow.setPosition(event.latLng);             // 인포윈도우의 위치를 클릭한 곳으로 변경한다.
+   }
+);
+
+// infowindows 변수에 InfoWindow 기능을 담는다.
+   var infowindow = new google.maps.InfoWindow({
+   content: 'Lol! googleMaps... ',      // 표시할 메세지 입력
+   size: new google.maps.Size(50,50),   // InfoWindow Size 정의
+   position: myLatlng });             	// 표시 위치를 위에서 정의된 myLatLng로 정의
+   infowindow.open(map,);            	// 지도 위에서 infowindow 실행
+}
+
+// 마커 생성 합수
+function placeMarker(location) {      // 마커를 location 위치에 놓는 함수 정의
+   var clickedLocation = new google.maps.LatLng(location);      // clickedLocation 변수에 선택한 위치의 위도와 경도를 넣음
+   var marker = new google.maps.Marker({ position: location, animation:google.maps.Animation.BOUNCE, map: map });
+   // marker 변수에 위치는 현재 선택된 위치의 위도와 경도, 마커는 움직이는 기능, 지도위에 표시 의 기능을 넣음
+   map.setCenter(location);   // 현재 선택된 위치를 지도의 중심으로 재설정
+}
+
+&lt/script&gt
+&lt/head&gt
+
+&ltbody onload="initialize()"&gt
+&ltdiv id="map_canvas" style="width: 100%; height: 100%"&gt&lt/div&gt
+&lt/body&gt
+&lt/html&gt</pre>
+
+<p class="alert alert-info">Html 구글맵 연동은 <a href="https://www.w3schools.com/graphics/google_maps_intro.asp" target="_blank">W3Schools_Google Maps</a>를 통해 학습할 수 있습니다.<br>for <b>Safari, Firefox, Opera, Chrome, IE.</b></p>
+
+
+                    </div>
+                </div>
+
+     
+
+
+    <!-- JavaScript -->
+    <script type='text/JavaScript' src="js/jquery-1.11.1.min.js"></script>
+    <script type='text/JavaScript' src="js/bootstrap.min.js"></script>
+    <script type='text/JavaScript' src="js/common.js"></script>
+
+
+    <!-- Custom JavaScript for the Menu Toggle -->
+    <script>
+    $(document).ready(function(){
+        DocMaster.treeMenu();
+        DocMaster.sideToggle();
+        DocMaster.scrollToElement();
+    });
+    </script>
+ </body>
+ </html>
