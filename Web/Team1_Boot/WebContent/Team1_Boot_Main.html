@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Team 1</title>
+	
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <script type="text/javascript">
+    function oneCheckbox(a,url){
+
+        var obj = document.getElementsByName("checkbox1");
+
+        for(var i=0; i<obj.length; i++){
+
+            if(obj[i] != a){
+
+                obj[i].checked = false;
+
+            }
+
+        }
+        
+        window.open(url);
+        /* window.document.location.href=url;
+        window.document.location.target=_blank;
+        return; */
+
+    }
+
+</script>
+
+<style>
+  .nav {
+
+  background-color: white; 
+
+  list-style-type: none;
+
+  text-align: center;
+
+  margin: 0;
+
+  padding: 0;
+
+}
+
+.nav li {
+
+  display: inline-block;
+
+  font-size: 20px;
+
+  padding: 20px;
+
+}
+
+input[type=checkbox]
+{
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(2.5); /* IE */
+  -moz-transform: scale(2.5); /* FF */
+  -webkit-transform: scale(2.5); /* Safari and Chrome */
+  -o-transform: scale(2.5); /* Opera */
+  padding: 10px;
+}
+
+.mySlides {display:none}
+.w3-left, .w3-right, .w3-badge {cursor:pointer}
+.w3-badge {height:13px;width:13px;padding:0}
+
+.jgSlides {display:none}
+
+
+</style>
+   
+</head>
+
+<body>
+
+<div class="container-fluid" style="padding:0">
+ <div class="row">
+<div class="col-sm-12" style="height: 100%;text-align: center; margin:0">
+	
+	<img src="img/pro.JPG" style="width:100%; height:auto;float:left">
+	<ul class="nav" style="list-style-type:none;">
+  	<li><a href="#home">Main</a></li>
+  	<li><a href="#about">Star</a></li>
+  	<li><a href="#clients">MBTI</a></li>  
+  	<li><a href="#contact">Rolling Paper</a></li>
+  	
+
+</ul>
+</div>
+</div>
+<div class="jumbotron text-center">
+<h3 id="home" style="text-align:center">당신의 <b style="color:blue">조원</b>에게 투표하세요</h3><br>
+<div class="row">
+    <div class = "col-sm-8" style = "height:700px;padding-right: 0px;padding-left: 0px;"><!--   소개 이미지 -->
+    
+    <img src = "img/du.jpg"style="width:100%; height:100%;" >
+    
+    
+    </div>
+      	
+     
+    <div class = "col-sm-4" style = "height:700px;">
+	<form name="sendForm" method="get" style="text-align:left;margin:10%;padding-top: 150px;" >
+
+    <input type="checkbox" name="checkbox1" value="a1" onclick="oneCheckbox(this,'member/gmkim/main.html')">&nbsp;&nbsp;&nbsp;&nbsp;No.1 김광민 : 3333114271616 (카카오뱅크)<br><br>
+
+    <input type="checkbox" name="checkbox1" value="a2" onclick="oneCheckbox(this,'member/jgkim/Main.html')">&nbsp;&nbsp;&nbsp;&nbsp;No.2 김정균 : 3020493782041 (농협)<br><br>
+
+    <input type="checkbox" name="checkbox1" value="a3" onclick="oneCheckbox(this,'member/kjh/Green.html')">&nbsp;&nbsp;&nbsp;&nbsp;No.3 김정하 : 66550204105322(국민)<br><br>
+
+    <input type="checkbox" name="checkbox1" value="a1" onclick="oneCheckbox(this,'member/khn/index.html')">&nbsp;&nbsp;&nbsp;&nbsp;No.4 김한녘 : 3561390470463 (농협)<br><br>
+
+    <input type="checkbox" name="checkbox1" value="a2" onclick="oneCheckbox(this,'member/psh/index_psh_new.html')">&nbsp;&nbsp;&nbsp;&nbsp;No.5 박성호 : 3561394314753 (농협)<br><br>
+
+    <input type="checkbox" name="checkbox1" value="a3" onclick="oneCheckbox(this,'member/Doyeon/Homework.html')">&nbsp;&nbsp;&nbsp;&nbsp;No.6 임도연 : 35390201140306(국민)<br><br>
+	
+	</form> 
+	</div>
+</div>     
+</div>    
+
+<div id="about" class="col-sm-12" style="height: 700px;text-align: center; margin:0">
+	<div class="w3-container">
+  	<h2 align="center" style="margin-top:50px">Zodiac Sign</h2>
+  
+</div>
+
+<div class="w3-content w3-display-container" style="max-width:800px;margin-top:50px">
+  <img class="mySlides" src="img/1.png" style="width:100%">
+  <img class="mySlides" src="img/2.png" style="width:100%">
+  <img class="mySlides" src="img/3.png" style="width:100%">
+  <img class="mySlides" src="img/4.jpg" style="width:100%">
+  <img class="mySlides" src="img/5.jpg" style="width:100%">
+    <div class="w3-center w3-container w3-section w3-large w3-text-white w3-display-bottommiddle" style="width:100%">
+    <div class="w3-left w3-hover-text-khaki" onclick="plusDivs(-1)">&#10094;</div>
+    <div class="w3-right w3-hover-text-khaki" onclick="plusDivs(1)">&#10095;</div>
+    <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(1)"></span>
+    <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(2)"></span>
+    <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(3)"></span>
+    <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(4)"></span>
+    <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(5)"></span>
+  </div>
+</div>
+
+
+	
+</div>
+    
+</div>
+
+<div id="clients" class="col-sm-12" style="height: 100%;text-align: center; margin:0;padding-left: 0px;padding-right: 0px;">
+	 <div class="jumbotron text-center">
+
+      <img src="img/mbti2.jpg" border ="0" alt="" usemap="#map" > 
+      <map id="map" name="map">
+         <area shape="rect" coords="377,309,414,337" href="gm.html"  target="_blank">
+         <area shape="rect" coords="58,103,99,129" href="dy.html" target="_blank">
+         <area shape="rect" coords="144,154,183,179" href="sh.html" target="_blank">
+         <area shape="rect" coords="413,333,455,358" href="hn.html" target="_blank">
+         <area shape="rect" coords="217,207,260,234" href="jk.html" target="_blank">
+         <area shape="rect" coords="603,461,643,489" href="jh.html" target="_blank">
+      </map>
+      <br><br><br>
+      
+         <h2  style="font-family:함초롬돋움"> MBTI 검사 결과표 ^^  </h2> <br>
+         <h5> <img src="img/red.png"   style="display: inline;">  궁합이 좋진않지만...! <br><br>▶한녘,도연◀ / ▶도연,광민◀ / ▶도연,정하◀<br><br>▶성호,정하◀ / ▶성호,광민◀ / ▶성호,한녘◀ </h5> <br>
+         <h5> <img src="img/yel.png"   style="display: inline;">  그나마 좀 나아지고있네...?!!  <br><br>▶한녘,광민◀ / ▶정균,정하◀ </h5>   <br>
+         <h5> <img src="img/green.png" style="display: inline;"> 오 그래도 절반은 간다!!  <br><br>▶정균,광민◀ / ▶정균,한녘◀ / ▶광민,정하◀  </h5>  <br>
+         <h5> <img src="img/green1.png" style="display: inline;"> 아주 좋은 관계 인걸?!  <br><br>▶도연,성호◀ / ▶도연,정균◀ / ▶성호,정균◀  </h5>   <br>
+         <h5> <img src="img/blue.png"  style="display: inline;"> 궁합 최고!!!  <br><br>▶한녘,정하◀ </h5>
+
+
+</div> 
+
+</div>
+<div class="col-sm-12" style="height: 100%;text-align: center; margin:0; padding-right: 0px;padding-left: 0px;" id=contact>
+
+<div class="w3-content w3-display-container" style="max-width:800px">
+  <img class="jgSlides" src="img/0001.jpg" style="width:100%">
+  <img class="jgSlides" src="img/0002.jpg" style="width:100%">
+  <img class="jgSlides" src="img/0003.jpg" style="width:100%">
+  <img class="jgSlides" src="img/0004.jpg" style="width:100%">
+  <img class="jgSlides" src="img/0005.jpg" style="width:100%">
+  <img class="jgSlides" src="img/0006.jpg" style="width:100%">
+    <div class="w3-center w3-container w3-section w3-large w3-text-white w3-display-bottommiddle" style="width:100%">
+    <div class="w3-left w3-hover-text-khaki" onclick="plusDivs2(-1)">&#10094;</div>
+    <div class="w3-right w3-hover-text-khaki" onclick="plusDivs2(1)">&#10095;</div>
+    <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv2(1)"></span>
+    <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv2(2)"></span>
+    <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv2(3)"></span>
+    <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv2(4)"></span>
+    <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv2(5)"></span>
+   <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv2(6)"></span>
+  </div>
+</div>
+</div>
+<div class="col-sm-12" style="height: 50%;text-align: center; margin:0; padding-right: 0px;padding-left: 0px; background-color:#ffbbcc" id=contact>
+	<hr>
+	   <div class="card-footer">
+      <div class="text-center">
+        
+      <p> Made by Team1 In Bitcamp <br> 2019.08.07 Wed </p>
+
+        <p> Copyrightⓒ 2019 Team1 (JH,JK,DY,GM,HN,SH) All rights reseved.</p>
+      </div>
+</div>
+</div>
+</body>
+<script>
+var slideIndex = 1;
+showDivs(slideIndex);
+
+function plusDivs(n) {
+  showDivs(slideIndex += n);
+}
+
+function currentDiv(n) {
+  showDivs(slideIndex = n);
+}
+
+function showDivs(n) {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("demo");
+  if (n > x.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = x.length}
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";  
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" w3-white", "");
+  }
+  x[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " w3-white";
+}
+var myIndex = 0;
+carousel();
+
+function carousel() {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";  
+  }
+  myIndex++;
+  if (myIndex > x.length) {myIndex = 1}    
+  x[myIndex-1].style.display = "block";  
+  setTimeout(carousel, 2500);    
+}
+
+
+var jgSlideIndex = 1;
+showDivs2(jgSlideIndex);
+
+
+function plusDivs2(n) {
+  showDivs2(jgSlideIndex += n);
+}
+
+function currentDiv2(n) {
+  showDivs2(jgSlideIndex = n);
+}
+  
+	function showDivs2(n) {
+		  var i;
+		  var x = document.getElementsByClassName("jgSlides");
+		  var dots = document.getElementsByClassName("demo");
+		  if (n > x.length) {jgSlideIndex = 1}
+		  if (n < 1) {jgSlideIndex = x.length}
+		  for (i = 0; i < x.length; i++) {
+		    x[i].style.display = "none";  
+		  }
+		  for (i = 0; i < dots.length; i++) {
+		    dots[i].className = dots[i].className.replace(" w3-white", "");
+		  }
+		  x[jgSlideIndex-1].style.display = "block";  
+		  dots[jgSlideIndex-1].className += " w3-white";
+		}
+		var myIndex2 = 0;
+		carousel2();
+		
+	function carousel2() {
+		  var i;
+		  var x = document.getElementsByClassName("jgSlides");
+		  for (i = 0; i < x.length; i++) {
+		    x[i].style.display = "none";  
+		  }
+		  myIndex2++;
+		  if (myIndex2 > x.length) {myIndex2 = 1}    
+		  x[myIndex2-1].style.display = "block";  
+		  setTimeout(carousel2, 9900);    
+		}
+
+</script>
+</html>
