@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<style type="text/css">
+		.redcolor {color:red}
+		.bluecolor {color:blue}
+		.greencolor {color:green}
+		.whitecolor {color:white}
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script type="text/javascript">
+	/*
+		addClass() -선택한 요소에 하나 이상의 클래스를 추가합니다 (만들어진 css를 요소에 적용)
+		removeClass() -선택한 요소에서 하나 이상의 클래스를 제거합니다
+		toggleClass() -선택한 요소에서 클래스 추가 / 제거 간 전환
+		css() -스타일 속성을 설정하거나 반환
+	*/
+		$(function(){
+			$('td:contains("홍길동")').addClass('redcolor'); //text 가 홍길동인 것을 찾아서 클래스를 추가한다.
+			//addClass : 만들어진 CSS를 요소에 적용
+			
+			$('td:contains("홍길동")').siblings() //50,훔치기
+			.addClass('bluecolor')
+			.parent() //tr
+			.find('td:eq(0)') //find 필터(조건) //홍길동
+			.addClass('greencolor');
+			//홍길동의 형제들한테는 bluecolor. 그것의 부모들에게서 0번째 자식을 찾아서 greencolor
+			
+			//이벤트
+			$('#btnclick').on('click',function(){
+				alert('click');
+			});
+			
+			$('#btnclick').on('mouseover',function(){
+				document.getElementById("btnclick").style.backgroundColor="gold";
+			})
+			
+			$('#btnclick').on('mouseout',function(){
+				document.getElementById("btnclick").style.backgroundColor="green";
+			})
+			
+			$('#btnclick').on('click',function(){
+				$('#btnclick').off("click");
+			});
+			
+			//stylediv 오버,아웃 2개 이벤트 걸기
+			//오버 : green / out bule
+			
+			$('#stylediv').on(
+				{
+					mouseover: function(){
+						$('#stylediv').addClass('greencolor');
+					},
+					mouseout: function(){
+						$('#stylediv').removeClass('greencolor');
+						$('#stylediv').addClass('bluecolor');
+					}
+				}
+			);
+			
+		});
+	</script>
+</head>
+<body>
+	<table>
+		<tr>
+			<td>이름</td>
+			<td>나이</td>
+			<td>취미</td>
+		</tr>
+		<tr>
+			<td>홍길동</td>
+			<td>50</td>
+			<td>훔치기</td>
+		</tr>
+		<tr>
+			<td>이순신</td>
+			<td>10</td>
+			<td>싸움</td>
+		</tr>
+		<tr>
+			<td>학생</td>
+			<td>20</td>
+			<td>잠자기</td>
+		</tr>				
+	</table>
+	
+	<hr>
+	<h3>이벤트</h3>
+	<a href="http://www.naver.com">네이버 바로가기</a>
+	<hr>
+	<div id="btnclick">Click</div>
+	<div id="btnclick2">Click2</div>
+	<div id="stylediv">스타일적용</div>
+</body>
+</html>

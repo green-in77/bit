@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script type="text/javascript">
+	/*
+		MouseEvents		Keyboard Events		Form Events		Document/Window Events
+		click				keypress			submit				load
+		dblclick			keydown				change				resize
+		mouseenter			keyup				focus				scroll
+		mouseleave								blur				unload
+	*/
+	
+	$(document).ready(function(){
+		$('#btncopy').click(function(){
+			//let data = $('#txtuserid').val();
+			//$('#txtcopyuserid').val(data);
+			$('#txtcopyuserid').val($('#txtuserid').val());
+		});
+		
+		//onChange > change
+		//<input valut="aa"> >> value : <p>text</p>, <div>text</div> >> text
+		//value : val()[getter,setter] / text()[getter,setter]
+		$('#select_hobby').change(function(){
+			let text = $(':selected').text(); //body안에 selete 가 하나만 존재해야함. : 처음 만나는 select 값을 가져옴...
+			let text2 = $('#select_hobby option:selected').text();
+			let val = $('#select_hobby').val(); //value 속성이 없으면 text를 value 로 인정
+			$('#txtselect').val(text + " / " + text2 + " / " + val);
+		});
+		
+		//암호넣기 keyup
+		$('#txtpwd2').keyup(function(){
+			let pwd = $('#txtpwd').val();
+			let pwd2 = $('#txtpwd2').val();	
+			
+			if(pwd === pwd2){
+				$('#message').text("암호가 일치합니다.");
+			}else{
+				$('#message').text("암호가 일치하지 않습니다.");
+			}
+		});
+		
+		$('input').focus(function(){
+			$(this).css("background-color","gray"); //this : 현재 focus 를 가지고 있는 input 태그
+		});
+		
+		$('input').blur(function(){
+			$(this).css("background-color","white"); //this : 현재 focus 를 가지고 있는 input 태그
+		});
+		
+		//하나의 이벤트가 함수를 여러개(두개) 가질 수 있다.
+		$('p').hover(function(Event){
+			$(this).css("background-color",'yellow');
+		}, function(Event){
+			$(this).css("background-color",'pink');
+		});
+		
+		
+	});
+	</script>
+</head>
+<body>
+	<p>Jquery hover(mouseover, mouseleave)</p>
+	
+	ID : <input type="text" id="txtuserid">
+	<hr>
+	<input type="button" id="btncopy" value="copy">
+	<hr>
+	Copy Id : <input type="text" id="txtcopyuserid">
+	<hr>
+	
+	<select id="select_hobby">
+		<option value="JAVA">java</option>
+		<option>script</option>
+		<option>JDBC</option>
+	</select>
+	<br>
+	<input type='text' id="txtselect">
+	<hr>
+	
+	<table style="border : 1px solid red;">
+		<tr>
+			<td>암호</td>
+			<td>
+				<input type="text" id="txtpwd" size="20" maxlength="5">
+			</td>
+		</tr>
+		<tr>
+			<td>암호확인</td>
+			<td>
+				<input type="text" id="txtpwd2" size="20" maxlength="5">
+			</td>
+		</tr>
+	</table>
+	
+	<div id="message" style="color:red"></div>
+	
+</body>
+</html>
