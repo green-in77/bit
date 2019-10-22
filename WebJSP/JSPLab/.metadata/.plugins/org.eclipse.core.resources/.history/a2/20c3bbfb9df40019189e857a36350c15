@@ -1,0 +1,34 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+<%
+	//서버쪽 객체 사용
+	//아파치톰캣 : 웹 전용 객체를 제공(request, response)
+	// new 없이 사용할 수 있음 : 내장객체
+	
+	//클라이언트가 서버에 전달한 데이터 받기
+	
+	String userid = request.getParameter("userid"); // 단일값
+	String pwd = request.getParameter("pwd");
+	
+	String[] hobbys = request.getParameterValues("hobby");
+	//JDBC 코드 DB 연결 .....
+%>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+<body>
+입력값  : <%=userid%><br>
+입력값  : <%=pwd%><br>
+당신의 취미는 : 
+<%
+	for(String str : hobbys){
+		data += str;
+	}
+%>
+
+</body>
+</html>

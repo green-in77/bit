@@ -1,0 +1,29 @@
+<%@page import="java.util.Date"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	//스크립트 릿(java code 작성 영역)
+	Date day = new Date();
+	/*
+		JSP 페이지 : UI > html + css + javascript
+				  Server code(JDBC) > JAVA > % % 안에서 구현
+				  >> UI 디자인코드 + Server 서버 로직 코드 (좋은 방식은 아님)
+				  >> servlet (Java Web을 구현하는 page)
+	*/
+
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<% 
+	String str = "hong";
+%>
+
+<%= str %><br>
+<%= day %>
+</body>
+</html>
