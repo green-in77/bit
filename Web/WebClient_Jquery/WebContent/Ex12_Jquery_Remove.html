@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script type="text/javascript">
+	/*
+		remove()	-선택한 요소 및 해당 하위 요소를 제거합니다 (나도 지우고 자식도 지우고)
+		empty()		-선택한 요소에서 자식 요소를 제거합니다 (자식만 지우고)
+	 */
+	 $(document).ready(function(){ //onload
+		 
+		 $('#btncreate').click(function(){
+			let row = $('#row').val();
+			let col = $('#col').val();
+			 
+			let strtable="<table>";
+			for(let i = 0; i < row; i++){
+				strtable += "<tr>";
+				for(let j = 0 ; j < col; j++){
+					strtable += "<td>(" + (i+1) + ")행("+ (j+1) +")열</td>";
+				}
+				strtable += "</tr>";
+			}
+			strtable += "</table>";
+			console.log(strtable);
+			$('#divtable').append(strtable);
+		 });
+		
+	 	$('#btndelete').click(function(){
+	 		//$('#divtable').remove(); //div와 그 자식을 모두 지우기
+	 		$('#divtable').empty(); //나를 제외한 자식만 지우기 
+	 	});
+	 	
+	 	$('#btnmenu').click(function(){
+	 		//method chain 함수().함수().함수()
+	 		//$('#menu').clone().appendTo('#submenu');
+	 		//appendTo(target) / append(content)
+	 		
+	 		$('#menu').clone().prependTo('#submenu');
+	 		
+	 	});
+	 	
+	 });
+	</script>
+	<style type="text/css">
+		table,tr,td {
+			border: 2px dotted pink;
+			border-collapse: collapse;
+		}
+	</style>
+</head>
+<body>
+	<span id='lbldisplay'>Table Create</span>
+	<input type="text" id="row">행
+	<input type="text" id="col">열
+	<input type="button" value="동적생성" id="btncreate">
+	<input type="button" value="동적제거" id="btndelete">
+	<div id="divtable"></div>
+	
+	<hr>
+	
+	<input type="button" id="btnmenu" value="변경">
+	<div id="menu">HOME</div>
+	<div id="content">CONTENT</div>
+	<div id="submenu">SUBMENU</div>
+</body>
+</html>
