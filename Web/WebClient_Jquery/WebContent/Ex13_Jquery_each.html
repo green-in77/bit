@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		//$(function(){});
+		
+		//일반 자바스크립트 함수
+		function javascriptFunc(){
+			let arrayobj = [];
+			//1. arrayobj 배열에 아래 처럼 객체 추가
+			//아래 테이블에서 데이터를 read
+			$('table > tbody > tr').each(function(){
+				//console.log(this); //<tr><td>......</tr>
+				//console.log($(this).children()); //<td>......</td> td 모두 
+				//console.log($(this).children().eq(0)); // 0번째 td
+				//console.log($(this).children().eq(0).text()); //0번째 td의 text
+				
+				arrayobj.push(
+					{
+						grade : $(this).children().eq(0).text(),
+						name : $(this).children().eq(1).text(),
+						age : $(this).children().eq(2).text()
+					}
+				);
+				
+			});
+			//arrayobj.push({grade : '101th', name : '홍길동', age : 10});
+			//arrayobj.push({grade : '102th', name : '김유신', age : 20});
+			//arrayobj.push({grade : '103th', name : '유관순', age : 30});	
+			//console.log(arrayobj);
+			//2. 최종결과 : javascript for문 출력
+			//id=display
+			var display = document.getElementById('display');
+			var output="";
+			for(var index in arrayobj){
+				//console.log(arrayobj[index].grade);
+				//console.log(arrayobj[index].name);
+				//console.log(arrayobj[index].age);
+				
+				output += arrayobj[index].grade + ", " + arrayobj[index].name + ", " + arrayobj[index].age + "<br>";
+				//console.log(output);
+			}
+			console.log(output);
+			$('#display').append(output);
+			
+			//3. 최종결과 jquery each문
+			//id=display2
+					
+			$.each(arrayobj,function(index, element){
+				$('#display2').append(element.grade + ", " + element.name + ", " + element.age + "<br>");
+			});
+			
+			
+		}
+	</script>
+</head>
+<body>
+	<table border="1">
+		<thead>
+			<tr><td>기수</td><td>이름</td><td>번호</td></tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>101th</td><td>홍길동</td><td>10</td>
+			</tr>
+			<tr>
+				<td>102th</td><td>김유신</td><td>20</td>
+			</tr>
+			<tr>
+				<td>103th</td><td>유관순</td><td>30</td>
+			</tr>
+		</tbody>
+	</table>
+	<p>
+		<button onclick="javascriptFunc()">함수호출</button>
+	</p>
+	<div id="display"></div>
+	<div id="display2"></div>
+</body>
+</html>
