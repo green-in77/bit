@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>PC방</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/Blitzer/jquery-ui.css">
+	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>	
+	
+	<style>
+		#container{
+			/*margin-left: 3%;*/
+			/*margin-right: 3%;*/
+			margin-top : 3%;
+			padding-top : 8%;			
+			text-align: center;
+			height: 670px;
+			background-color: #770404;
+			color: white;
+		}
+		#feedback { font-size: 1em; }
+		#selectable .ui-selecting { background: #af0909; }
+		#selectable .ui-selected { background: #af0909; color: white; }
+	  	#selectable { list-style-type: none; margin: 0; padding: 0; width:100%;}
+	  	#selectable li {
+			margin: 3px;
+			padding: 1px;
+			float: left;
+			width: 57px;
+			height: 50px;
+			font-size: 1em;
+			text-align: center;
+		}
+		.draggable {
+			width: 90px;
+			height: 80px;
+			padding: 5px;
+			float: left;
+			margin: 10px 10px 10px 0;
+			font-size: .9em;
+		}
+
+		.ui-widget-header p, .ui-widget-content p {
+			margin: 0;
+		}
+
+		#droppable {
+			height: 140px;
+			width: 80%;
+		}
+
+		#payBox {
+			height: 50px;
+			text-align: center;
+			padding-top: 5%
+		}
+		
+		
+  	</style>
+  	
+ 	<link href="jquery-ui.css" rel="stylesheet">
+  	
+	<script type="text/javascript">
+		$( function() {
+			var seat_result = "";
+			var time_result = "";
+			var isseat = false;
+			var istime = false;
+			
+			//좌석
+			$( "#selectable" ).selectable({
+				
+				selecting: function(event, ui){
+					if( $(".ui-selected, .ui-selecting").length > 1){
+						$(ui.selecting).removeClass("ui-selecting");    //요렇게 1개이상일 경우 막아주면됨
+					}
+				},
+
+				stop: function() {
+					seat_result = $("#select-result").empty();
+					
+					$(".ui-selected", this ).each(function() {
+						var index = $("#selectable li").index( this );
+						seat_result.append(" PC " + ( index + 1 ) + "번" );
+						//console.log($("#selectable li",this));
+					});
+				}
+			});
+			
+			//좌석선택 안내창
+		    $( "#dialog_seat" ).dialog({
+	    		autoOpen : false,
+	    		show : {effect:"blind", duration: 1000}, //2초간격 
+	    		hide : {effect:"explode", duration: 1000},
+	    		buttons: {
+	    			"submit":function(){
+	    				isseat = true;
+	    				$('#seat_check_dig').remove();
+	    				$('#dialog_seat').dialog('close');
+	    			},
+
+	    			"cancle":function(){
+	    				$('.ui-selected').removeClass("ui-selected");
+	    				seat_result ="";
+	    				$("#select-result").empty();
+	    				$('#select-result').append("취소하셨습니다. 다시선택해주세요.")
+	    				//$( "#selectable li" ).index(0)
+	    				$('#seat_check_dig').remove();
+	    				$('#dialog_seat').dialog('close');
+	    			},
+				},
+	    		resizable: false,
+	    		modal : true //팝업창을 닫기 전까지는 작업이 불가능함
+	    	});
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+			//시간선택
+		    $( function() {
+		        $( "input" ).checkboxradio();
+		      } );
+			
+		  //시간선택 안내창
+		    $( "#dialog_time" ).dialog({
+	    		autoOpen : false,
+	    		show : {effect:"blind", duration: 1000}, //2초간격 
+	    		hide : {effect:"explode", duration: 1000},
+	    		buttons: {
+	    			"submit":function(){
+	    				istime = true;
+	    				$('#time_check_dig').remove();
+	    				$('#dialog_time').dialog('close');
+	    			},
+
+	    			"cancle":function(){
+	    				$('.ui-state-active').removeClass("ui-state-active");
+	    				$('.ui-checkboxradio-checked').removeClass("ui-checkboxradio-checked");
+	    				
+	    				time_result ="";
+	    				$('#radio-result').empty();
+	    				$('#radio-result').append("취소하셨습니다. 다시선택해주세요.")
+	    				
+	    				$('#time_check_dig').remove();
+	    				$('#dialog_time').dialog('close');
+	    			},
+				},
+	    		resizable: false,	
+	    		modal : true //팝업창을 닫기 전까지는 작업이 불가능함
+	    	});
+		    
+			
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	    	
+		    //좌석선택
+		    $('#seat_check').click(function(){
+		    	
+		    	if ( seat_result!="" ){
+					$('<h3 id="seat_check_dig"></h3>').html(seat_result.text()).appendTo("#dialog_seat");
+		    		$('#dialog_seat').dialog('open');
+		    		
+		    	}else{
+		    		alert("좌석을 먼저 선택해주세요.");
+		    	}
+		    });
+		    
+		    //좌석 초기화
+		    $('#seat_reset').click(function(){
+		    	$('.ui-selected').removeClass("ui-selected"); 
+		    	seat_result = "";
+		    	$("#select-result").empty();
+		    	$("#select-result").append('좌석을 다시 선택하세요.');
+		    	
+		    });
+		    
+	    	//시간선택
+		    $('#time_check').click(function(){
+		    	//console.log($("[name='radio-1']:checked").val()!=undefined);
+		    	time_result = $("[name='radio-1']:checked").val();
+		    	console.log($("[name='radio-1']:checked"));
+		    	if(isseat){
+		    		if(time_result!=""){
+		    			$('#radio-result').empty();
+		    			$('#radio-result').append(time_result);
+						$('<h3 id="time_check_dig"></h3>').html(time_result).appendTo("#dialog_time");
+		    			$('#dialog_time').dialog('open');
+		    		}else{
+		    			alert("시간을 선택해주세요.");	
+		    		}
+		    	}else{
+		    		alert("좌석을 먼저 선택해주세요.");
+		    	}
+		    });
+	    	
+		    //시간 초기화
+		    /* $('#time_reset').click(function(){
+		    	//$("[name='radio-1']:checked").setAttribute('checked', 'false');
+		    	//$('.ui-state-active').removeClass("ui-state-active");
+				//$('.ui-checkboxradio-checked').removeClass("ui-checkboxradio-checked");
+		    	
+		    	time_result = "";
+		    	$('#radio-result').empty();
+		    	$("#radio-result").append('시간을 다시 선택하세요.');
+		    	
+		    });
+ */	    	
+	    	
+	    		    
+/////////////////////////////////
+		    var total = 0;
+			function calculator(event ,pay,index){
+				
+			      if(event == "add"){
+			        total += pay;
+			         $('#payBox').html("<hr><div>총 가격 : "+total +" </div><div>-목록-<div>");
+			         $('#payBox').html("<hr><div>총 가격 : "+total +" </div><div>-목록-<div>");
+			     }else if (event =="sub"){
+			         total -= pay;
+			         $('#payBox').html("<hr><div>총 가격 : "+total +" </div><div>-목록-<div>");
+			         $('#payBox').html("<hr><div><br>총 가격 : </div>" +total +"<div>-목록-<div>");
+			        $('#d_'+index).remove();
+			        $('#di_'+index).remove();
+			      }
+			      
+			} 
+
+			$("#draggable").draggable({
+				revert : true
+			});
+			
+			$("#draggable2").draggable({
+				revert : true
+			});
+			
+			$("#draggable3").draggable({
+				revert : true
+			});
+
+			let cnt = 0; 
+			let sum_protxt ="";
+			$("#droppable").droppable({
+				drop : function(event, ui) {
+					cnt++;
+					if(cnt > 8){
+						alert("8개 이상 담을 수 없습니다.");
+						return; 
+					}else{
+						
+						let protxt = $('#' + ui.draggable[0].id).find('p').eq(0).text();
+						let proprice = $('#' + ui.draggable[0].id).find('p').eq(1).text();
+							
+						let pay = $('#' + ui.draggable[0].id).find('p').eq(1).text();
+	
+						$(this).addClass("ui-state-highlight").find("p").html(protxt + " 상품을 추가하셨습니다. " + "+" + "("+ proprice + "원" + ")");
+						$("#payBox").html("추가하셨습니다. ");
+	
+						let price = parseInt($('#' + ui.draggable[0].id).find('p').eq(1).text());
+						total += price;
+	
+						$("#payBox").after("<div class='d_boder'>" + protxt + " : " + proprice +"</div>");
+						$("#payBox").html("총 합계 : " + total);
+						
+						sum_protxt += protxt + " ";
+						
+					}
+					
+					$("#food_check").click(function(){
+						
+					});
+					
+					$("#food_reset").click(function(){
+		                //$(".d_boder").empty();
+		                $(".d_boder").remove();
+		                 total = 0;
+		                 $("#payBox").html("총 합계 : " + total);
+		                 cnt = 0 ;
+		                
+		                });
+	
+				}
+
+			});
+			
+			$("#check").click(function(){
+				console.log($("[name='radio-1']:checked").children('b').html());
+				if( isseat && istime) {
+					
+					//total += $('b').text();
+                	alert( total + "원 결제 완료되었습니다. ^^ ");
+                }else {
+                	alert("좌석 및 시간을 확인해주세요.");
+                }
+			});
+			
+		});			
+	</script>
+</head>
+<body>
+	<div class="container" id="container">
+		<div class="row">
+		
+			<div class="col-sm-3" id="seat" style="height : 470px;">
+				<div class="row">
+					<div class="col-sm-12" style="height : 400px;">
+						<p id="feedback">
+							<span>좌석 선택</span><br>
+							<span id="select-result">좌석을 하나만 선택하세요.</span>
+						</p>
+					 
+						<ol id="selectable">
+					  		<li class="ui-widget-content">PC<br>1번</li>
+					  		<li class="ui-widget-content">PC<br>2번</li>
+					  		<li class="ui-widget-content">PC<br>3번</li>
+					  		<li class="ui-widget-content">PC<br>4번</li>
+					  		<li class="ui-widget-content">PC<br>5번</li>
+					  		<li class="ui-widget-content">PC<br>6번</li>
+					  		<li class="ui-widget-content">PC<br>7번</li>
+					  		<li class="ui-widget-content">PC<br>8번</li>
+					  		<li class="ui-widget-content">PC<br>9번</li>
+					  		<li class="ui-widget-content">PC<br>10번</li>
+					  		<li class="ui-widget-content">PC<br>11번</li>
+					  		<li class="ui-widget-content">PC<br>12번</li>
+					  		<li class="ui-widget-content">PC<br>13번</li>
+					  		<li class="ui-widget-content">PC<br>14번</li>
+					  		<li class="ui-widget-content">PC<br>15번</li>
+					  		<li class="ui-widget-content">PC<br>16번</li>
+						</ol>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12" style="height : 50px;">
+						<button class="ui-button ui-widget ui-corner-all" id="seat_check">좌석선택</button>
+						<button class="ui-button ui-widget ui-corner-all" id="seat_reset">초기화</button>
+					</div>
+				</div>
+			</div>
+			
+			<div class="col-sm-3" id="start" style="height : 470px; margin:0px; padding: 0px">
+				<div class="row">
+					<div class="col-sm-12" style="height : 400px;">
+						<p id="feedback">
+							<span>시간 선택</span><br>
+							<span id="radio-result">시간을 하나만 선택하세요.</span>
+						</p>
+						<fieldset>
+							<input type="radio"name="radio-1" id="radio-1" value="1시간 : 1000원">
+		                    <label for="radio-1">1시간 : <b>1000</b>원</label>
+		                    <br>
+		                     
+		                    <input type="radio" name="radio-1" id="radio-2" value="2시간 : 2000원"> 
+		                    <label for="radio-2">2시간 : <b>2000</b>원</label>
+		                    <br>
+		                     
+		                    <input type="radio" name="radio-1"id="radio-3" value="3시간 : 3000원"> 
+		                    <label for="radio-3">3시간 : <b>3000</b>원</label>
+		                    <br>
+		                     
+		                    <input type="radio" name="radio-1"id="radio-4" value="4시간 : 4000원">
+		                    <label for="radio-4">4시간 : <b>4000</b>원</label>
+		                    <br> 
+		                     
+		                    <input type="radio" name="radio-1"id="radio-5" value="5시간 : 5000원">
+		                    <label for="radio-5">5시간 : <b>5000</b>원</label>
+		                    <br> 
+		                     
+		                    <input type="radio" name="radio-1"id="radio-6" value="10시간 : 9000원">
+		                    <label for="radio-6">10시간 : <b>9000</b>원</label> 
+						</fieldset>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12" style="height : 50px;">
+						<button class="ui-button ui-widget ui-corner-all" id="time_check">시간선택</button>
+						<!--<button class="ui-button ui-widget ui-corner-all" id="time_reset">초기화</button> -->
+					</div>
+				</div>
+			</div>
+			
+			<div class="col-sm-6" id="food" style="height : 470px;">
+				<div class="row">
+					<div class="col-sm-12">
+						<p id="feedback">
+							<span>음식 선택</span><br>
+							<span id="food-result">장바구니에 상품을 담아주세요.</span>
+						</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6 " style="height : 500px;">
+					
+						<div id="droppable" class="ui-widget-header" style="width: 280px; height: 150px">
+							<img src="images/cart.png" style="width: 150px; height: 150px">
+							<!-- <p>여기다가 상품을 올려주세요.</p> -->
+						</div>
+
+						<div id="draggable" class="draggable ui-widget-content" style="width: 280px; height: 60px">
+							<p>라면</p>
+							<p>2000</p>
+						</div>
+						
+						<div id="draggable2" class="draggable ui-widget-content" style="width: 280px; height: 60px">
+							<p>과자</p>
+							<p>1500</p>
+						</div>
+
+						<div id="draggable3" class="draggable ui-widget-content" style="width: 280px; height: 60px">
+							<p>음료수</p>
+							<p>1000</p>
+						</div>
+
+					</div>
+					
+					<div class="col-sm-6">
+						<div class="row">
+							<div class="col-sm-12" style="height: 330px">		
+								<div id="payBox"></div>
+							</div>
+							<div class="col-sm-12">		
+								<!-- <button class="ui-button ui-widget ui-corner-all" id="food_check">음식선택</button> -->
+								<button class="ui-button ui-widget ui-corner-all" id="food_reset">초기화</button>
+							</div>
+						</div>
+					</div>
+					
+				</div>				
+			</div>
+		</div>
+			<div class="row">
+				<div class="col-sm-10" style="height : 100px;">
+					
+				</div>
+				<div class="col-sm-2" style="height : 100px;">
+					<button class="ui-button ui-widget ui-corner-all" id="check">결제</button>
+				</div>
+			</div>
+	</div>
+	
+	<!--seat_popup div -->
+	<div id="dialog_seat" title="좌석 선택">
+  		<h3>선택한 좌석</h3>
+	</div>
+	
+	<!--time_popup div -->
+	<div id="dialog_time" title="시간 선택">
+  		<h3>선택한 시간</h3>
+	</div>
+	
+	<!--food_popup div -->
+	<div id="dialog_food" title="음식 선택">
+  		<h3>선택한 음식</h3>
+	</div>
+
+</body>
+<!-- div class="col-sm-3" id="time" style="height : 600px;">
+				<div class ="row">
+					<div class="col-sm-12" id="time" style="height:100%;">
+						<label for="number">시간추가</label><br>
+						<select name="number" id="number">
+							<option>1</option>
+							<option>2</option>
+					      	<option>3</option>
+					      	<option>4</option>
+					      	<option>5</option>
+					      	<option>6</option>
+					      	<option>7</option>
+					      	<option>8</option>
+					      	<option>9</option>
+					      	<option>10</option>
+					      	<option>11</option>
+					      	<option>12</option>
+					      	<option>13</option>
+							<option>14</option>
+						    <option>15</option>
+						    <option>16</option>
+						    <option>17</option>
+						    <option>18</option>
+						    <option>19</option>
+				    	</select>
+				    </div>
+				</div>
+				<div class = "row">
+					<div class="col-sm-12" id="time" style="height : 600px;">
+			    		<button class="ui-button ui-widget ui-corner-all" id="time_check">선택완료</button>
+			    	</div>
+				</div>
+			</div> -->
+
+</html>

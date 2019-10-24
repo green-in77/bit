@@ -99,6 +99,7 @@
 				//console.log(targettext);
 				//console.log(trs.eq(i).find("td").eq(1).text() < targettext);
 				//텍스트인데 숫자의 비교를 하고있다...???????
+						//문자열 비교 우선순위 [특수문자, 숫자, 영어대문자, 영어소문자]
 				if (trs.eq(i).find("td").eq(1).text() < targettext) { //복사하려는 테이블의 마지막 text를 가져와서 선택한 쪽의 텍스트보다 작으면 ex) text3 < text5
 					item.find(":checked").removeAttr("checked"); //item에서 체크된 것들을 모두 찾아서. 체크된 속성을 지워줌
 					trs.eq(i).after(item); //복사하려는 테이블의 마지막 tr 뒤로 받은 item을 추가
