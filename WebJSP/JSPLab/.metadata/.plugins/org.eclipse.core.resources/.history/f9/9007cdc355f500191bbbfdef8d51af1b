@@ -1,0 +1,8 @@
+package kr.or.bit;
+
+public class Emp {
+	private int empno;
+	private String ename;
+	
+	
+}

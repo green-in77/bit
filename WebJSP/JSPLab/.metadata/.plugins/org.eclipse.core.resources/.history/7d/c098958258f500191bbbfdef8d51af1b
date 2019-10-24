@@ -1,0 +1,32 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	//1. 한글처리
+	request.setCharacterEncoding("UTF-8");
+	String id = request.getParameter("id");
+	/*
+		request객체
+		Tomcat 이 가지고 있는 내장객체
+		[JSP 파일에서는 Default Tomcat 내장 객체를 선언없이 사용가능]
+		
+		request 객체(요청객체)
+		1. 요청페이지 당 한개의 request 객체 생성
+		2. 클라이언트가 가지는 정보를 서버로 보낼 수 있다.
+		3. 클라이언트의 정보가 담겨져있다.(ip, 브라우져 버전, 종류 등)
+		
+		클라이언트에서 서버로 요청할 때 생성되는 HttpServletRequest 타입을 갖는 객체가 자동생성되고
+		그 주소를 참조하는 객체가 request
+	*/
+	
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Request 객체 함수</title>
+</head>
+<body>
+id : <%= id %><hr>
+
+</body>
+</html>

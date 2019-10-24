@@ -1,0 +1,22 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	request.setCharacterEncoding("UTF-8");
+	//userId , userPass , userEmail , userPhone, userSsn1 , userSsn2 , userZipCode
+	String userId = request.getParameter("userId");
+	String userPass = request.getParameter("userPass");
+	String userEmail = request.getParameter("userEmail");
+	String userPhone = request.getParameter("userPhone");
+	String userSsn = request.getParameter("userSsn1") + request.getParameter("userSsn2");
+	String userZipCode = request.getParameter("userZipCode");
+%>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>회원가입완료</title>
+</head>
+<body>
+
+</body>
+</html>
