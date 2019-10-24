@@ -178,8 +178,9 @@
 	    	//시간선택
 		    $('#time_check').click(function(){
 		    	//console.log($("[name='radio-1']:checked").val()!=undefined);
+		    	console.log($(this).next().val());
 		    	time_result = $("[name='radio-1']:checked").val();
-		    	console.log($("[name='radio-1']:checked"));
+		    	
 		    	if(isseat){
 		    		if(time_result!=""){
 		    			$('#radio-result').empty();
@@ -284,10 +285,9 @@
 			});
 			
 			$("#check").click(function(){
-				console.log($("[name='radio-1']:checked").children('b').html());
+				console.log($("[name='radio-1']:checked").val());
 				if( isseat && istime) {
-					
-					//total += $('b').text();
+					total += parseInt($("[name='radio-1']:checked").val());
                 	alert( total + "원 결제 완료되었습니다. ^^ ");
                 }else {
                 	alert("좌석 및 시간을 확인해주세요.");
@@ -345,28 +345,28 @@
 							<span id="radio-result">시간을 하나만 선택하세요.</span>
 						</p>
 						<fieldset>
-							<input type="radio"name="radio-1" id="radio-1" value="1시간 : 1000원">
-		                    <label for="radio-1">1시간 : <b>1000</b>원</label>
+							<input type="radio"name="radio-1" id="radio-1" value=1000>
+		                    <label for="radio-1">1시간 : 1000원</label>
 		                    <br>
 		                     
-		                    <input type="radio" name="radio-1" id="radio-2" value="2시간 : 2000원"> 
-		                    <label for="radio-2">2시간 : <b>2000</b>원</label>
+		                    <input type="radio" name="radio-1" id="radio-2" value=2000> 
+		                    <label for="radio-2">2시간 : 2000원</label>
 		                    <br>
 		                     
-		                    <input type="radio" name="radio-1"id="radio-3" value="3시간 : 3000원"> 
-		                    <label for="radio-3">3시간 : <b>3000</b>원</label>
+		                    <input type="radio" name="radio-1"id="radio-3" value=3000> 
+		                    <label for="radio-3">3시간 : 3000원</label>
 		                    <br>
 		                     
-		                    <input type="radio" name="radio-1"id="radio-4" value="4시간 : 4000원">
-		                    <label for="radio-4">4시간 : <b>4000</b>원</label>
+		                    <input type="radio" name="radio-1"id="radio-4" value=4000>
+		                    <label for="radio-4">4시간 : 4000원</label>
 		                    <br> 
 		                     
-		                    <input type="radio" name="radio-1"id="radio-5" value="5시간 : 5000원">
-		                    <label for="radio-5">5시간 : <b>5000</b>원</label>
+		                    <input type="radio" name="radio-1"id="radio-5" value=5000>
+		                    <label for="radio-5">5시간 : 5000원</label>
 		                    <br> 
 		                     
-		                    <input type="radio" name="radio-1"id="radio-6" value="10시간 : 9000원">
-		                    <label for="radio-6">10시간 : <b>9000</b>원</label> 
+		                    <input type="radio" name="radio-1"id="radio-6" value=9000>
+		                    <label for="radio-6">10시간 : 9000원</label> 
 						</fieldset>
 					</div>
 				</div>
