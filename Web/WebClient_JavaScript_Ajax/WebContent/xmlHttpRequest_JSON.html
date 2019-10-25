@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		/* 
+		 1. XMLHttpRequest 객체 얻기
+  		 2. onreadystatechange 이벤트 핸들러 구현 (함수 (callback))
+  		 3. 요청 정보 ( open() )
+  	     4. 요청 보내기 (send() )
+         5. 응답 처리 (Text(JSON), xml )
+		
+		*/
+		var httpReq = null;
+		
+		function getInstance(){
+		   if(window.XMLHttpRequest){
+			   httpReq = new XMLHttpRequest(); //모든 브라우져 > XMLHttpRequest
+		   }else if(window.ActiveXObject){
+			   httpReq = new ActiveXObject("Msxml2.XMLHTTP");
+		   }else{
+		    throw new Error("AJAX 지원하지 않습니다");
+		   }
+		   return httpReq;
+		}
+		
+		function HandlerStateChange(){
+			//alert(httpReq.readyState)
+			if(httpReq.readyState == 4){ 
+				if(httpReq.status >= 200 && httpReq.status < 300){
+				    //처리 코드 (가공 사용자 마음)
+				    //Text (text , html , json)
+				    //XML
+					var loc = eval("("+httpReq.responseText+")");
+				    
+				    //console.log(loc.JobFndtnSportPolocy[1].row);
+				    	var tag;
+				    	var tag_add="";
+						$.each(loc.JobFndtnSportPolocy[1].row, function(index, element) {
+							tag = "<tr><td>" + element.REGION_NM + "</td><td>" + element.PBLANC_TITLE +"</td><td>" + element.INST_NM +
+									"</td><td>" + element.RECRUT_BEGIN_DE + "</td><td>" + element.RECRUT_END_DE + "</td><td>" +
+									element.DETAIL_PAGE_URL + "</td></tr>";
+							
+							tag_add = tag_add + tag;
+							
+						});
+						
+						document.getElementById('tbody').innerHTML = tag_add;
+				}
+			}
+		}
+		
+		function sendData(){
+			httpReq = getInstance();
+			httpReq.onreadystatechange = HandlerStateChange;
+			let region_cd = document.getElementById("region_cd").value;
+	        httpReq.open("POST", "https://openapi.gg.go.kr/JobFndtnSportPolocy?Key=e9daf34b330b4f44a9eeeec428be73a0&Type=json&pIndex=1&pSize=1000"+region_cd);
+	        httpReq.send();
+		}
+	</script>
+	<style>
+		body,th{
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<h3>경기도일자리재단_일자리 관련 지원정책</h3>
+	<select name="region_cd" id="region_cd" onchange="sendData()">
+		<option value="">지역을 선택하세요</option>
+		<option value="&REGION_CD=4127">안산시</option>
+		<option value="&REGION_CD=4129">과천시</option>
+		<option value="&REGION_CD=4141">군포시</option>
+		<option value="&REGION_CD=4143">의왕시</option>
+		<option value="&REGION_CD=4111">수원시</option>
+		<option value="&REGION_CD=4146">용인시</option>
+		<option value="&REGION_CD=4137">오산시</option>
+		<option value="&REGION_CD=4155">안성시</option>
+		<option value="&REGION_CD=4159">화성시</option>
+		<option value="&REGION_CD=4122">평택시</option>
+		<option value="&REGION_CD=4113">성남시</option>
+		<option value="&REGION_CD=4145">하남시</option>
+		<option value="&REGION_CD=4161">광주시</option>
+		<option value="&REGION_CD=4163">양주시</option>
+		<option value="&REGION_CD=4183">양평군</option>
+		<option value="&REGION_CD=4150">이천시</option>
+		<option value="&REGION_CD=4131">구리시</option>
+		<option value="&REGION_CD=4136">남양주시</option>
+		<option value="&REGION_CD=4182">가평군</option>
+		<option value="&REGION_CD=4119">부천시</option>
+		<option value="&REGION_CD=4121">광명시</option>
+		<option value="&REGION_CD=4136">시흥시</option>
+		<option value="&REGION_CD=4165">포천시</option>
+		<option value="&REGION_CD=4117">안양시</option>
+		<option value="&REGION_CD=4128">고양시</option>
+		<option value="&REGION_CD=4148">파주시</option>
+		<option value="&REGION_CD=4157">김포시</option>
+		<option value="&REGION_CD=4115">의정부시</option>
+		<option value="&REGION_CD=4125">동두천시</option>
+		
+		
+	</select>
+	<hr>
+	<table class="table table-hover text-center" id="table">
+    		<thead>
+      			<tr>
+			        <th>지역명</th>
+			        <th>공고명</th>
+			        <th>기관명</th>
+			        <th>모집시작일자</th>
+			        <th>모집종료일자</th>
+			        <th>상세페이지</th>
+      			</tr>
+    		</thead>
+    		<tbody id="tbody">
+    		</tbody>
+  		</table>
+</body>
+</html>
+
+
+
+
