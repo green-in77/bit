@@ -12,6 +12,9 @@
   	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>	
 	
+	
+	
+	
 	<style>
 		#container{
 			/*margin-left: 3%;*/
@@ -24,7 +27,7 @@
 			color: white;
 		}
 		#feedback { font-size: 1em; }
-		#selectable .ui-selecting { background: #af0909; }
+		#selectable .ui-selecting { background: #af090a9; }
 		#selectable .ui-selected { background: #af0909; color: white; }
 	  	#selectable { list-style-type: none; margin: 0; padding: 0; width:100%;}
 	  	#selectable li {
@@ -64,6 +67,7 @@
   	</style>
   	
  	<link href="jquery-ui.css" rel="stylesheet">
+ 	<link href="jquery-ui.min.css" rel="stylesheet">
   	
 	<script type="text/javascript">
 		$( function() {
@@ -120,10 +124,19 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 			//시간선택
-		    $( function() {
-		        $( "input" ).checkboxradio();
-		      } );
-			
+		    
+		    $("input").checkboxradio();
+		    $( ".time_select").controlgroup({direction: "vertical"});
+		    
+		    //시간선택 이벤트
+		    $("[name='radio-1']").on("change", timeSelect);
+		    
+		    function timeSelect( e ) {
+		      time_result = $("#radio-result").empty();		      
+		      time_result.append($(this).next().text()); 
+		        //console.log($(this).next().text());
+		    };
+
 		  //시간선택 안내창
 		    $( "#dialog_time" ).dialog({
 	    		autoOpen : false,
@@ -156,7 +169,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	    	
 		    //좌석선택
 		    $('#seat_check').click(function(){
-		    	
 		    	if ( seat_result!="" ){
 					$('<h3 id="seat_check_dig"></h3>').html(seat_result.text()).appendTo("#dialog_seat");
 		    		$('#dialog_seat').dialog('open');
@@ -174,18 +186,16 @@
 		    	$("#select-result").append('좌석을 다시 선택하세요.');
 		    	
 		    });
-		    
+
 	    	//시간선택
 		    $('#time_check').click(function(){
 		    	//console.log($("[name='radio-1']:checked").val()!=undefined);
-		    	console.log($(this).next().val());
-		    	time_result = $("[name='radio-1']:checked").val();
-		    	
+		    	//console.log($(this).next().val());
+		    	//time_result = $("[name='radio-1']:checked").val();
+		    	//onsole.log(time_result);
 		    	if(isseat){
 		    		if(time_result!=""){
-		    			$('#radio-result').empty();
-		    			$('#radio-result').append(time_result);
-						$('<h3 id="time_check_dig"></h3>').html(time_result).appendTo("#dialog_time");
+						$('<h3 id="time_check_dig"></h3>').html(time_result.text()).appendTo("#dialog_time");
 		    			$('#dialog_time').dialog('open');
 		    		}else{
 		    			alert("시간을 선택해주세요.");	
@@ -196,19 +206,22 @@
 		    });
 	    	
 		    //시간 초기화
-		    /* $('#time_reset').click(function(){
-		    	//$("[name='radio-1']:checked").setAttribute('checked', 'false');
-		    	//$('.ui-state-active').removeClass("ui-state-active");
-				//$('.ui-checkboxradio-checked').removeClass("ui-checkboxradio-checked");
+		    $('#time_reset').click(function(){
+		    	//console.log($("[name='radio-1']:checked"));
+		    	$("[name='radio-1']:checked").prop('checked', false);
+		    	//$("[name='radio-1']:checked").prop('disabled', true);
+		    	//$("[name='radio-1']:checked").attr('disabled', false);
+		    	//console.log($("[name='radio-1']:checked"));
+		    	
+		    	$('.ui-state-active').removeClass("ui-state-active");
+				$('.ui-checkboxradio-checked').removeClass("ui-checkboxradio-checked");
 		    	
 		    	time_result = "";
 		    	$('#radio-result').empty();
 		    	$("#radio-result").append('시간을 다시 선택하세요.');
 		    	
 		    });
- */	    	
 	    	
-	    		    
 /////////////////////////////////
 		    var total = 0;
 			function calculator(event ,pay,index){
@@ -284,15 +297,68 @@
 
 			});
 			
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+			//결제 popup창
+		    $( "#dialog_check" ).dialog({
+	    		autoOpen : false,
+	    		show : {effect:"blind", duration: 1000}, //2초간격 
+	    		hide : {effect:"explode", duration: 1000},
+	    		buttons: {
+	    			"submit":function(){
+	    				//좌석초기화
+	    				$('.ui-selected').removeClass("ui-selected");
+	    				seat_result ="";
+	    				$("#select-result").empty();
+	    				$('#select-result').append("좌석을 하나만 선택하세요.");
+	    				
+	    				//시간초기화
+	    				$('.ui-state-active').removeClass("ui-state-active");
+	    				$('.ui-checkboxradio-checked').removeClass("ui-checkboxradio-checked");
+	    				
+	    				time_result ="";
+	    				$('#radio-result').empty();
+	    				$('#radio-result').append("시간을 하나만 선택하세요.")
+						
+	    				$('#check_dig').remove();
+	    				$('#dialog_check').dialog('close');
+	    			},
+
+	    			"cancle":function(){
+	    				$('#check_dig').remove();
+	    				$('#dialog_check').dialog('close');
+	    			},
+				},
+	    		resizable: false,	
+	    		modal : true //팝업창을 닫기 전까지는 작업이 불가능함
+	    	});
+
 			$("#check").click(function(){
-				console.log($("[name='radio-1']:checked").val());
+				
+				if(isseat){
+		    		if(istime){
+		    			let check_text = "선택한 좌석<br>" + seat_result.text() + "<br>선택한 시간<br>" + time_result.text()
+		    							+ "<br>총 결제금액<br>" + (total+parseInt($("[name='radio-1']:checked").val())) ;
+		    			
+						$('<h3 id="check_dig"></h3>').html(check_text).appendTo("#dialog_check");
+		    			$('#dialog_check').dialog('open');
+		    		}else{
+		    			alert("시간을 선택해주세요.");	
+		    		}
+		    	}else{
+		    		alert("좌석을 먼저 선택해주세요.");
+		    	}
+				
+				
+				/* console.log($("[name='radio-1']:checked").val());
 				if( isseat && istime) {
 					total += parseInt($("[name='radio-1']:checked").val());
                 	alert( total + "원 결제 완료되었습니다. ^^ ");
                 }else {
                 	alert("좌석 및 시간을 확인해주세요.");
-                }
+                } */
 			});
+			
 			
 		});			
 	</script>
@@ -344,7 +410,7 @@
 							<span>시간 선택</span><br>
 							<span id="radio-result">시간을 하나만 선택하세요.</span>
 						</p>
-						<fieldset>
+						<fieldset class='time_select'>
 							<input type="radio"name="radio-1" id="radio-1" value=1000>
 		                    <label for="radio-1">1시간 : 1000원</label>
 		                    <br>
@@ -373,7 +439,7 @@
 				<div class="row">
 					<div class="col-sm-12" style="height : 50px;">
 						<button class="ui-button ui-widget ui-corner-all" id="time_check">시간선택</button>
-						<!--<button class="ui-button ui-widget ui-corner-all" id="time_reset">초기화</button> -->
+						<button class="ui-button ui-widget ui-corner-all" id="time_reset">초기화</button>
 					</div>
 				</div>
 			</div>
@@ -447,9 +513,8 @@
   		<h3>선택한 시간</h3>
 	</div>
 	
-	<!--food_popup div -->
-	<div id="dialog_food" title="음식 선택">
-  		<h3>선택한 음식</h3>
+	<!--check_popup div -->
+	<div id="dialog_check" title="총 결제" style="width: 500px; height: 500px">  	
 	</div>
 
 </body>

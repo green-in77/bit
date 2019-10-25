@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>jQuery UI Checkboxradio - Product Selector</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <style>
+    .shape {
+      margin-left: 4em;
+      margin-top: 2.5em;
+      height: 8em;
+      width: 8em;
+      box-shadow: 4px 4px 8px;
+      color: #ccc;
+      background-repeat: no-repeat;
+      background-size: 90%;
+      background-position: 50%;
+    }
+    .circle, .pill {
+      border-radius: 8em;
+    }
+    .pill, .rectangle {
+      width: 16em;
+    }
+    .square, .circle {
+      margin-left: 9em;
+    }
+    .border {
+      border: 2px solid #333333;
+    }
+    .toggles {
+      width: 200px;
+    }
+    .toggle-wrap, .shape {
+      display: inline-block;
+      vertical-align: top;
+    }
+    .controls {
+      background: #ccc;
+      padding: 1em;
+      display: inline-block;
+    }
+  </style>
+  <script>
+  $( function() {
+	  
+    function handleShape( e ) {
+    	console.log('1');
+      $( ".shape" )
+        .removeClass( "circle pill square rectangle" )
+        .addClass( $( e.target ).val() );
+    };
+        
+   /*  function updateBrand() {
+    	console.log('3');
+      handleShape( { target: $( "[name='shape']:checked" ) } );
+    }; */
+ 
+    // Initalize widgets
+    $( "input" ).checkboxradio();
+    //$( ".shape-bar").controlgroup({direction: "vertical"});
+    
+    // Bind event handlers
+    $( "[name='shape']").on( "change", handleShape );
+   
+    // Set initial values
+    //updateBrand();
+    
+  } );
+  </script>
+  
+</head>
+<body>
+<div class="controls">
+  
+  <div class="shape-wrap">
+    <h3>2.) Select a shape</h3>
+    
+    <div class="shape-bar">
+      <label for="shape-circle">Circle</label>
+      <input type="radio" name="shape" id="shape-circle" value="circle" checked>
+      <label for="shape-square">Square</label>
+      <input type="radio" name="shape" id="shape-square" value="square">
+      <label for="shape-pill">Pill</label>
+      <input type="radio" name="shape" id="shape-pill" value="pill">
+      <label for="shape-rectangle">Rectangle</label>
+      <input type="radio" name="shape" id="shape-rectangle" value="rectangle">
+    </div>
+    
+  </div>
+ 
+  </div>
+  <div class="shape circle background jquery-ui"></div>
+</div>
+ 
+ 
+</body>
+</html>
