@@ -1,0 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<jsp:include page="B_top.jsp"></jsp:include>
+<jsp:include page="B_foot.jsp"></jsp:include>

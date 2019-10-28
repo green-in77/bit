@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="Team1_Boot_Template_Main">
+        <property name="context-root" value="Team1_Boot_Template_Main"/>
+    </wb-module>
+</project-modules>

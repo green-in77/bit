@@ -1,0 +1,349 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+    <jsp:include page="B_top.jsp"></jsp:include>
+    
+    <section id="about" class="section-padding1 text-center">
+        <div class="container">
+            
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <div class="about-text wow bounceIn">
+                        <div class="about-icon">
+                            <i class="li_world"></i>
+                        </div>
+                        
+                        <h2>민주주의인민공화국</h2>
+                        <p>위대한 령도자 김정하 위원장 동지와 함께하는 력삼동 1호 JAVA 개발 위원회<br>
+                            날때부터 응애응애 대신 'Java'라고 부르짖으며 탄생하신 김정하 위원장 동지의<br>
+                            강제성이라곤 눈을 <del>찌르고</del> 씻고 찾아봐도 찾을 수 없는 민주적이고 결단력 있는 지도 아래,<br>
+                            력삼동 1호 개발을 위한 영광스러운 고난의 행군을 하고있는 행복가득 1조입니다.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> <!-- End about -->
+
+    <div id="testimonials" class="section-dark">
+        <div data-velocity="-.3" class="overlay-bg testimonial-bg"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div id="testimonial-list" class="carousel slide text-center" data-ride="carousel">
+                        <div class="carousel-inner" role="listbox">
+                            <div class="item active">
+                                <div class="single-testimonial">
+                                    <i class="fa fa-quote-left"></i>
+                                    <p>죽갓시오......<br>
+                                       ㅠㅠ</p>
+                                    <p class="author-name">익명의 제보자</p>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="single-testimonial">
+                                    <i class="fa fa-quote-left"></i>
+                                    <p>저리가요..<br>
+                                       	 행복한 척 해야하니까...ㅠㅠ</p>
+                                    <p class="author-name">익명의 제보자</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a class="left tc-control" href="#testimonial-list" role="button" data-slide="prev">
+                        <i class="fa fa-angle-left"></i>
+                        </a>
+                        <a class="right tc-control" href="#testimonial-list" role="button" data-slide="next">
+                        <i class="fa fa-angle-right"></i>
+                        </a>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </div>    <!-- End testimonials -->   
+    
+    <section id="member" class="section-padding">
+        <div class="container">
+           
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 wow zoomIn">
+                    <div class="page-title text-center">
+                        <h2>Member</h2>
+                        <p>행복이 오지는 이 곳, 아오지로 오세요</p>
+                    </div>
+                </div>
+            </div>
+                       
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <div class="client-list wow zoomIn page-title">
+                    
+                        <div class="single-client">
+                            <a href="member/gmkim/introduce.html" target="_blank"><img src="img/Team1_1.png" alt="광민"></a>
+                        </div>
+                        
+                        <div class="single-client">
+                        	<a href="member/doyeon/index.html" target="_blank"><img src="img/Team1_2.png" alt="도연"></a>
+                        </div>
+                        
+                        <div class="single-client">
+                            <a href="member/JGKIm/index.html" target="_blank"><img src="img/Team1_3.png" alt="정균"></a>
+                        </div>
+                        
+                        <div class="single-client">
+                            <a href="member/psh/index_psh.html" target="_blank"><img src="img/Team1_4.png" alt="성호"></a>
+                        </div>
+                        
+                        <div class="single-client">
+                            <a href="member/khn/nyuck.html" target="_blank"><img src="img/Team1_5.png" alt="한녘"></a>
+                        </div>
+                        
+                        <div class="single-client">
+                            <a href="member/kjh/Green.html" target="_blank"><img src="img/Team1_6.jpg" alt="정하"></a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <div class="about-text wow bounceIn text-center page-title">
+                        <h3>MBTI</h3>
+                        <p>● 김광민 : ISFP-A 호기심 많은 예술가 ● 임도연 : INFP-T  열정적인 중재자 ● 김정균 : INTJ-A 용의주도한 전략가<br>
+                           ● 박성호 : INFJ-T 선의의 옹호자 ● 김한녘 : ESFP-A 자유로운 영혼의 연예인 ● 김정하 : ISTJ-T 청렴결백한 논리주의자
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                        <div class="about-text wow bounceIn text-center page-title">
+                            <a href="Team1_mbti/main.html" target="_balck"><h3>MBTI 결과는 여기서..</h3></a>
+                        </div>
+                    </div>
+                </div>
+
+        </div>
+    </section> <!-- End our clients -->  
+
+    <section id="rolling" class="section-padding section-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 text-center wow zoomIn">
+                    <div class="page-title">
+                        <h2>롤링페이퍼</h2>
+                        <p></p>
+                    </div>
+                </div>
+            </div>           
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="article-list wow zoomIn">
+                        <div class="single-article">
+                        	<div class="article-header">
+                                <a href="img/0001.jpg" target="_blank">김광민</a>
+                            </div>
+                        	<div class="article-title">
+                            	<a href="img/0001.jpg" target="_blank"><img src="img/face1.png"></a>
+                            </div>
+                        </div>
+                        
+                        <div class="single-article">
+                            <div class="article-header">
+                                <a href="img/0002.jpg" target="_blank">김정균</a>
+                            </div>                            
+                            <div class="article-title">
+                                <a href="img/0002.jpg" target="_blank"><img src="img/face2.png"></a>
+                            </div>
+                        </div>
+                        
+                        <div class="single-article">
+                        	<div class="article-header">
+                                <a href="img/0003.jpg" target="_blank">김정하</a>
+                            </div>
+                        	<div class="article-title">
+                            	<a href="img/0003.jpg" target="_blank"><img src="img/face3.png"></a>
+                            </div>
+                        </div>
+                        
+                        <div class="single-article">
+                            <div class="article-header">
+                                <a href="img/0004.jpg" target="_blank">김한녘</a>
+                            </div>                            
+                            <div class="article-title">
+                                <a href="img/0004.jpg" target="_blank"><img src="img/face4.png"></a>
+                            </div>
+                        </div>
+                        
+                        <div class="single-article">
+                        	<div class="article-header">
+                                <a href="img/0005.jpg" target="_blank">박성호</a>
+                            </div>
+                        	<div class="article-title">
+                            	<a href="img/0005.jpg" target="_blank"><img src="img/face5.png"></a>
+                            </div>
+                        </div>
+                        
+                        <div class="single-article">
+                            <div class="article-header">
+                                <a href="img/0006.jpg" target="_blank">임도연</a>
+                            </div>                            
+                            <div class="article-title">
+                                <a href="img/0006.jpg" target="_blank"><img src="img/face6.png"></a>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> <!-- End our blog -->
+    
+    <section id="constellation" class="section-padding2">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 text-center wow zoomIn">
+                    <div class="page-title">
+                        <h2>별자리</h2>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="single-event wow zoomIn">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="event-title">
+                                    <h2>인민들의 주거지입니다.</h2>
+                                </div>
+                                
+                                <div class="event-content">
+                                    <p>평화로운 민주주의인민공화국은 주거지에 제한이 없습니다.<br>원하는 지역에 거주할 수 있습니다.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="col-sm-6">
+                                <div class="event-thumb">
+                                    <img src="img/event_1.png" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="single-event wow zoomIn">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="event-thumb">
+                                    <img src="img/event_2.png" alt="">
+                                </div>
+                            </div>
+                                                       
+                            <div class="col-sm-6">
+                                <div class="event-title">
+                                    <h2>인민들의 주거지를 선으로 이어봤습니다.</h2>
+                                </div>
+                                
+                                <div class="event-content">
+                                    <p>력삼동 1호 Bootstrap 개발 위원회 인민들은<br>모두 연결되어 있습니다.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="single-event wow zoomIn">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="event-title">
+                                    <h2>모두를 연결하면 돌고래자리가 됩니다.</h2>
+                                </div>
+                                
+                                <div class="event-content">
+                                    <p></p>
+                                </div>
+                            </div>
+                            
+                            <div class="col-sm-6">
+                                <div class="event-thumb">
+                                    <img src="img/event_3.jpg" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> <!-- End events -->
+    
+    
+    <section id="more-events" class="section-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="old-event-list wow zoomIn">
+                        <div class="single-old-event">
+                            <h2>묻고 웹으로 가!</h2>
+                            <p>광민 / 2019 10 18</p>
+                        </div>
+
+                        <div class="single-old-event">
+                            <h2>부트스트랩이 정말 어렵고 CSS는 더 어렵습니다…</h2>
+                            <p>성호 / 2019 10 18</p>
+                        </div>
+
+                        <div class="single-old-event">
+                            <h2>숫자와의 싸움에서 졌습니다</h2>
+                            <p>한녘 / 2019 10 18</p>
+                        </div>
+
+                        <div class="single-old-event">
+                            <h2><a href="">적성에 안맞는거 같다..</a></h2>
+                            <p>정하 / 2019 10 18</p>
+                        </div>
+
+                        <div class="single-old-event">
+                            <h2><a href="">오픈소스의 중요함과 java의 소중함을 알게되었습니다. 앞으로 자바 열심히 하겠습니다. ^^</a></h2>
+                            <p>도연 / 2019 10 18</p>
+                        </div>
+
+                        <div class="single-old-event">
+                                <h2>논리적 사고가 필요했던 프로그래밍과는 전혀 다른 사고를 필요로 해서 당황스럽고 또 당황스러웠습니다.</h2>
+                                <p>정균 / 2019 10 18</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> <!-- End more events -->
+    
+    
+    <section id="support" class="section-padding1 text-center">
+        <div class="container">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="twitter-feed-wrapper wow zoomIn">
+                    <div class="twitter-feed-top">
+                        <i class="li_diamond"></i>
+                    </div>
+                    
+                    <div class="dropdown">
+                    	<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">당신의 조원에게 후원하세요.
+                        <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                        	<li><a href="member/gmkim/introduce.html" target="_blank">김광민 3333114271616 카카오뱅크</a></li>
+                            <li><a href="member/doyeon/index.html" target="_blank">임도연 35390201140306 국민</a></li>
+                            <li><a href="member/JGKIm/index.html" target="_blank">김정균 3020493782041 농협</a></li>
+                            <li><a href="member/psh/index_psh.html" target="_blank">박성호 3561394314753 농협</a></li>
+                            <li><a href="member/khn/nyuck.html" target="_blank">김한녘 3561390470463 농협</a></li>
+                            <li><a href="member/kjh/Green.html" target="_blank">김정하 66550204105322 국민</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="single-twitter-feed">
+                        <img src="img/end.jpg" alt="">
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+    </section> <!-- End twitter feed -->
+    
+	<jsp:include page="B_foot.jsp"></jsp:include>
