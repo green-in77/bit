@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script type="text/javascript">
+	/*
+		jquery 비동기 함수 모음
+		https://www.w3schools.com/jquery/jquery_ref_ajax.asp
+		
+		Jquery Ajax : xmlHttpRequest 를 사용하는 다양한 함수 제공
+						비동기를 지원하는 함수
+		
+		종류
+		Global Ajax Event Handlers
+		Helper Functions
+		Low-Level Interface (Ajax(40%))
+		Shorthand Methods	(Ajax(50%))
+	
+		load() : $(selector).load(URL,data,callback);
+					url
+						Type: String
+						A string containing the URL to which the request is sent.
+						(요청이 전송되는 URL을 포함하는 문자열입니다.)
+					data
+						Type: PlainObject(객체) or String
+						A plain object or string that is sent to the server with the request.
+						(요청과 함께 서버로 전송되는 일반 객체 또는 문자열입니다.)
+					callback(complete)
+						Type: Function( String responseText, String textStatus, jqXHR jqXHR )
+						A callback function that is executed when the request completes.
+						(요청이 완료 될 때 실행되는 콜백 함수입니다.)
+		
+				1. 서버에서 받은 데이터가 (html, text 형식)
+				2. Client 정한 특정 요소에 자동으로 삽입을 목적(내부적으로 innerHTML 내포)
+
+				[data] >> {"msg":"hello"} >> ?msg=hello 전달
+				
+	*/	
+	
+		$(function(){ //load 되면
+			$('#btn').click(function(){
+				
+				//$('#display').load("Ex01_Ajax_Load.jsp");
+				//비동기 함수
+				$('#display').load("Ex01_Ajax_Load.jsp",
+									{"msg":$('#msg2').val()},
+									function(responseText, statusText, xhr){
+										//responseText : 서버가 응답한 결과값 (Text(html), xml)
+										//statusText : 200~299까지 정상 (404 not found, 500 err0r)
+										//				: 가공 >> success, error
+										//xhr : xmlHttpRequest 객체의 주소값(다양한 정보)
+										if(statusText == "success"){
+											//응답 : 4, 응답이 정상건 : 200~299
+											//자동으로 그 결과가 $('#display')안에 들어가짐..
+											alert("load success:200~299 :" + responseText);
+										}else{
+											//응답 : 4, 응답이 비정상건 : 404,500 등...
+											alert("load fail : " + xhr.status + " : " + xhr.statusText);
+										}
+									}
+				);
+			});
+		});
+	
+	</script>
+</head>
+<body>
+	<h3>동기처리</h3>
+	<div id='frmsend'>
+		<form action="Ex01_Ajax_Load.jsp" method="get">
+			<input type="text" name="msg" id="msg">
+			<input type="submit" value="동기전송">
+		</form>
+	</div>
+	
+	<hr>
+	
+	<h3>비동기처리</h3>
+	<input type="text" name="msg2" id="msg2">
+	<input type="button" value="비동기전송" id="btn">
+	<div id ='display'></div>
+</body>
+</html>
