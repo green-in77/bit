@@ -1,0 +1,26 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+<body>
+<!--
+	Tomcat(WAS) 기본적으로 제공하는 객체
+	1. request (요청 : 클라이언트의 정보를 담는 객체)
+	2. response (응답 : 특정페이지로 이동, 정보출력, cookie 쓰기 등)
+	3. application (전역객체 : web.xml 자원 처리, 전역변수)
+	4. session (접속 사용자(sessionId) 마다 부여되는 고유한 객체, 변수)
+	5. out (출력)
+	
+	session 객체
+	[session 변수 생성]
+	scope : 현재 웹 프로젝트(WebContent) 모든 페이지에서 사용가능
+		a.jsp(session.setAt...) -> b.jsp(session.setAt...)
+	Life-cycle : 소멸(sessionID와 동일) , 서버리부팅, session.invalidate()
+	
+-->
+</body>
+</html>

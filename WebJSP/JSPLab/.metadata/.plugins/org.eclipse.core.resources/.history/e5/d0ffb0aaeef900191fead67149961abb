@@ -1,0 +1,16 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h3>파일 쿠키 read</h3>
+<%
+	//Client 브라우져가 가지고 있는(내 DOMAIN) Cookie 가져오기
+	request.getCookies();
+%>
+</body>
+</html>

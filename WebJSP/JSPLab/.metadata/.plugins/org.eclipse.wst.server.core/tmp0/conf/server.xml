@@ -103,7 +103,7 @@
 				<Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
 				<Context docBase="C:\SmartWeb\WebJSP\JSPLab\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="C:\SmartWeb\WebJSP\JSPLab\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\WebJSP" path="/WebJSP" reloadable="true" source="org.eclipse.jst.jee.server:WebJSP"/>
-			<Context docBase="C:\SmartWeb\WebJSP\JSPLab\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\Team1_Boot_Template_Main" path="/Team1_Boot_Template_Main" reloadable="true" source="org.eclipse.jst.jee.server:Team1_Boot_Template_Main"/></Host>
+			</Host>
 		</Engine>
 	</Service>
 </Server>

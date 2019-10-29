@@ -22,4 +22,21 @@
   	<param-name>FilePath</param-name>
   	<param-value>C:\\Web\\Download</param-value>
   </context-param>
+  <!--
+  	Web App 전체 페이지에서 적용될 수 있는 Error 처리
+  	기준
+  	1. 상태코드 (404, 500) 제어가능
+  	2. 예외객체 따라서 페이지 설정 (권장하지 않아요..)
+  	
+  	TEST 하고 적용은 최종 배포시에...(개발시에는 error 메시지를 봐야하기때문에...)
+  -->
+  <!-- <error-page>
+  	<error-code>404</error-code>
+  	<location>/error/error404.jsp</location>
+  </error-page>
+  
+  <error-page>
+  	<error-code>500</error-code>
+  	<location>/error/error500.jsp</location>
+  </error-page> -->
 </web-app>
