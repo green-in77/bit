@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script type="text/javascript">
+	/*
+		jQuery.getJSON( url [, data ] [, success ] )
+			Dafault : datatype(서버가 응답하는 형식) : Json 
+			
+		url
+			유형 : 문자열
+			요청이 전송되는 URL을 포함하는 문자열입니다.
+		data
+			유형 : PlainObject 또는 문자열
+			요청과 함께 서버로 전송되는 일반 객체 또는 문자열입니다.
+		success
+			유형 : 함수 ( PlainObject 데이터, 문자열 textStatus, jqXHR jqXHR)
+			요청이 성공하면 실행되는 콜백 함수입니다.
+	*/
+		$(function(){
+			$('#btn .btnload').click(function() { //btn의 자손들 중에서 class가 btnload 인 것.
+				$.getJSON('Ex05_Json.json', function(jsonarray) {
+					//console.log(jsonarray);
+					//[{},{},{},{}]
+					//문제 : table 만들고 서버에서 반든 데이터를 td에 넣어서 display 에 append
+					
+					let table = "<table border='1'>";
+					$.each(jsonarray, function(){
+						// KEY POINT 객체.속성명 / 객체.["속성명"]
+						
+						//console.log($(this));
+						//console.log(this.name);
+						//console.log($(this)[0].num);
+						//table += "<tr><td>"+$(this)[0].num+"</td><td>" + $(this)[0].name + "</td></tr>";
+						table += "<tr><td>"+this.num+"</td><td>" + this.name + "</td></tr>";
+					});
+					table += "</table>"
+					//$('#display').append(table);
+					$('#display').html(table);
+				});
+			});
+		});
+	</script>
+</head>
+<body>
+	<div id="btn">
+		<div class="btnload">JSON DATA LOAD</div>
+	</div>
+	<div id="display"></div>
+</body>
+</html>

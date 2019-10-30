@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script type="text/javascript">
+	/*  
+		$.ajax() 함수를 사용해서 id 값 pwd 값 비동기로 전송하고
+		그 결과에 따라서 : success , fail
+		$('#message').html('<p>로그인 성공</p>')
+		$('#message').html('<p>로그인 실패</p>')
+		
+		Jquery effect 효과 적용 (슬라이드 효과)
+	*/
+		$(function(){
+			$('#login').click(function() {
+				let user_id = $('#user_id').val();
+				let user_pw = $('#user_pw').val();
+				
+				let datajson = { "user_id" : user_id, "user_pw":user_pw}
+				
+				console.log(datajson);
+				let url = $('#form1').attr('action');
+				
+				$.ajax({
+					url : url,
+					type : "post",//전송방식 : httpReq.open("post");
+					dataType : "text", //서버가 응답하는 DATA 형식
+					data : datajson,
+					success : function(data){//서버에서 받은 응답이 정상이라면, 4 + 200~299
+						//console.log(data);
+						//데이터 가공해서 뿌려주는 부분을 여기다가 코딩..
+						//console.log(data);
+						//console.log(data.trim() == "success");
+						
+						if( data.trim() == "success" ){
+							$('#form1').slideUp(1000);
+							$('#message').html('<p style="color:blue"><b>로그인 성공</b></p>');
+						}else{
+							$('#form1').slideUp(1000);
+							$('#message').html('<p style="color:red"><b>로그인 실패</b></p>');
+						}
+					}, 
+					error : function(xhr){ //서버에서 받은 응답이 error 404,500 등
+						alert(xhr.status); //에러코드 404, 500 ...
+						//새로고침 하거나 그냥 두거나 개발자 선택
+					}
+				});
+			});
+		});
+	</script>
+</head>
+<body>
+	<form id="form1" name="form1" action="Ex08_Ajax_loginOk.jsp" method="post">
+		<table>
+			<tr>
+				<td>아이디</td>
+				<td><input type='text' id='user_id' name='user_id' tabindex='1' /></td>
+				<td rowspan='2'>
+					<input type='button' id='login' tabindex='3' value='로그인' style='height: 50px' /></td>
+			</tr>
+			<tr>
+				<td>비밀번호</td>
+				<td><input type='password' id='user_pw' name='user_pw' tabindex='2' /></td>
+			</tr>
+		</table>
+	</form>
+	<div id="message"></div>
+</body>
+</html>

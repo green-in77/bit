@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('#btn').click(function(){
+			   	//Quiz 입니다
+				//http://api.flickr.com/services/feeds/photos_public.gne?tags=raccoon&tagmode=any&format=json&jsoncallback=?
+ 				//tags=raccoon&tagmode=any&format=json&
+				//에서 tags 값을 id="search" 에 입력한 값을 받아서 사용하세요
+				//출력은 img 태그로 출력하세요
+				var flickerAPI ="https://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?"
+				let tags = $('#search').val();
+				//console.log(tags);
+				//let data = "tags=" + tags + "&tagmode=any&format=json&";
+				
+				let datajson = { "tags":tags ,"tagmode":"any", "format":"json" };
+				
+				//let url = flickerAPI+data
+				//console.log(flickerAPI+data);
+				let img = "";
+				
+				$.getJSON(flickerAPI,datajson,function(data){
+					//console.log(data.items);
+					
+					$.each(data.items,function(index, items){
+						//console.log(element.media.m);
+						img += "<img src="+items.media.m+"><br>"
+						
+					});
+					//console.log(img);
+					$('#images').html(img);
+				});
+			});
+		});
+			
+			
+	</script>
+</head>
+<body>
+    <input type="text" id="search">
+    <input type="button" value="검색하기" id="btn">
+    <hr>
+    <div id="images"></div>
+</body>
+</html>

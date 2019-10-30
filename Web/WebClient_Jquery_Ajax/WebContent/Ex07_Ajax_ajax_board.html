@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$.ajax( //parameter 를 JSON 객체로 쓰기.
+					{//기본설정....
+						url : "Ex07_Ajax_board.json",
+						type : "post",//전송방식 : httpReq.open("post");
+						dataType : "json", //서버가 응답하는 DATA 형식
+						success : function(data){//서버에서 받은 응답이 정상이라면, 4 + 200~299
+							//console.log(data);
+							//데이터 가공해서 뿌려주는 부분을 여기다가 코딩..
+							$.each(data, function(index,obj){
+								$('#treedata').append(obj.id + " / " + obj.name + " / " + obj.title + " / " + obj.content + "<br>");
+							});
+						}, 
+						error : function(xhr){ //서버에서 받은 응답이 error 404,500 등
+							alert(xhr.status); //에러코드 404, 500 ...
+							//새로고침 하거나 그냥 두거나 개발자 선택
+						}
+						/*
+							로딩중일때 처리 : https://skylhs3.tistory.com/4
+							로딩 이미지 만들기 : http://www.ajaxload.info/
+							
+						*/
+					}
+			);	
+		});
+	</script>
+</head>
+<body>
+	<table id='treedata' border='1'>
+		
+	</table>
+</body>
+</html>
