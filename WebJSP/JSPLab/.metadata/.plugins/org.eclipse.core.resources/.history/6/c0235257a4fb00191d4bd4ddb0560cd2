@@ -1,0 +1,67 @@
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="kr.or.bit.utils.Singleton_Helper"%>
+<%@page import="java.sql.Connection"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+/*
+	회원정보 수정하기
+	1. DB쿼리 2개 : 수정정보 select, 수정반영 update
+		1.1 : select * from koreamember where id=?
+		1.2 : update koreamember set ename=? email=? where id=?; 
+	2. 화면1개 ( 기존 입력내용 보여주는 것 )-> 처리 1개(수정처리) 
+		2.1 : DB select 한 결과 화면 출력
+			<input type="text" value="rs.getString(id)">
+		수정안하고 화면..(서버로 전송 불가) : <td>rs.getString("id")</td>
+		수정안하고 화면..(서버로 전송 가능) : <input type="text" value="rs.getString(id)" readonly>
+		수정하고 화면+전송 : <input type="text" value="rs.getString(id)">
+	
+*/
+if(session.getAttribute("userid") == null || !session.getAttribute("userid").equals("admin")){ //값이 없거나, admin이 아니면
+	//강제로 페이지 이동
+	response.sendRedirect("Ex02_JDBC_Main.jsp");
+	
+	request.setCharacterEncoding("UTF-8");
+	
+	String id = request.getParameter("id");
+	
+	Connection conn = null;
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+	int row = 0;
+	
+	try {
+		conn = Singleton_Helper.getConnection("oracle");
+		String sql = "select id,pwd,name,age,trim(gender),email from koreamember where id=?";
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, id);
+		rs = pstmt.executeQuery();
+		rs.next();
+%>
+
+<%
+		
+		/* pstmt.setString(1, id);
+		row = pstmt.executeUpdate();
+		 
+		if(row > 0) {
+			out.print("<script>");
+				out.print("alert('삭제가 완료되었습니다.');");	
+				out.print("location.href='Ex03_Memberlist.jsp'");	
+			out.print("</script>");
+		}else {
+			out.print("<script>");
+				out.print("alert('삭제에 실패했습니다. 다시 확인바랍니다.');");	
+				out.print("location.href='Ex03_Memberlist.jsp'");	
+			out.print("</script>");
+		} */
+
+	} catch(Exception e){
+		
+	} finally{
+		Singleton_Helper.close(pstmt);
+	}
+}
+%>
+ 

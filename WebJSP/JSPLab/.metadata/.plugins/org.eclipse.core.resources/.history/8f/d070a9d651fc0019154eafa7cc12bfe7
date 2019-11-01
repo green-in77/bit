@@ -1,0 +1,5 @@
+/* your styles go here */
+.memberimg {
+	width: 300px;
+	height: 300px;
+}

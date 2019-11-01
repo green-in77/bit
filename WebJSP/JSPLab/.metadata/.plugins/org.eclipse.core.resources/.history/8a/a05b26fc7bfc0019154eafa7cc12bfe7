@@ -1,0 +1,22 @@
+/* your styles go here */
+.section-padding, .inner-padding {
+	padding-top: 2%;
+}
+
+.table-padding{
+	padding-top: 5%;
+	padding-left: 20%; 
+	padding-right: 20%;
+}
+
+.data-padding{
+	padding-left: 20%; 
+	padding-right: 20%;
+}
+
+.body-padding{
+	padding-top: 0;
+}
+.text-box{
+	width: 16em;
+}

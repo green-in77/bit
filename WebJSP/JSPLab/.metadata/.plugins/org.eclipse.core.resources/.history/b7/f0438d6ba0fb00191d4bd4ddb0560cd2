@@ -1,0 +1,14 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+/*
+	회원정보 수정하기
+	1. DB쿼리 2개 : 수정정보 select, 수정반영 update
+		1.1 : select * from koreamember where id=?
+		1.2 : update koreamember set ename=? email=? where id=?; 
+	2. 화면1개 ( 기존 입력내용 보여주는 것 )-> 처리 1개(수정처리) 
+		2.1 : DB select 한 결과 화면 출력
+	
+*/
+%>
+ 

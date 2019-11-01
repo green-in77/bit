@@ -1,0 +1,21 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+<%
+	//login.html -> submit -> Ex01_Basic.jsp (요청을 받는...)
+	String id = request.getParameter("userid");
+	
+	//include, forword 된 페이지에서만 사용하겠다면...
+	request.setAttribute("name", "korea");
+	request.setAttribute("user", "bit");
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+</body>
+</html>

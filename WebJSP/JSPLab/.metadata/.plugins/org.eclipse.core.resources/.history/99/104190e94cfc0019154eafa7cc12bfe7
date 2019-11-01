@@ -1,0 +1,52 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+<%
+	//login.html -> submit -> Ex01_Basic.jsp (요청을 받는...)
+	String id = request.getParameter("userid");
+	
+	//include, forword 된 페이지에서만 사용하겠다면...
+	request.setAttribute("name", "korea");
+	session.setAttribute("user", "bit");
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<!--
+	EL(표현식) : JSP 페이지에서 사용하는 스크립트 언어(화면출력)
+	이유 : 스파게티코드는 유지보수, 가독성(해석) 등 문제로
+		script 기반의 EL & JSTL 생성(JSP 페이지에서만 사용가능)
+		%없이 server 자원 출력 가능
+		
+	EL 기본객체
+	paramValues 	 : 요청 파라미터의<파라미터이름, 값배열> 저장한 Map 객체
+	param 			 :요청 파라미터의<파라미터이름, 값> 저장한 Map 객체
+	requestScope 	 : request 기본 객체에 저장된 속성의 <속성,값> 저장한 Map 객체
+	sessionScope 	 : session 기본 객체에 저장된 속성의 <속성,값> 저장한 Map 객체
+	applicationScope : application 기본 객체에 저장된 속성의 <속성,값> 저장한 Map 객체
+-->
+	스크립트 릿 : <b><%= id %></b><br>
+	스크립트 릿 : <b><%= request.getAttribute("name") %></b><br>
+	스크립트 릿 : <b><%= session.getAttribute("user") %></b><br>
+	<hr>
+	
+	EL requset value : ${requestScope.name}<br>
+	EL requset value (requestScope 생략): ${name}<br>
+	EL session value (sessionScope 생략): ${user}<br>
+	EL session value : ${sessionScope.user}<br>
+	<hr>
+	
+	기존 : <%= request.getParameter("userid") %><br>
+	EL requset parameter : ${param.userid}<br>
+	
+	<h3>EL 기본 문법</h3>
+	<b>EL 표현식(출력)</b><br>
+	스크립트 릿 <%= 200+400 %><br>
+	EL : ${200+300}<br>
+	EL 자동형변환 : ${"1"+1}<br><!-- 문자형 숫자에 대해서 자동형변환 -->
+</body>
+</html>

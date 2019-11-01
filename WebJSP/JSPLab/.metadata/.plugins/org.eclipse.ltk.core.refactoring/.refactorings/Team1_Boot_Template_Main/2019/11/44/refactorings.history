@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy 6 elements to &apos;img&apos;&#x0D;&#x0A;- Original project: &apos;Team1_Boot_Template_Main&apos;&#x0D;&#x0A;- Destination element: &apos;img&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     Team1_1.png&#x0D;&#x0A;     Team1_2.png&#x0D;&#x0A;     Team1_4.png&#x0D;&#x0A;     Team1_3.png&#x0D;&#x0A;     Team1_5.png&#x0D;&#x0A;     Team1_6.jpg" description="Copy files" element1="WebContent/img/Team1_1.png" element2="WebContent/img/Team1_2.png" element3="WebContent/img/Team1_4.png" element4="WebContent/img/Team1_3.png" element5="WebContent/img/Team1_5.png" element6="WebContent/img/Team1_6.jpg" files="6" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1572575681322" target="/WebJSP_JDBC_Team1/WebContent/img" units="0" version="1.0"/>
+</session>

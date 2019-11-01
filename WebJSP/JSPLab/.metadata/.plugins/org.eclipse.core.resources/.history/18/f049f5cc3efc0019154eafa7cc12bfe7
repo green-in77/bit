@@ -1,0 +1,38 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Home</title>
+    	
+	<jsp:include page="common/Top.jsp"></jsp:include>
+	
+    <div class="d-flex align-items-stretch">
+    
+    <jsp:include page="common/Left.jsp"></jsp:include>
+    
+      <div class="page-holder w-100 d-flex flex-wrap">
+        <div class="container-fluid px-xl-5">
+        <%=request.getContextPath() %>
+        <%
+			String id = null;
+			id = (String)session.getAttribute("userid");
+				
+			if ( id != null){ //회원이면
+				out.print(id + " 회원님 반갑습니다 :)<br>");
+						
+				if(id.equals("admin")){ //관리자이면
+					out.print("<a href='memberlist.jsp'>회원관리</a>");
+				}
+			}else{//비회원
+				//메인페이지는 회원만 볼 수 있다...(강제링크코드 추가)
+				out.print("방문을 환영합니다 :)<br>회원가입  또는 로그인 후 이용바랍니다!");
+			}
+		%>
+        </div>
+        
+        <jsp:include page="common/Bottom.jsp"></jsp:include>
+        

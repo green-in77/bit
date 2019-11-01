@@ -1,0 +1,57 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Home</title>
+    	
+	<jsp:include page="common/Top.jsp"></jsp:include>
+	
+    <div class="d-flex align-items-stretch">
+    
+    <jsp:include page="common/Left.jsp"></jsp:include>
+    
+      <div class="page-holder w-100 d-flex flex-wrap">
+        <div class="container-fluid px-xl-5">
+        
+        <div class="container">
+            
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <div class="about-text wow bounceIn">
+                        <div class="about-icon">
+                            <i class="li_world"></i>
+                        </div>
+                        
+                        <h2>민주주의인민공화국</h2>
+                        <p>위대한 령도자 김정하 위원장 동지와 함께하는 력삼동 1호 JAVA 개발 위원회<br>
+                            날때부터 응애응애 대신 'Java'라고 부르짖으며 탄생하신 김정하 위원장 동지의<br>
+                            강제성이라곤 눈을 <del>찌르고</del> 씻고 찾아봐도 찾을 수 없는 민주적이고 결단력 있는 지도 아래,<br>
+                            력삼동 1호 개발을 위한 영광스러운 고난의 행군을 하고있는 행복가득 1조입니다.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <%
+			String id = null;
+			id = (String)session.getAttribute("userid");
+				
+			if ( id != null){ //회원이면
+				out.print(id + " 회원님 반갑습니다 :)<br>");
+						
+				if(id.equals("admin")){ //관리자이면
+					out.print("<a href='memberlist.jsp'>회원관리</a>");
+				}
+			}else{//비회원
+				//메인페이지는 회원만 볼 수 있다...(강제링크코드 추가)
+				out.print("방문을 환영합니다 :)<br>회원가입  또는 로그인 후 이용바랍니다!");
+			}
+		%>
+        </div>
+        
+        <jsp:include page="common/Bottom.jsp"></jsp:include>
+        

@@ -1,0 +1,10 @@
+/* your styles go here */
+.section-padding, .inner-padding {
+	padding-top: 2%;
+}
+
+.table-padding{
+	padding-top: 10%;
+	padding-left: 20%; 
+	padding-right: 20%
+}

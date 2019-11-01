@@ -1,0 +1,54 @@
+<%@page import="kr.or.bit.utils.Singleton_Helper"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.Connection"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	request.setCharacterEncoding("UTF-8");
+	
+	String id = request.getParameter("id");
+	String pw = request.getParameter("pwd");
+	
+	//out.print(id + "/"+pw);
+	
+	Connection conn = null;
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+	
+	try {
+		
+		conn = Singleton_Helper.getConnection("oracle");
+		String sql = "select id , pwd from KOREAMEMBER where id=?";
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1,id);
+		rs = pstmt.executeQuery();
+		
+		if(rs.next()) { //DB에 입력한 ID가 있다.
+			if(pw.equals(rs.getString(2))){ // 1. id가 DB에 있고 입력한 pw가 DB의 pw와 동일하면
+				
+				session.setAttribute("userid",id);
+				response.sendRedirect("index.jsp"); //로그인성공
+				
+			}else{// 2. ID가 DB에 있고 입력한 PW가 DB의 PW와 다르다면
+				out.print("<script>");
+					out.print("alert('비밀번호가 잘못 입력되었습니다. 다시입력해주세요.');");	
+					out.print("location.href='login.jsp'");	
+				out.print("</script>");
+
+			}
+		}else {
+			out.print("<script>");
+				out.print("alert('ID를 다시 확인해주세요.');");	
+				out.print("location.href='login.jsp'");	
+			out.print("</script>");
+			 response.sendRedirect("signup.jsp");
+		}
+		
+	} catch(Exception e){
+		System.out.println("Error : " + e.getMessage());
+	} finally{
+		Singleton_Helper.close(rs);
+		Singleton_Helper.close(pstmt);
+	}
+%>   

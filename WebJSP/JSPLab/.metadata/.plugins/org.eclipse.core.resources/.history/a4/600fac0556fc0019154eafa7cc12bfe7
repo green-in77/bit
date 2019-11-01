@@ -1,0 +1,110 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Home</title>
+    	
+	<jsp:include page="common/Top.jsp"></jsp:include>
+	
+    <div class="d-flex align-items-stretch">
+    
+    <jsp:include page="common/Left.jsp"></jsp:include>
+    
+      <div class="page-holder w-100 d-flex flex-wrap">
+        <div class="container-fluid px-xl-5">
+			<div class="row">
+				<div class="col-md-12">
+			
+			</div>
+        <%
+			String id = null;
+			id = (String)session.getAttribute("userid");
+				
+			if ( id != null){ //회원이면
+				out.print(id + " 회원님 반갑습니다 :)<br>");
+						
+				if(id.equals("admin")){ //관리자이면
+					out.print("<a href='memberlist.jsp'>회원관리</a>");
+				}
+			}else{//비회원
+				//메인페이지는 회원만 볼 수 있다...(강제링크코드 추가)
+				out.print("방문을 환영합니다 :)<br>회원가입  또는 로그인 후 이용바랍니다!");
+			}
+		%>
+        	<section id="member" class="section-padding">
+        <div class="container">
+           
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div class="">
+                        <h2>Team_1</h2>
+                    </div>
+                </div>
+            </div>
+                       
+            <div class="row">
+                <div class="col-md-12 text-center">
+                	<div class="row">
+
+						<div class='col-md-4'>
+	                       	<span>GM</span><br>
+	                        <img src="img/Team1_1.png" alt="광민" width="200px" height="200px">
+	                    </div>
+	                        
+						<div class='col-md-4'>
+							<span>DY</span><br>
+							<img src="img/Team1_2.png" alt="도연" width="200px" height="200px">
+						</div>
+	                        
+						<div class='col-md-4'>
+							<span>JG</span><br>
+							<img src="img/Team1_3.png" alt="정균" width="200px" height="200px">
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row">
+                <div class="col-md-12 text-center">
+                	<div class="row">
+                
+						<div class='col-md-4'>
+							<span>SH</span><br>
+							<img src="img/Team1_4.png" alt="성호" width="200px" height="200px">
+						</div>
+	                        
+						<div class='col-md-4'>
+							<span>HN</span><br>
+							<img src="img/Team1_5.png" alt="한녘" width="200px" height="200px">
+						</div>
+	                        
+						<div class='col-md-4'>
+							<span>JH</span><br>
+							<img src="img/Team1_6.jpg" alt="정하" width="200px" height="200px">
+						</div>
+					</div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="text-center page-title">
+                        <h3>MBTI</h3>
+                        <p>● 김광민 : ISFP-A 호기심 많은 예술가 ● 임도연 : INFP-T  열정적인 중재자 ● 김정균 : INTJ-A 용의주도한 전략가<br>
+                           ● 박성호 : INFJ-T 선의의 옹호자 ● 김한녘 : ESFP-A 자유로운 영혼의 연예인 ● 김정하 : ISTJ-T 청렴결백한 논리주의자
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+        </div>
+        
+        <jsp:include page="common/Bottom.jsp"></jsp:include>
+        

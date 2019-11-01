@@ -1,0 +1,5 @@
+/* your styles go here */
+.section-padding, .inner-padding {
+	padding-top: 2%;
+}
+

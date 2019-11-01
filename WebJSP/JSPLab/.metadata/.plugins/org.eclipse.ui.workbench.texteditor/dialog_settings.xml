@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="/"/>
+		<item key="selection" value="EXTRAS"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="EXTRAS"/>
+			<item value="tlinks"/>
 			<item value="/"/>
 			<item value="span"/>
 			<item value="&lt;h1&gt;가입&lt;/h1&gt;"/>
