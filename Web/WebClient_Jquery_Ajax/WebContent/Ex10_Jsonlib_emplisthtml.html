@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$.ajax({
+				
+				url : "http://192.168.0.27:8090/WebClient_Jquery_Ajax/Ex10_jsonlib_emplist.jsp",
+				type : "post",//전송방식 : httpReq.open("post");
+				dataType : "json", //서버가 응답하는 DATA 형식
+				success : function(data){//서버에서 받은 응답이 정상이라면, 4 + 200~299
+						
+					//데이터 가공해서 뿌려주는 부분을 여기다가 코딩..
+					var tag;
+				    var tag_add="";
+				    //console.log(data.JobFndtnSportPolocy[1].row);
+				    
+				    var tag="";
+
+				    	$('#tbody').empty();
+				    	
+						$.each(data, function(index, element) {
+							//console.log(element);
+							tag += "<tr><td>" + element.empno + "</td><td>" + element.ename +"</td><td>" + element.sal +
+									"</td><td>" + element.job + "</td></tr>";
+
+						});
+						$('#tbody').append(tag);
+						
+				},
+
+				error : function(xhr){ //서버에서 받은 응답이 error 404,500 등
+					alert(xhr.status); //에러코드 404, 500 ...
+					//새로고침 하거나 그냥 두거나 개발자 선택
+				}
+				
+			});
+		});
+	</script>
+	<style>
+		body,table,th{
+			text-align: center;
+		}
+		tr,td {
+			border: 1px dotted red;
+			
+		}
+	</style>
+</head>
+<body>
+<!--
+	jquery 비동기 함수 $.ajax 함수로 Ex10_Jsonlib_emplist.jsp 요청주소를 가지고 받은 데이터를 출력
+-->
+	<table class="table table-hover text-center" id="table">
+    	<thead>
+      		<tr>
+		        <th>Empno</th>
+		        <th>Ename</th>
+		        <th>Sal</th>
+		        <th>Job</th>
+      		</tr>
+    	</thead>
+    	<tbody id="tbody">
+    	</tbody>
+  	</table>
+</body>
+</html>
