@@ -10,6 +10,28 @@
 	<h3>servlet 요청하기</h3>
 	<h3>getContextPath() : <%=request.getContextPath() %></h3>
 								<!-- /WebServlet_1 -->
-	<a href="<%=request.getContextPath()%>/simple">일반요청하기</a>
+	<a href="<%=request.getContextPath()%>/simple">일반요청하기</a><!-- type==null -->
+	<br>
+	<a href="<%=request.getContextPath()%>/simple?type=date">날짜요청하기</a>
+	<br>
+	<a href="<%=request.getContextPath()%>/simple?type=abcd">비정상요청하기</a>
+	<br>
+	<hr>
+	
+	<h3>FrontBoardController</h3>
+	<a href="<%=request.getContextPath()%>/board?cmd=boardlist">게시판 목록 보기</a>
+	<br>
+	<a href="<%=request.getContextPath()%>/board?cmd=boardwrite">게시판 글쓰기</a>
+	<br>
+	<a href="<%=request.getContextPath()%>/board">Error 유도하기</a>
+	<br>
+	<a href="<%=request.getContextPath()%>/board?cmd=boarddelete">삭제하기</a>
+	<br>
+	<a href="<%=request.getContextPath()%>/board?cmd=login">페이지보안(로그인)</a>
+	<hr>
+	
+	<h3>FrontServletController</h3>
+	<a href="<%=request.getContextPath()%>/Front.do?cmd=greeting">요청보내기</a>
+	<hr>
 </body>
 </html>
