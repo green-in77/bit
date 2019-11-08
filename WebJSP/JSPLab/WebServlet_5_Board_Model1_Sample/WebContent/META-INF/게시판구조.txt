@@ -124,12 +124,22 @@ select * from multiboard order ref desc, step asc;
 2. 답글 순서로 정렬
 select * from multiboard order ref desc, step desc;
 
---------------------------------------------------------
+-------------------------------------------------------------------
+select * from multiboard order by ref desc , step asc
+update multiboard set step= step+1 where refer =? and step > ? 
+
+pstmt.setInt(9, depth+1); // 규칙 현재 읽은 글에 depth + 1
+pstmt.setInt(10, step+1); // 순서 update 통해서  자리 확보 + 1				    		   
+-------------------------------------------------------------------
+select * from multiboard order by ref desc, step desc
+update multiboard set step=step+1 where refer=? and step >= ?
+
+-------------------------------------------------------------------
 순번처리(oracle)
 create sequence board_idx
 start with 1
 increment by 1
------------------------------------------------------------------------
+-------------------------------------------------------------------
 댓글 테이블 생성
 --누구의 댓글인가
 --일반게시판 글번호 필요
@@ -140,6 +150,122 @@ create table reply(
 	pwd varchar2(30),
 	content varchar2(2000),
 	writedate date default sysdate,
-	idx number references board(idx)
+	idx number not null
 );
 
+alter table reply
+add constraint fk_reply_deptno foreign key(idx) references board(idx);
+
+board 원본글
+10, 방가방가, .....
+
+1번글 읽고 댓글 >> reply >> insert
+insert into reply(no, ...idx) values(1, .....10)
+
+reply 댓글
+1, 나도방가, ... 10
+2, 방가, .... 10
+
+----
+board 10 read 하면 reply에서 데이터....
+select * from reply where idx=10;
+-----------------------------------------------
+
+개발(목적 : 게시판 흐름을 이해 : JSP)
+Model1 방식의 개발
+> 요청을 JSP 처리 > Model(DTO, DAO) > 요청 <form action="ok.jsp"
+								<a href='board_write.jsp'>
+Model2 방식의 개발
+> 요청을 servlet 처리 > Model(DTO, DAO) > 요청 <form action="ok.do"
+										<a href='write.do'>
+----------------------------------------------------------------
+요청을 받고 화면처리 = JSP
+WebContent > login.jsp, loginok.jsp..... (Model1 설계)
+WebContent > WEB-INF > views > login.jsp, loginok.jsp (Model2 설계)
+
+WebContent > 폴더구조
+>board > list.jsp, write.jsp > images 폴더 > ..... >css폴더
+>member > memberlist.jsp , memberwrite.jsp > images폴더 >... >css폴더
+>images > 공통이미지
+>css > common.css
+>js > common.js
+>include > top.jsp, bottom.jsp
+
+서비스, 데이터처리 = JAVA(Model)
+	kr.or.bit.dto > 데이터 1건을 담을 수 있는 클래스
+	kr.or.bit.dao > DB연결 CRUD 함수
+	kr.or.bit.service > 
+	kr.or.bit.utils 추가(문자,날짜,페이징,DB ...처리 등)
+
+-------------------------------------------------------------------
+배포(조원들에 배포...)
+--------------------------------------------------------------------
+글쓰기, 글읽기, 답글, 댓글, .......
+
+**단일업무 하나당 jsp 2개**
+**화면단(jsp) + 로직처리(jsp)**
+**login.jsp + loginok.jsp**
+
+1. board_write.jsp : 글쓰기 (UI -> Form(input) -> submit(유효성검증)
+주의사항 : <input name="" .... 서버에 데이터 받기 가능(name 속성이 꼭 있어야 한다)
+주의사항 : action="처리하는 페이지.jsp"
+
+2. board_writeok.jsp : 글쓰기처리 (한글처리 > 데이터받기 > DB 연결 > insert >처리(성공) > 목록이동(list)\
+주의사항 : insert 실패처리 (DB not null >> insert...), 중복값(sequences), 타입크기-글자수제한..(고민)
+	[ DB 연결 > insert >처리(성공) ]여기까지는 service에게 위임
+ 
+Model(dto, dao, service)
+JSP는 dao 직접 관리하지 않는다. jsp는 service만 관리한다.
+jsp dao 객체를 생성하지 않는다. service가 생성..
+
+board_writeOk.jsp
+DTO > class Message {private String title;}
+JSP > Message message = new Massage();
+jsp > message.setTitle(request.getParameter("title");...
+boardservice service = boardservice.getInstance();
+int result = service.writeOk(message);
+>> boardservice >> public int writeOk(Message m){ Dao dao = new Dao(); dao.writeok(m);}
+
+board_write.jsp >> board_writeok.jsp -> 데이터 받기 -> DTO 생성 -> DTO 데이터 넣기   >> Service 객체 -> BoardDao 객체 -> Service 객체 >> board_writeok.jsp -> list,write 이동처리
+ 
+------------------------------------------------------------------------------------------------
+
+board_list.jsp : 게시물 목록 보여주기
+화면에 출력 : 글번호, 제목, 작성자, 날짜, 조회수
+글의 내용은 보여주지 않음(상세보기)
+
+SELECT 글번호, 제목, 작성자, 날짜, 조회수 FROM jspboard ORDER BY refer DESC , step ASC;
+
+board_list.jsp요청 >> service 객체 -> Dao 객체 -> 함수return List<Board> -> service 객체 >> board_list.jsp <c:foreach var="board" items="<%=list%> 화면출력
+
+주의사항
+1. 링크구현 : 제목링크처리 시 pg, cp, idx parameter 구현 (GET 방식)
+2. 페이징처리 (The pager)
+3. EL & JSTL( 제어문)
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+board_content.jsp
+글 번호 받기idx -> : select ...where idx=10 : 고정된 화면 출력
+-> 목록, 수정, 삭제(링크 구성) , 댓글....
+-> board_list.jsp?ps = & cp =
+-> board_edit?idx=1
+-> board_delete?idx=1
+
+기능추가 : 글 조회수 증가(update... readnum = readnum+1...)
+	조건 : 같은 계정, 같은 날짜, ......조회수 증가 제한사항
+--------------------------------------------------------
+
+board_delete.jsp 삭제하기
+-> board_delete?idx=1 -> delete .... where idx=1
+
+삭제하기 (회원, 비회원)
+	회원 : 상세보기로 갔을때 로그인 한 id와 글쓴 id가 일치하지 않으면 삭제,수정 버튼이 보이지 않음.
+	비회원 : 화면UI -> 비밀번호 입력,확일치 시 삭제
+	-> board_delete.jsp (UI : 비밀번호 입력)
+	-> board_deleteok.jsp (삭제 처리)
+	-> 삭제(idx, pwd)
+		delete from jspboard where idx=? and pwd=?
+	-> 삭제 후 list 로 이동....
+	
+-----------------------------------------------------------------------
