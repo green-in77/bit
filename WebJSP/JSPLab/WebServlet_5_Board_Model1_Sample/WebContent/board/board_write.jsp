@@ -5,35 +5,54 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>게시판 글쓰기</title>
-	<script type="text/javascript" src="../ckeditor/ckeditor.js" ></script>
+	
 	<link rel="Stylesheet" href="../style/default.css" />
+	
+	<!-- include libraries(jQuery, bootstrap) -->
+	<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+	
+	<!-- include summernote css/js -->
+	<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
+	
 	<SCRIPT type="text/javascript">
-function check(){
-    if(!bbs.subject.value){
-        alert("제목을 입력하세요");
-        bbs.subject.focus();
-        return false;
-    }
-    if(!bbs.writer.value){
-        
-        alert("이름을 입력하세요");
-        bbs.writer.focus();
-        return false;
-    }
-   /*  if(!bbs.content.value){            
-        alert("글 내용을 입력하세요");
-        bbs.content.focus();
-        return false;
-    } */
-    if(!bbs.pwd.value){            
-        alert("비밀번호를 입력하세요");
-        bbs.pwd.focus();
-        return false;
-    }
- 
-    document.bbs.submit();
- 
-}
+	$(function(){
+		$('#summernote').summernote({
+			height : 300,
+			minHeight : null,
+			maxHeight : null,
+			focus : true
+		});
+	});
+	function check(){
+		
+	    if(!bbs.subject.value){
+	        alert("제목을 입력하세요");
+	        bbs.subject.focus();
+	        return false;
+	    }
+	    if(!bbs.writer.value){
+	        
+	        alert("이름을 입력하세요");
+	        bbs.writer.focus();
+	        return false;
+	    }
+	   /*  if(!bbs.content.value){            
+	        alert("글 내용을 입력하세요");
+	        bbs.content.focus();
+	        return false;
+	    } */
+	    if(!bbs.pwd.value){            
+	        alert("비밀번호를 입력하세요");
+	        bbs.pwd.focus();
+	        return false;
+	    }
+	 
+	    document.bbs.submit();
+
+	}
 </SCRIPT>
 </head>
 <body>
@@ -63,7 +82,7 @@ function check(){
                     </tr>
                     <tr>
                         <td width="20%" align="center">글내용</td>
-                        <td width="80%" align="left"><textarea rows="10" cols="60" name="content" class="ckeditor"></textarea></td>
+                        <td width="80%" align="left"><textarea rows="10" cols="60" name="content" id ="summernote"></textarea></td>
                     </tr>
                     <tr>
                         <td width="20%" align="center">비밀번호</td>

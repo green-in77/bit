@@ -2,6 +2,8 @@ package kr.or.bit.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import kr.or.bit.dao.BoardDao;
 import kr.or.bit.dto.Board;
 import kr.or.bit.dto.Reply;
@@ -70,6 +72,16 @@ public class BoardService {
 	//서비스 요청(게시물 상세조회  > 답글 쓰기(rewriteok)
 	public int rewriteok(Board boardata) throws Exception {
 		return new BoardDao().reWriteOk(boardata);
+	}
+	
+	//서비스 요청(게시물 수정데이터 조회)
+	public Board board_EditContent(String idx) {
+		return new BoardDao().getEditContent(idx);
+	}
+	
+	//서비스 요청(게시물 수정) : 다른 테스트(request 요청객체를 parameter 로 사용) >> view 코드 감소, java 코드 증가
+	public int board_Edit(HttpServletRequest req) {
+		return new BoardDao().boardEdit(req);
 	}
 	
 }

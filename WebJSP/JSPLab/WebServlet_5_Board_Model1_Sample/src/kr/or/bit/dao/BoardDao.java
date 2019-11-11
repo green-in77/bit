@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.sql.DataSource;
 
 import kr.or.bit.dto.Board;
@@ -614,4 +615,67 @@ public class BoardDao {
 		return result;
 	}
 	
+	//게시글 수정하기 화면(답글포함)
+	public Board getEditContent(String idx) {
+		return this.getContent(Integer.parseInt(idx));
+		//조회화면 동일(기존 함수 재활용)
+	}
+	
+	//게시글 수정처리
+	//public int boardEdit(Board boarddata) {}
+	public int boardEdit(HttpServletRequest boarddata) {
+		String idx = boarddata.getParameter("idx");
+		String pwd = boarddata.getParameter("pwd");
+		String writer = boarddata.getParameter("writer");
+		String email = boarddata.getParameter("email");
+		String homepage = boarddata.getParameter("homepage");
+		String subject = boarddata.getParameter("subject");
+		String content = boarddata.getParameter("content");
+		String filename = boarddata.getParameter("filename");
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int row = 0;
+		
+		try {
+			conn = ds.getConnection();
+			String sql_idx = "select idx from jspboard where idx=? and pwd=?";
+			String sql_update = "update jspboard set writer=?, email=?, homepage=?, subject=?, content=?, filename=? where idx=?";
+			
+			pstmt = conn.prepareStatement(sql_idx);
+			pstmt.setString(1, idx);
+			pstmt.setString(2, pwd);
+						
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) { //데이터가 있는지 판단 : 수정가능
+				//경고 : pstmt 닫았다가 다시 사용해라.....
+				pstmt.close();
+				
+				pstmt = conn.prepareStatement(sql_update);
+				pstmt.setString(1, writer);
+				pstmt.setString(2, email);
+				pstmt.setString(3, homepage);
+				pstmt.setString(4, subject);
+				pstmt.setString(5, content);
+				pstmt.setString(6, filename);
+				pstmt.setString(7, idx);
+				
+				row = pstmt.executeUpdate();
+				
+			}					
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				pstmt.close();
+				rs.close();
+				conn.close(); //반환
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return row;
+	}
 }
