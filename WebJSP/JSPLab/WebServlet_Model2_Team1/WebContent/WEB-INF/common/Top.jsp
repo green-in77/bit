@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
     
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    
     <!-- Bootstrap CSS-->
     <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
     
@@ -37,7 +39,7 @@
     <header class="header">
       <nav class="navbar navbar-expand-lg px-4 py-2 bg-white shadow">
          <a href="#" class="sidebar-toggler text-gray-500 mr-4 mr-lg-5 lead"><i class="fas fa-align-left"></i></a>
-         <a href="index.jsp" class="navbar-brand font-weight-bold text-uppercase text-base">Team_1</a>
+         <a href="index.jsp" class="navbar-brand font-weight-bold text-uppercase text-base">EMP</a>
         <ul class="ml-auto d-flex align-items-center list-unstyled mb-0">
            
            <c:if test="${id!=null}" >
@@ -53,6 +55,7 @@
    					<div aria-labelledby="userInfo" class="dropdown-menu">
    					 	<a href="empList.do" class="dropdown-item">List</a><!-- select 처리로.. -->
       					<a href="empAdd.do" class="dropdown-item">Register</a><!-- 등록화면으로.. -->
+      					<a href="empchart.do" class="dropdown-item">Chart</a><!-- chart 처리로.. -->
       					<a href="adminLogout.do" class="dropdown-item">Logout</a>
       					<!-- 로그아웃 처리로.. -->
                   	</div>

@@ -1,6 +1,7 @@
 package kr.or.bit.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -79,7 +80,7 @@ public class Empdao {
 				emp.setEname(rs.getString("ename"));
 				emp.setJob(rs.getString("job"));
 				emp.setMgr(rs.getInt("mgr"));
-				emp.setHiredate(rs.getDate("hiredate"));
+				emp.setHiredate(rs.getString("hiredate"));
 				emp.setSal(rs.getInt("sal"));
 				emp.setComm(rs.getInt("comm"));
 				emp.setDeptno(rs.getInt("deptno"));
@@ -96,8 +97,8 @@ public class Empdao {
 		return emplist;
 	}
 
-	//emp 1건 조회
-	public Emp getEmp(String empno) {
+	//emp empno조건 조회
+	public Emp getEmpListEmpno(String empno) {
 		Emp emp = new Emp();
 		
 		Connection conn = ConnectionHelper.getConnection("oracle");
@@ -115,7 +116,7 @@ public class Empdao {
 				emp.setEname(rs.getString("ename"));
 				emp.setJob(rs.getString("job"));
 				emp.setMgr(rs.getInt("mgr"));
-				emp.setHiredate(rs.getDate("hiredate"));
+				emp.setHiredate(rs.getString("hiredate"));
 				emp.setSal(rs.getInt("sal"));
 				emp.setComm(rs.getInt("comm"));
 				emp.setDeptno(rs.getInt("deptno"));
@@ -128,6 +129,44 @@ public class Empdao {
 			DB_Close.close(conn);
 		}
 		return emp;
+	}
+	
+	//emp deptno 조건 조회
+	public List<Emp> getEmpListDeptno(String deptno) {
+		List<Emp> emplist = new ArrayList<Emp>();
+		
+		Connection conn = ConnectionHelper.getConnection("oracle");
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			String sql_select = "select empno, ename, job, mgr, hiredate, sal, comm, deptno from emp where deptno=?";
+			pstmt = conn.prepareStatement(sql_select);
+			pstmt.setString(1, deptno);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				Emp emp = new Emp();
+				
+				emp.setEmpno(rs.getInt("empno"));
+				emp.setEname(rs.getString("ename"));
+				emp.setJob(rs.getString("job"));
+				emp.setMgr(rs.getInt("mgr"));
+				emp.setHiredate(rs.getString("hiredate"));
+				emp.setSal(rs.getInt("sal"));
+				emp.setComm(rs.getInt("comm"));
+				emp.setDeptno(rs.getInt("deptno"));
+				
+				emplist.add(emp);
+			}
+		} catch(Exception e) {
+			System.out.println("Select * : " + e.getMessage());
+		} finally {
+			DB_Close.close(pstmt);
+			DB_Close.close(rs);
+			DB_Close.close(conn);
+		}
+		return emplist;
 	}
 	
 	//emp 수정
@@ -158,5 +197,55 @@ public class Empdao {
 		return row;
 	}
 	
-	
+	//emp 등록
+	public int empRegister(Emp emp) {
+		Connection conn = ConnectionHelper.getConnection("oracle");
+		PreparedStatement pstmt = null;
+		int row = 0;
+		
+		try {
+			String sql_insert = "INSERT INTO EMP(empno, ename, job, mgr, hiredate, sal, comm, deptno) VALUES (?,?,?,?,?,?,?,?)";
+			pstmt = conn.prepareStatement(sql_insert);
+			
+			pstmt.setInt(1, emp.getEmpno());
+			pstmt.setString(2, emp.getEname());
+			pstmt.setString(3, emp.getJob());
+			pstmt.setInt(4, emp.getMgr());
+			pstmt.setString(5, emp.getHiredate());
+			pstmt.setInt(6, emp.getSal());
+			pstmt.setInt(7, emp.getComm());
+			pstmt.setInt(8, emp.getDeptno());
+			
+			row = pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			System.out.println("insert : " + e.getMessage());
+		} finally {
+			DB_Close.close(pstmt);
+			DB_Close.close(conn);
+		}
+		return row;
+	}
+
+	//emp 삭제
+	public int empDelete(String empno) {
+		Connection conn = ConnectionHelper.getConnection("oracle");
+		PreparedStatement pstmt = null;
+		int row = 0;
+		
+		try {
+			String sql_delete = "delete from emp where empno=?";
+			pstmt = conn.prepareStatement(sql_delete);
+			
+			pstmt.setInt(1, Integer.parseInt(empno));
+			row = pstmt.executeUpdate();
+			
+		} catch(Exception e) {
+			System.out.println("delete : " + e.getMessage());
+		} finally {
+			DB_Close.close(pstmt);
+			DB_Close.close(conn);
+		}
+		return row;
+	}
 }

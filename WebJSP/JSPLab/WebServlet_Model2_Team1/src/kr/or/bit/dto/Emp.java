@@ -19,7 +19,7 @@ public class Emp {
 	private String ename; //이름
 	private String job; //직종
 	private int mgr; //사수
-	private Date hiredate; //입사일
+	private String hiredate; //입사일
 	private int sal; //급여
 	private int comm; //수당
 	private int deptno; //부서번호
@@ -58,14 +58,14 @@ public class Emp {
 		this.mgr = mgr;
 	}
 
-	public Date getHiredate() {
+	public String getHiredate() {
 		return hiredate;
 	}
-
-	public void setHiredate(Date hiredate) {
-		this.hiredate = hiredate;
+	
+	public void setHiredate(String hiredate) {
+		this.hiredate =  hiredate;
 	}
-
+	
 	public int getSal() {
 		return sal;
 	}

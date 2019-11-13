@@ -14,7 +14,7 @@ public class EmpSelete implements Action{
 		String empno = request.getParameter("empno");
 		
 		Empdao empdao = new Empdao();
-		Emp emp = empdao.getEmp(empno);
+		Emp emp = empdao.getEmpListEmpno(empno);
 		
 		request.setAttribute("emp", emp);
 		

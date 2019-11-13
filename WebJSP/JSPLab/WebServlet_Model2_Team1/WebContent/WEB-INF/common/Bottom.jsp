@@ -7,7 +7,7 @@
                 <p class="mb-2 mb-md-0"></p>
               </div>
               <div class="col-md-6 text-center text-md-right text-gray-400">
-                <p class="mb-0">Copyright &copy; 2019 Team1 All rights reseved.</p>
+                <p class="mb-0">Copyright &copy; 2019 Jungha All rights reseved.</p>
               </div>
             </div>
           </div>
@@ -19,9 +19,9 @@
     <script src="<%=request.getContextPath() %>/vendor/popper.js/umd/popper.min.js"> </script>
     <script src="<%=request.getContextPath() %>/vendor/bootstrap/js/bootstrap.min.js"></script>
     <script src="<%=request.getContextPath() %>/vendor/jquery.cookie/jquery.cookie.js"> </script>
-    <script src="<%=request.getContextPath() %>/vendor/chart.js/Chart.min.js"></script>
+    <!-- <script src="<%=request.getContextPath() %>/vendor/chart.js/Chart.min.js"></script> -->
     <script src="<%=request.getContextPath() %>/js/js.cookie.min.js"></script>
-    <script src="<%=request.getContextPath() %>/js/charts-home.js"></script>
+    <!-- <script src="<%=request.getContextPath() %>/js/charts-home.js"></script> -->
     <script src="<%=request.getContextPath() %>/js/front.js"></script>
   </body>
 </html>
