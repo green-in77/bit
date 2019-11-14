@@ -4,9 +4,11 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import kr.or.bit.dto.Dept;
 import kr.or.bit.dto.Emp;
 import kr.or.bit.utils.ConnectionHelper;
 import kr.or.bit.utils.DB_Close;
@@ -69,21 +71,30 @@ public class Empdao {
 		ResultSet rs = null;
 		
 		try {
-			String sql_select = "select empno, ename, job, mgr, hiredate, sal, comm, deptno from emp";
+			String sql_select ="select e.empno, e.ename, e.job, e.mgr, e.hiredate, e.sal, e.comm, e.deptno, i.ORIGN_PICTURE, i.SAVE_PICTURE, i.SAVEFOLDER from emp e join emp_img i on e.EMPNO = i.EMPNO"; 
+			
 			pstmt = conn.prepareStatement(sql_select);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
+	            java.util.Date date = sdf.parse(rs.getString("hiredate"));
+	            Date sqlDate = new Date(date.getTime());
+	            
 				Emp emp = new Emp();
 				
 				emp.setEmpno(rs.getInt("empno"));
 				emp.setEname(rs.getString("ename"));
 				emp.setJob(rs.getString("job"));
 				emp.setMgr(rs.getInt("mgr"));
-				emp.setHiredate(rs.getString("hiredate"));
+				emp.setHiredate(sqlDate);
 				emp.setSal(rs.getInt("sal"));
 				emp.setComm(rs.getInt("comm"));
 				emp.setDeptno(rs.getInt("deptno"));
+				
+				emp.setOrign_picture(rs.getString("orign_picture"));
+				emp.setSave_picture(rs.getString("save_picture"));
+				emp.setSavefolder(rs.getString("savefolder"));
 				
 				emplist.add(emp);
 			}
@@ -106,20 +117,30 @@ public class Empdao {
 		ResultSet rs = null;
 		
 		try {
-			String sql_select = "select empno, ename, job, mgr, hiredate, sal, comm, deptno from emp where empno=?";
+			String sql_select = "select e.empno, e.ename, e.job, e.mgr, e.hiredate, e.sal, e.comm, e.deptno, i.ORIGN_PICTURE, i.SAVE_PICTURE, i.SAVEFOLDER from emp e join emp_img i on e.EMPNO = i.EMPNO where e.empno=?";
+			
 			pstmt = conn.prepareStatement(sql_select);
 			pstmt.setString(1, empno);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
+	            java.util.Date date = sdf.parse(rs.getString("hiredate"));
+	            Date sqlDate = new Date(date.getTime());
+	            
 				emp.setEmpno(rs.getInt("empno"));
 				emp.setEname(rs.getString("ename"));
 				emp.setJob(rs.getString("job"));
 				emp.setMgr(rs.getInt("mgr"));
-				emp.setHiredate(rs.getString("hiredate"));
+				emp.setHiredate(sqlDate);
 				emp.setSal(rs.getInt("sal"));
 				emp.setComm(rs.getInt("comm"));
 				emp.setDeptno(rs.getInt("deptno"));
+				
+				emp.setOrign_picture(rs.getString("orign_picture"));
+				emp.setSave_picture(rs.getString("save_picture"));
+				emp.setSavefolder(rs.getString("savefolder"));
+				
 			}
 		} catch(Exception e) {
 			System.out.println("Select 1 : " + e.getMessage());
@@ -140,7 +161,8 @@ public class Empdao {
 		ResultSet rs = null;
 		
 		try {
-			String sql_select = "select empno, ename, job, mgr, hiredate, sal, comm, deptno from emp where deptno=?";
+			String sql_select = "select e.empno, e.ename, e.job, e.mgr, e.hiredate, e.sal, e.comm, e.deptno, i.ORIGN_PICTURE, i.SAVE_PICTURE, i.SAVEFOLDER from emp e join emp_img i on e.EMPNO = i.EMPNO where e.deptno=?";
+			
 			pstmt = conn.prepareStatement(sql_select);
 			pstmt.setString(1, deptno);
 			rs = pstmt.executeQuery();
@@ -148,14 +170,22 @@ public class Empdao {
 			while(rs.next()) {
 				Emp emp = new Emp();
 				
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
+	            java.util.Date date = sdf.parse(rs.getString("hiredate"));
+	            Date sqlDate = new Date(date.getTime());
+				
 				emp.setEmpno(rs.getInt("empno"));
 				emp.setEname(rs.getString("ename"));
 				emp.setJob(rs.getString("job"));
 				emp.setMgr(rs.getInt("mgr"));
-				emp.setHiredate(rs.getString("hiredate"));
+				emp.setHiredate(sqlDate);
 				emp.setSal(rs.getInt("sal"));
 				emp.setComm(rs.getInt("comm"));
 				emp.setDeptno(rs.getInt("deptno"));
+				
+				emp.setOrign_picture(rs.getString("orign_picture"));
+				emp.setSave_picture(rs.getString("save_picture"));
+				emp.setSavefolder(rs.getString("savefolder"));
 				
 				emplist.add(emp);
 			}
@@ -176,8 +206,12 @@ public class Empdao {
 		int row = 0;
 		
 		try {
-			String sql_update = "update emp set job=?, mgr=?, sal=?, comm=?, deptno=? where empno=?";
-			pstmt = conn.prepareStatement(sql_update);
+			conn.setAutoCommit(false); 
+			
+			String sql_emp_update = "update emp set job=?, mgr=?, sal=?, comm=?, deptno=? where empno=?";
+			String sql_emp_img_update = "update emp_img set orign_picture=?, save_picture=?, savefolder=? where empno=?";
+			
+			pstmt = conn.prepareStatement(sql_emp_update);
 			
 			pstmt.setString(1, emp.getJob());
 			pstmt.setInt(2, emp.getMgr());
@@ -187,6 +221,18 @@ public class Empdao {
 			pstmt.setInt(6, emp.getEmpno());
 			
 			row = pstmt.executeUpdate();
+			
+			pstmt = conn.prepareStatement(sql_emp_img_update);
+			pstmt.setString(1, emp.getOrign_picture());
+			pstmt.setString(2, emp.getSave_picture());
+			pstmt.setString(3, emp.getSavefolder());
+			pstmt.setInt(4, emp.getEmpno());
+			
+			row = pstmt.executeUpdate();
+			
+			if(row > 0 ) {
+				conn.commit(); //2개의 delete 실 반영
+			}
 			
 		} catch(Exception e) {
 			System.out.println("update : " + e.getMessage());
@@ -204,8 +250,10 @@ public class Empdao {
 		int row = 0;
 		
 		try {
-			String sql_insert = "INSERT INTO EMP(empno, ename, job, mgr, hiredate, sal, comm, deptno) VALUES (?,?,?,?,?,?,?,?)";
-			pstmt = conn.prepareStatement(sql_insert);
+			conn.setAutoCommit(false); //트랜잭션 : commit 수동처리..
+			
+			String sql_insert_emp = "INSERT INTO EMP(empno, ename, job, mgr, hiredate, sal, comm, deptno) VALUES (?,?,?,?,?,?,?,?)";
+			pstmt = conn.prepareStatement(sql_insert_emp);
 			
 			pstmt.setInt(1, emp.getEmpno());
 			pstmt.setString(2, emp.getEname());
@@ -217,6 +265,20 @@ public class Empdao {
 			pstmt.setInt(8, emp.getDeptno());
 			
 			row = pstmt.executeUpdate();
+			
+			String sql_insert_emp_img = "INSERT INTO EMP_IMG(empno, orign_picture, save_picture, savefolder) VALUES (?,?,?,?)";
+			pstmt = conn.prepareStatement(sql_insert_emp_img);
+			
+			pstmt.setInt(1, emp.getEmpno());
+			pstmt.setString(2, emp.getOrign_picture());
+			pstmt.setString(3, emp.getSave_picture());
+			pstmt.setString(4, emp.getSavefolder());
+			
+			row = pstmt.executeUpdate();
+			
+			if(row > 0 ) {
+				conn.commit(); //2개의 insert 완료시
+			}
 			
 		}catch(Exception e) {
 			System.out.println("insert : " + e.getMessage());
@@ -234,11 +296,21 @@ public class Empdao {
 		int row = 0;
 		
 		try {
-			String sql_delete = "delete from emp where empno=?";
-			pstmt = conn.prepareStatement(sql_delete);
+			conn.setAutoCommit(false); //트랜잭션 commit 수동
+			String sql_emp_img_delete = "delete from emp_img where empno=?";
 			
+			String sql_emp_delete = "delete from emp where empno=?";
+			pstmt = conn.prepareStatement(sql_emp_img_delete);
 			pstmt.setInt(1, Integer.parseInt(empno));
 			row = pstmt.executeUpdate();
+			
+			pstmt = conn.prepareStatement(sql_emp_delete);
+			pstmt.setInt(1, Integer.parseInt(empno));
+			row = pstmt.executeUpdate();
+			
+			if(row > 0 ) {
+				conn.commit(); //2개의 delete 실 반영
+			}
 			
 		} catch(Exception e) {
 			System.out.println("delete : " + e.getMessage());
@@ -248,4 +320,36 @@ public class Empdao {
 		}
 		return row;
 	}
+	
+	//dept 전체 조회
+	public List<Dept> getDeptno(){
+		List<Dept> deptlist = new ArrayList<Dept>();
+		
+		Connection conn = ConnectionHelper.getConnection("oracle");
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			String sql_dept_select = "select deptno, dname, loc from dept";
+			pstmt = conn.prepareStatement(sql_dept_select);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				Dept dept = new Dept();
+				
+				dept.setDeptno(rs.getInt("deptno"));
+				dept.setDname(rs.getString("dname"));
+				dept.setLoc(rs.getString("loc"));
+				
+				deptlist.add(dept);
+			}
+		} catch(Exception e) {
+			System.out.println("dept select : " + e.getMessage());
+		} finally {
+			DB_Close.close(pstmt);
+			DB_Close.close(rs);
+			DB_Close.close(conn);
+		}
+		return deptlist;
+	} 
 }

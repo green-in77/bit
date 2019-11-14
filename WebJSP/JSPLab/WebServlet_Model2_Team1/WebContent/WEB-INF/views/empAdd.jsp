@@ -7,10 +7,47 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Register</title>   
+    <title>Register</title>
    <c:import url="../common/Top.jsp" />
        <script type="text/javascript">
 	    	$(function(){
+
+	    		$.ajax({
+	    			url:"deptNo.do",
+	    			type : "POST",
+					dataType : "json",
+	    			success: function(dept){
+	    				//console.log(dept);
+	    				$.each(dept,function(index,data){
+	    					//console.log(data.deptno);
+	    					var option = "<option value='"+data.deptno+"'>"+data.dname+"</option>"
+	    					$('#deptno').append(option);
+	    				});
+	    			},
+	    			error : function(xhr){
+	    				alert(xhr.status);	
+	    			}
+	    		});
+	    		
+	    		var monthNames =[];
+				for(var i = 1 ; i <=12 ;i++){
+					monthNames.push(i + "월");
+				}
+				
+				$('#hiredate').datepicker({
+					dateFormat: "yy-mm-dd",
+					prevText: "이전달",
+					nextText: "다음달",
+					monthNames: monthNames,
+					dayNamesMin: ['일','월','화','수','목','금','토'],
+					yearSuffix: "년",
+					numberOfMonths: 1
+				});
+	    		
+				$('#hiredate').datepicket("option", "onClose", function(selectedDate){
+					
+				})
+				
 	    		$('#submit').click(function(){
 	        		var issubmit = false;
 	        		console.log($('#empno').val());
@@ -21,7 +58,6 @@
 	        		}else {
 	        			issubmit = true;
 	        		}
-	        		
 	        		return issubmit;
 	        	});	
 	    	});
@@ -41,7 +77,7 @@
 						</div>
 						<div class="card-body body-padding text-center">
 						
-				        	<form id="editForm" action="empAddOk.do" class="mt-4" method="post">
+				        	<form id="editForm" action="empAddOk.do" class="mt-4" method="post" enctype="multipart/form-data">
 				              
 				              <div class="form-group mb-4"><!-- 사원명 -->
 				                <input type="text" name="ename" id='ename' placeholder="Name" class="form-control border-0 shadow form-control-lg text-violet">
@@ -51,8 +87,8 @@
 				                <input type="text" name="empno" id='empno' placeholder="EmpNo" class="form-control border-0 shadow form-control-lg text-violet">
 				              </div>
 				              
-				              <div class="form-group mb-4"><!-- 직종 -->
-				                <input type="text" name="job" id='job' placeholder="Job"class="form-control border-0 shadow form-control-lg text-violet" >
+				              <div class="form-group mb-4" id="jobdiv"><!-- 직종 -->
+					            <input type="text" name="job" id='job' placeholder="Job"class="form-control border-0 shadow form-control-lg text-violet" >
 				              </div>
 				              
 				              <div class="form-group mb-4"><!-- 사수 -->
@@ -72,7 +108,12 @@
 				              </div>
 				              
 				              <div class="form-group mb-4"><!-- 부서번호 -->
-				                <input type="text" name='deptno' id='deptno' placeholder="DeptNo" class="form-control border-0 shadow form-control-lg text-violet">
+				              	<select class="form-control" id="deptno" name="deptno"></select>
+				                <!-- <input type="text" name='deptno' id='deptno' placeholder="DeptNo" class="form-control border-0 shadow form-control-lg text-violet"> -->
+				              </div>
+				              
+				              <div class="form-group mb-4"><!-- 사진 -->
+				                <input type="file" name='emp_img' id='emp_img' placeholder="Image" class="form-control border-0 shadow form-control-lg text-violet">
 				              </div>
 				              
 				              <button type="submit" id="submit" class="btn btn-primary shadow px-5">OK</button>

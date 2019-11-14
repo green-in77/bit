@@ -9,7 +9,7 @@ import kr.or.bit.action.ActionForward;
 import kr.or.bit.dao.Empdao;
 
 public class AdminLogin implements Action{
-
+	//로그인
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
 		//1. 데이터 받기

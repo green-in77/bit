@@ -19,7 +19,7 @@
 	<script type="text/javascript">
 		$(function(){
 			$('#chart').change(function() {
-				//console.log($('#chart').val());
+				console.log($('#chart').val());
 				var data = [];
 				
 				$.ajax({
@@ -27,14 +27,14 @@
 					type : "POST",
 					dataType : "json",
 					success : function(emp){//서버에서 받은 응답이 정상이라면, 4 + 200~299
-						//console.log(data);
-						if($('#chart').val() == "EmpSalChart.do"){
+						//console.log(emp);
+						if($('#chart').val() == "empSalChart.do"){
 							//사원별 급여 선택 시
 							$.each(emp, function(index, emp){
-								//console.log(data.ename);
+								console.log(emp.ename);
 								data.push({"name":emp.ename,"weight":emp.sal});
 							});
-							//console.log(data);
+							console.log(emp);
 							
 							Highcharts.chart('container', {
 							    series: [{
@@ -46,8 +46,6 @@
 							        text: 'Emp Sal'
 							    }
 							}); //chart 끝
-						} else if($('#chart').val() == "EmpJopChart.do"){
-							
 						}
 					}, //success 끝
 					error : function(xhr){ //서버에서 받은 응답이 error 404,500 등
@@ -63,9 +61,10 @@
       <div class="page-holder w-100 d-flex flex-wrap">
 		<!-- 여기부터 -->
 		<select style="height: 30px" id="chart">
-			<option value="EmpJopAvgSalChart.do">직종별 평균급여</option>
-			<option value="EmpJopChart.do">직종별 사원수</option>
-			<option value="EmpSalChart.do">사원별 급여 챠트 처리</option>
+			<!-- <option value="EmpJopAvgSalChart.do">직종별 평균급여</option>
+			<option value="EmpJopChart.do">직종별 사원수</option> -->
+			<option value="empSalChart.do">Chart</option>
+			<option value="empSalChart.do">사원별 급여</option>
 		</select>
 		<div id="container" style="width: 600px; height: 600px; margin: auto;">
 		</div>

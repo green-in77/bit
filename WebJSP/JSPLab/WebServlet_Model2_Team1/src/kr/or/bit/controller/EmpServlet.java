@@ -13,6 +13,7 @@ import kr.or.bit.action.Action;
 import kr.or.bit.action.ActionForward;
 import kr.or.bit.service.AdminLogin;
 import kr.or.bit.service.AdminLogout;
+import kr.or.bit.service.DeptSelect;
 import kr.or.bit.service.EmpDelete;
 import kr.or.bit.service.EmpInsert;
 import kr.or.bit.service.EmpSalChart;
@@ -106,11 +107,15 @@ public class EmpServlet extends HttpServlet {
 			forward = new ActionForward();
 			forward.setPath("/WEB-INF/views/empChart.jsp");
 			
-		}else if(url_Command.equals("/EmpSalChart.do")) {
+		}else if(url_Command.equals("/empSalChart.do")) {
 			//사원별 급여 차트 //로직처리
 			action = new EmpSalChart();
 			forward = action.execute(request, response);
 			
+		}else if(url_Command.equals("/deptNo.do")) {
+			//이미지 다운로드 //로직처리
+			action = new DeptSelect();
+			forward = action.execute(request, response);
 		}
 		
 		

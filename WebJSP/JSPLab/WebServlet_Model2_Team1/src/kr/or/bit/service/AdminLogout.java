@@ -8,7 +8,7 @@ import kr.or.bit.action.Action;
 import kr.or.bit.action.ActionForward;
 
 public class AdminLogout implements Action {
-
+	//로그아웃
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
 		//세션 얻어와서 삭제

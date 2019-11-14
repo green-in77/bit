@@ -33,7 +33,7 @@
 			                  	
 			                    selectData = '<div class="d-flex justify-content-between align-items-start align-items-sm-center mb-4 flex-column flex-sm-row">'
 			                    				+'<div class="left d-flex align-items-center">'
-			                           				+'<div class="icon icon-lg shadow mr-3 text-gray"><i class="fab fa-android"></i></div>'
+			                           				+'<div class="icon icon-lg shadow mr-3 text-gray"><img src="emp_img/'+data.save_picture+'" alt="Jason Doe" style="max-width: 2.5rem;" class="img-fluid rounded-circle shadow"></div>'
 			                              				+'<div class="text" style="width:80px;">'
 			                                   				+'<h6 class="mb-0 d-flex align-items-center">'
 			                               						+'<span>'+data.ename+'</span>'
@@ -83,7 +83,7 @@
 			
 			$("#deptno").keyup(function(){
 				//입력확인
-				console.log($("#deptno").val());
+				//console.log($("#deptno").val());
 				
 				if($("#deptno").val() != ""){
 					$.ajax({
@@ -99,7 +99,7 @@
 								$.each(data, function(index, data){
 									selectData += '<div class="d-flex justify-content-between align-items-start align-items-sm-center mb-4 flex-column flex-sm-row">'
 	                    				+'<div class="left d-flex align-items-center">'
-	                           				+'<div class="icon icon-lg shadow mr-3 text-gray"><i class="fab fa-android"></i></div>'
+	                           				+'<div class="icon icon-lg shadow mr-3 text-gray"><img src="emp_img/'+data.save_picture+'" alt="Jason Doe" style="max-width: 2.5rem;" class="img-fluid rounded-circle shadow"></div>'
 	                              				+'<div class="text" style="width:80px;">'
 	                                   				+'<h6 class="mb-0 d-flex align-items-center">'
 	                               						+'<span>'+data.ename+'</span>'
@@ -188,7 +188,7 @@
                   	<!-- 회원리스트 1줄 -->
                        <div class="d-flex justify-content-between align-items-start align-items-sm-center mb-4 flex-column flex-sm-row">
 							<div class="left d-flex align-items-center">
-                              <div class="icon icon-lg shadow mr-3 text-gray"><i class="fab fa-android"></i></div>
+                              <div class="icon icon-lg shadow mr-3 text-gray"><img src="emp_img/${emp.save_picture}" alt="Jason Doe" style="max-width: 2.5rem;" class="img-fluid rounded-circle shadow"></div>
                                 <div class="text" style="width:80px;">
                                     <h6 class="mb-0 d-flex align-items-center">
                                  		<span id="ename">${emp.ename}</span>

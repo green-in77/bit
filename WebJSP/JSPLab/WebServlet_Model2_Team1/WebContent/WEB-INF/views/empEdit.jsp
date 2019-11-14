@@ -7,10 +7,35 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Home</title>
+    <title>Edit</title>
        
    <c:import url="../common/Top.jsp" />
-    
+    <script type="text/javascript">
+    	$(function(){
+    		var file = document.querySelector('#emp_img');
+    		
+    	    file.onchange = function () { 
+    	        var fileList = file.files ;
+    	        
+    	        // 읽기
+    	        var reader = new FileReader();
+    	        reader.readAsDataURL(fileList [0]);
+    	
+    	        //로드 한 후
+    	        reader.onload = function  () {
+    	            document.querySelector('#preview').src = reader.result;
+    	        }; 
+    	    }; 
+    	});
+    </script>
+    <style type="text/css">
+	    .img {
+		    margin: 1em 0;
+		    display: block;
+		    background: rgb(240, 240, 240);
+		    border: 1px solid rgb(0,0,0);
+		}
+    </style>
     <div class="d-flex align-items-stretch">
     
    
@@ -29,8 +54,8 @@
 						</div>
 						<div class="card-body body-padding text-center">
         					<c:set var="emp" value="${requestScope.emp}"/>
-        					
-				        	<form id="editForm" action="empEditOk.do" class="mt-4" method="post">
+        					<img src="emp_img/${emp.save_picture}" alt="Jason Doe" style="max-width: 2.5rem;" class="img-fluid rounded-circle shadow">
+				        	<form id="editForm" action="empEditOk.do" class="mt-4" method="post" enctype="multipart/form-data">
 				              
 				              <div class="form-group mb-4"><!-- 사원명 -->
 				                <input type="text" name="ename" id='ename' value="${emp.ename}" class="form-control border-0 shadow form-control-lg" readonly>
@@ -64,6 +89,13 @@
 				                <input type="text" name='deptno' id='deptno' value="${emp.deptno}" class="form-control border-0 shadow form-control-lg text-violet">
 				              </div>
 				              
+				              <div class="form-group mb-4"><!-- 사진 -->
+				              	<div class="row">
+				              		<div style="width: 100px;"><img id="preview" src="" width="100%" alt="미리보기" class="img" sizingMethod='scale'></div>
+				                	<div style="width: 83%;"><input type="file" name='emp_img' id='emp_img' accept="image/*" class="form-control border-0 shadow form-control-lg text-violet"></div>
+				                </div>
+				              </div>
+				              
 				              <button type="submit" id="submit" class="btn btn-primary shadow px-5">Edit</button>
 				              <button type="button" id="button" class="btn btn-primary shadow px-5" onclick="location.href='empList.do'">List</button>
 				        	</form>
@@ -73,6 +105,6 @@
         	</div>
         </div>
 		<!-- 여기까지 -->
-	
+
         <c:import url="../common/Bottom.jsp" />
            

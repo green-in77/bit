@@ -15,7 +15,7 @@
       </div>
     </div>
     <!-- JavaScript files-->
-    <script src="<%=request.getContextPath() %>/vendor/jquery/jquery.min.js"></script>
+<%--     <script src="<%=request.getContextPath() %>/vendor/jquery/jquery.min.js"></script> --%>
     <script src="<%=request.getContextPath() %>/vendor/popper.js/umd/popper.min.js"> </script>
     <script src="<%=request.getContextPath() %>/vendor/bootstrap/js/bootstrap.min.js"></script>
     <script src="<%=request.getContextPath() %>/vendor/jquery.cookie/jquery.cookie.js"> </script>
@@ -23,5 +23,8 @@
     <script src="<%=request.getContextPath() %>/js/js.cookie.min.js"></script>
     <!-- <script src="<%=request.getContextPath() %>/js/charts-home.js"></script> -->
     <script src="<%=request.getContextPath() %>/js/front.js"></script>
+
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   </body>
 </html>
