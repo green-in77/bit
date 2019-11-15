@@ -18,7 +18,7 @@ public class EmpSalChart implements Action{
 		
 		Empdao empdao = new Empdao();
 		//DAO 전체리스트 조회해서 list로 return
-		List<Emp> emplist = empdao.getEmpListAll();
+		List<Emp> emplist = empdao.getEmpListAll(-1);
 		//객체list -> Json
 		JSONArray empListJson = JSONArray.fromObject(emplist);
 		//값 저장

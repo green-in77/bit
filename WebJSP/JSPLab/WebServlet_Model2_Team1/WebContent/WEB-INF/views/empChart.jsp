@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<c:import url="../common/Admin.jsp" />
 <!DOCTYPE html>
 <html>
   <head>
@@ -66,7 +66,7 @@
 			<option value="empSalChart.do">Chart</option>
 			<option value="empSalChart.do">사원별 급여</option>
 		</select>
-		<div id="container" style="width: 600px; height: 600px; margin: auto;">
+		<div id="container" style="width: 90%; height: 90%; margin: auto;">
 		</div>
 		<!-- 여기까지 -->
         <c:import url="../common/Bottom.jsp" />   

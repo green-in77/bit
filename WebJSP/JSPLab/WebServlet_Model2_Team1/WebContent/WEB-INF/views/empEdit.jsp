@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<c:import url="../common/Admin.jsp" />
 <!DOCTYPE html>
 <html>
   <head>
@@ -91,7 +91,7 @@
 				              
 				              <div class="form-group mb-4"><!-- 사진 -->
 				              	<div class="row">
-				              		<div style="width: 100px;"><img id="preview" src="" width="100%" alt="미리보기" class="img" sizingMethod='scale'></div>
+				              		<div style="width: 17%;"><img id="preview" src="emp_img/avatar.png" width="100%" alt="미리보기" class="img" sizingMethod='scale'></div>
 				                	<div style="width: 83%;"><input type="file" name='emp_img' id='emp_img' accept="image/*" class="form-control border-0 shadow form-control-lg text-violet"></div>
 				                </div>
 				              </div>

@@ -130,11 +130,11 @@ button {
 }
 
 .btn:not([class*='outline']) {
-  color: #fff;
+  color: black;
 }
 
 .btn:not([class*='outline']):hover, .btn:not([class*='outline']):focus {
-  color: #fff !important;
+  color: black !important;
 }
 
 .border-thick {

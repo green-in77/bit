@@ -62,8 +62,33 @@ public class Empdao {
 		return isLogin;
 	}
 	
+	//게시물 총 건수 구하기
+	public int getEmpTotalCount() {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int totalcount = 0;
+		
+		try {
+			conn = ConnectionHelper.getConnection("oracle"); //dbcp 연결객체 얻기
+			String sql="select count(*) cnt from emp";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				totalcount = rs.getInt("cnt");
+			}
+		}catch (Exception e) {
+			System.out.println("게시물 총 건수 : " + e.getMessage());
+		}finally {
+			DB_Close.close(pstmt);
+			DB_Close.close(rs);
+			DB_Close.close(conn);
+		}
+		return totalcount;
+	}
+	
 	//emp 전체 list
-	public List<Emp> getEmpListAll(){
+	public List<Emp> getEmpListAll(int cp){
 		List<Emp> emplist = new ArrayList<Emp>();
 		
 		Connection conn = ConnectionHelper.getConnection("oracle");
@@ -71,11 +96,26 @@ public class Empdao {
 		ResultSet rs = null;
 		
 		try {
-			String sql_select ="select e.empno, e.ename, e.job, e.mgr, e.hiredate, e.sal, e.comm, e.deptno, i.ORIGN_PICTURE, i.SAVE_PICTURE, i.SAVEFOLDER from emp e join emp_img i on e.EMPNO = i.EMPNO"; 
 			
-			pstmt = conn.prepareStatement(sql_select);
+			String sql_select = "";
+ 
+			if(cp == -1) {
+				sql_select = "select e.empno, e.ename, e.job, e.mgr, e.hiredate, e.sal, e.comm, e.deptno, i.ORIGN_PICTURE, i.SAVE_PICTURE, i.SAVEFOLDER from emp e join emp_img i on e.EMPNO = i.EMPNO";
+			 } else {
+				 sql_select ="select * from (select rownum rn, e.empno, e.ename, e.job, e.mgr, e.hiredate, e.sal, e.comm, e.deptno, i.ORIGN_PICTURE, i.SAVE_PICTURE, i.SAVEFOLDER from emp e join emp_img i on e.EMPNO = i.EMPNO where rownum <= ?) where rn >= ?";
+			 }
+
+			 pstmt = conn.prepareStatement(sql_select);
+
+			 if ( cp != -1) {
+				int start = cp * 4 - (4-1); //1 * 5 - (5 - 1) >> 1
+				int end = cp * 4; // 1 * 5 >> 5
+				
+				pstmt.setInt(1, end);
+				pstmt.setInt(2, start);
+			}			
 			rs = pstmt.executeQuery();
-			
+
 			while(rs.next()) {
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
 	            java.util.Date date = sdf.parse(rs.getString("hiredate"));

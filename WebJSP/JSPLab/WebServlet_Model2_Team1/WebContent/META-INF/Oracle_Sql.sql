@@ -1,3 +1,7 @@
+--emp, dept 그대로 사용함
+
+--adminlist, emp_img 새로 생성
+
 CREATE TABLE EMP
 (EMPNO number not null,
 ENAME VARCHAR2(10),
@@ -86,3 +90,20 @@ alter table emp_img
   references emp (
    empno
   );
+  
+insert into emp_img(empno,SAVE_PICTURE) values (7369,'avatar.png');
+insert into emp_img(empno,SAVE_PICTURE) values (7499,'avatar.png');
+insert into emp_img(empno,SAVE_PICTURE) values (7521,'avatar.png');
+insert into emp_img(empno,SAVE_PICTURE) values (7566,'avatar.png');
+insert into emp_img(empno,SAVE_PICTURE) values (7564,'avatar.png');
+insert into emp_img(empno,SAVE_PICTURE) values (7698,'avatar.png');
+insert into emp_img(empno,SAVE_PICTURE) values (7782,'avatar.png');
+insert into emp_img(empno,SAVE_PICTURE) values (7788,'avatar.png');
+insert into emp_img(empno,SAVE_PICTURE) values (7839,'avatar.png');
+insert into emp_img(empno,SAVE_PICTURE) values (7844,'avatar.png');
+insert into emp_img(empno,SAVE_PICTURE) values (7876,'avatar.png');
+insert into emp_img(empno,SAVE_PICTURE) values (7900,'avatar.png');
+insert into emp_img(empno,SAVE_PICTURE) values (7902,'avatar.png');
+insert into emp_img(empno,SAVE_PICTURE) values (7934,'avatar.png');
+
+COMMIT;  

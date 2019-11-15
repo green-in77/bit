@@ -21,6 +21,7 @@ import kr.or.bit.service.EmpSelectAll;
 import kr.or.bit.service.EmpSelectDeptno;
 import kr.or.bit.service.EmpSelectEmpno;
 import kr.or.bit.service.EmpSelete;
+import kr.or.bit.service.EmpTotalCount;
 import kr.or.bit.service.EmpUpdate;
 
 /**
@@ -63,10 +64,14 @@ public class EmpServlet extends HttpServlet {
 			forward = action.execute(request, response);
 			
 		}else if(url_Command.equals("/empList.do")) {
+			//리스트화면조회 //로직처리
+			action = new EmpTotalCount();
+			forward = action.execute(request, response);
+			
+		}else if(url_Command.equals("/empListOk.do")) {
 			//전체조회 //로직처리
 			action = new EmpSelectAll();
 			forward = action.execute(request, response);
-			
 		}else if(url_Command.equals("/empEdit.do")) {
 			//1건 조회 //로직처리
 			action = new EmpSelete();
