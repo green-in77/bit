@@ -8,9 +8,10 @@
 	<c:import url="WEB-INF/common/top.jsp"></c:import>	
 	
     <div class="content-wrapper text-center">
-	<!-- 여기부터 -->
-	<img src="assets/img/summer_edit.jpg">
-	<!-- 여기까지 -->
+		<!-- 여기부터 -->
+		<img src="assets/img/summer_edit.jpg" style="width: 100%; max-width: 1000px;">
+		<!-- 여기까지 -->
+    
     </div>
     <!-- CONTENT-WRAPPER SECTION END-->
     
