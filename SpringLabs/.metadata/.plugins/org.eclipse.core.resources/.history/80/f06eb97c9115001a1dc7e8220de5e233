@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	   http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!--
+	Spring 자신만의 [컨테이너](Spring 전용 메모리 공간 : was 같은..) 제공 (IOC) 안에
+	[객체를 만들고 조립(관계..의존성)] 설정
+-->
+</beans>

@@ -1,0 +1,6 @@
+package snippet;
+
+public class Snippet {
+	ApplicationContext context = new ClassPathXmlApplicationContext("DIConfig.xml"); //컨테이너를 만드는 클래스 -> xml 파일 경로 지정 (src는 기본경로)
+}
+

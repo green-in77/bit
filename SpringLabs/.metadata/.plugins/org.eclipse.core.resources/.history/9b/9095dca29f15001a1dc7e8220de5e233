@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	   http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!--
+	Spring 자신만의 [컨테이너](Spring 전용 메모리 공간 : was 같은..) 제공 (IOC) 안에
+	[객체를 만들고 조립(관계..의존성)] 설정
+	
+	>> DIConfig.xml 문서를 read 해서... 안에 있는 코드 먼저 실행
+	>> xml 파일은 컨테이너를 구성하는 객체를 생성하고 의존을 설정하는 파일
+	또는 Annotation 통해서 컨테이너 자원 구성
+	
+	:제어의 역전(프로그램의 제어구조를 바꾼다)
+	: 작은 단위의 부품을 만들어 놓고 조립하는 행위(레고..)
+	
+	//JavaCode
+	NewRecordView view = new NewRecordView(); //객체 생성하기
+	NewRecord record = new NewRecord();
+	
+	view.setRecord(record); //객체 주입(DI)
+	
+	위와 같은 형태의 코드를 자바코드가 아닌 [설정(Annotation 또는 xml)]을 통해서 작업
+	
+	★★★★ property의 name은 setter 구현하고 있는 member field 이름을 사용 ★★★★
+	
+	//생성자 초기화
+	MessageBeanImpl messagebean = new MessageBeanImpl("hong");
+	
+	//setter 초기화
+	messagebean.setGreeting("hello");
+	
+	DI 문법 )
+	<bean id = "한개의 이름(식별자)" 
+-->
+	<bean id="messagebean" class="DI_04_Spring.MessageBeanImpl">
+		<!-- 생성자 호출해서 초기화 -->
+		<!-- <constructor-arg>
+			<value>hong</value>
+		</constructor-arg> -->
+		<constructor-arg value="hong" />
+		
+		<!-- setter : setGreeting 을 구현하는 member field 이름을 사용 -->
+		<!-- <property name="greeting">
+			<value>hello</value>
+		</property> -->
+		<property name="greeting" value="hello" />
+	</bean>
+	
+</beans>

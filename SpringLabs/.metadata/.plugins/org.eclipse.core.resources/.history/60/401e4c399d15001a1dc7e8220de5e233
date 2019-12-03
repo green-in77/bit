@@ -1,0 +1,21 @@
+package DI_04_Spring;
+
+public class MessageBeanImpl implements MessageBean {
+
+	private String name;
+	private String greeting;
+	
+	// name 변수 초기화(생성자)
+	public MessageBeanImpl(String name) {
+		this.name = name;
+	}
+	
+	
+	
+	@Override
+	public void sayHello(String name) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

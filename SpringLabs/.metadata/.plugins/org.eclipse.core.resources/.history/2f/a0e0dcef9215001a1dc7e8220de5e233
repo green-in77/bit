@@ -1,0 +1,6 @@
+package DI4.copy;
+
+public interface Record {
+	int total();
+	float avg();
+}

@@ -1,0 +1,18 @@
+package DI_04_Spring;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.GenericXmlApplicationContext;
+
+public class HelloApp {
+	public static void main(String[] args) {
+		//java 코드
+		//MessageBeanImpl messagebean = new MessageBeanImpl("hong");
+		//messagebean.setGreeting("hello");
+		//messagebean.sayHello();
+		
+		//Spring
+		ApplicationContext context = new GenericXmlApplicationContext("classpath:DI_04_Spring/DI04.xml");//타입변환을 하지 않는 컨테이너 //패키지안에 xml
+		MessageBean messagebean = context.getBean("m4",MessageBean.class);
+		messagebean.sayHello();
+	}
+}

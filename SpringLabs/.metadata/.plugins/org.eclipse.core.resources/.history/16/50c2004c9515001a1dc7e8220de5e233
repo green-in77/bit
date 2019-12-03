@@ -1,0 +1,30 @@
+package Spring_DI4;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class Program {
+
+	public static void main(String[] args) {
+		
+		/*
+		 * NewRecordView view = new NewRecordView(); 
+		 * NewRecord record = new NewRecord();
+		 * view.setRecord(record); //필요한 객체의 주소를 주입
+		 */
+		
+		//view.input();
+		//view.print();
+		
+		//**** SpringFrameWork 이 제공하는 메모리 생성 (IOC 컨테이너)
+		//**** 컨테이너 만들고 // 그 공간에 필요한 객체를 올려 놓고 주입 // 작업
+		
+		ApplicationContext context = new ClassPathXmlApplicationContext("DIConfig.xml"); //컨테이너를 만드는 클래스 -> xml 파일 경로 지정 (src는 기본경로)
+		//context 은 컨테이너의 주소값
+		
+		RecordView view =  (RecordView) context.getBean("record"); //<property>의 name
+		view.input();
+		view.print();
+
+	}
+}

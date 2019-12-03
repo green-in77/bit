@@ -1,0 +1,6 @@
+package DI4.copy;
+
+public interface RecordView {
+	void print();
+	void input();
+}

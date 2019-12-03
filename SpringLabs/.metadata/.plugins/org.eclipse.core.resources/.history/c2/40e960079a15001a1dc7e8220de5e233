@@ -1,0 +1,28 @@
+package DI_02;
+
+public class HelloApp {
+	public static void main(String[] args) {
+		//영문
+		MessageBean_en messagebean_en = new MessageBean_en();
+		
+		//한글
+		MessageBean_kr messagebean_kr = new MessageBean_kr();
+		
+		
+		MessageBean messagebean = new MessageBean();
+		messagebean.sayHello("hong");
+
+	}
+}
+/*
+요구사항
+영문버전(hong) : Hello hong!
+한글버전(hong) : 안녕 hong!
+
+MessageBean_kr > 함수 > sayHello
+MessageBean_en > 함수 > sayHello
+
+interface 기반 설계 >> kr, en 에서 구현하도록.
+	MessageBean > sayHello()
+
+*/

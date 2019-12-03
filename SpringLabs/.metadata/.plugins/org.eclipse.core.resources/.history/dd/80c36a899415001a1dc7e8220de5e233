@@ -1,0 +1,20 @@
+package Spring_DI4;
+
+public class Program {
+
+	public static void main(String[] args) {
+		
+		/*
+		 * NewRecordView view = new NewRecordView(); 
+		 * NewRecord record = new NewRecord();
+		 * view.setRecord(record); //필요한 객체의 주소를 주입
+		 */
+		
+		//view.input();
+		//view.print();
+		
+		//**** SpringFrameWork 이 제공하는 메모리 생성 (IOC 컨테이너)
+
+	}
+
+}
