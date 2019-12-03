@@ -1075,9 +1075,9 @@ html {
 }
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px;
+  font-size: 20px;
   line-height: 1.42857143;
-  color: #333;
+  color: #8286B0;
   background-color: #fff;
 }
 input,
@@ -1089,12 +1089,12 @@ textarea {
   line-height: inherit;
 }
 a {
-  color: #337ab7;
+  color: #8286B0;
   text-decoration: none;
 }
 a:hover,
 a:focus {
-  color: #23527c;
+  color: #525579;
   text-decoration: underline;
 }
 a:focus {
@@ -2238,12 +2238,11 @@ caption {
   text-align: left;
 }
 th {
-  text-align: left;
+  text-align: center;
 }
 .table {
   width: 100%;
   max-width: 100%;
-  margin-bottom: 20px;
 }
 .table > thead > tr > th,
 .table > tbody > tr > th,
@@ -2253,8 +2252,8 @@ th {
 .table > tfoot > tr > td {
   padding: 8px;
   line-height: 1.42857143;
-  vertical-align: top;
   border-top: 1px solid #ddd;
+  font-size: 17px;
 }
 .table > thead > tr > th {
   vertical-align: bottom;
@@ -2544,6 +2543,9 @@ output {
   -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
        -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
           transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+.form-align{
+	text-align: center;
 }
 
 .form-control:focus {
@@ -3369,6 +3371,7 @@ input[type="button"].btn-block {
   visibility: hidden;
 }
 .collapse.in {
+  font-size : 17px;
   display: block;
   visibility: visible;
 }
@@ -5310,7 +5313,7 @@ a.list-group-item-danger.active:focus {
 .panel-title {
   margin-top: 0;
   margin-bottom: 0;
-  font-size: 16px;
+  font-size: 18px;
   color: inherit;
 }
 .panel-title > a,
