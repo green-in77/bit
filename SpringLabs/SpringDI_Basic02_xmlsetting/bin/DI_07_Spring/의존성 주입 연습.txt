@@ -1,0 +1,11 @@
+1. DI 의존성 주입
+1.1 constructor injection
+1.2 setter injection
+
+2. injection 대상
+2.1 value : 일반적인 값(리터럴 값) : "A", 1000
+2.2 bean(ref) : 객체
+
+2.3 Collection : List, Set, Map 연습
+
+

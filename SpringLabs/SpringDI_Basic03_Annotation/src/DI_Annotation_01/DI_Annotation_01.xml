@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	   http://www.springframework.org/schema/beans/spring-beans.xsd
+	   http://www.springframework.org/schema/context 
+	   http://www.springframework.org/schema/context/spring-context.xsd
+	   ">
+<!--
+	Spring 자신만의 [컨테이너](Spring 전용 메모리 공간 : was 같은..) 제공 (IOC) 안에
+	[객체를 만들고 조립(관계..의존성)] 설정
+	
+	>> DIConfig.xml 문서를 read 해서... 안에 있는 코드 먼저 실행
+	>> xml 파일은 컨테이너를 구성하는 객체를 생성하고 의존을 설정하는 파일
+	또는 Annotation 통해서 컨테이너 자원 구성
+	
+	:제어의 역전(프로그램의 제어구조를 바꾼다)
+	: 작은 단위의 부품을 만들어 놓고 조립하는 행위(레고..)
+	
+		MonitorViewer viewer = new MonitorViewer();
+		Recoder recoder = new Recoder();
+		viewer.setRecoder(recoder);	
+-->
+	<!-- 1단계 xml 설정  -->
+	<!--
+	<bean id="monitorViewer" class="DI_Annotation_01.MonitorViewer">
+		<property name="recoder">
+			<bean class="DI_Annotation_01.Recoder"></bean>
+		</property>
+	</bean>
+	 -->
+	 
+	 <!-- 2단계  Annotation
+	 	@Autowired > By Type기반 (자동 주입)
+						목적 : 의존관계를 자동설정할 때 사용하며 [타입을 이용]하여 의존하는 객체를 삽입해 준다. 
+						그러므로 (IOC Container) 해당 타입의 빈객체가 존재하지 않거나 또는 2개 이상 존재할 경우 
+						스프링은 예외를 발생시키게 된다.
+					설정 위치 : 생성자, 필드, 메소드(굳이 setter메소드가 아니여도 된다)
+		
+		**@Autowired 적용되기 위한 선행 작업
+			클래스를 빈으로 등록시켜줘야 한다.(스프링 컨테이너 안에 들어가있어야 한다)
+			org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor;
+			<bean id="" class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" />
+			이 객체가 있어야지만 @Autowired 사용할 수 있다. 
+		
+		매번 하나씩 다 객체로 만들면 번거로우니까...
+		<context:annotation-config /> : 보편적으로 선언의 상단에 있음
+			: annotation 사용에 필요한 모든 클래스를 한번에 bean 객체로 생성 
+			단점 : 안쓰는 bean도 모두 생성된다.
+			
+		**@Autowired 정상 동작하지 않는 경우
+		1. injection 되는 타입의 bean 객체가 IOC컨테이나 안에 없는 경우(exception)
+		
+		2. IOC컨테이나 안에  injection 되는 타입의 bean 객체가 여러개 있는 경우(exception)
+			<bean id="a" class="DI_Annotation_01.Recoder" />
+			<bean id="b" class="DI_Annotation_01.Recoder" />
+			<bean id="c" class="DI_Annotation_01.Recoder" />
+		
+		3. IOC컨테이나 안에  injection 되는 타입의 bean 객체가 여러개 있더라도...
+			private Recoder recoder;
+			public void setRecoder(Recoder recoder) {}
+			<bean id="recoder" class="DI_Annotation_01.Recoder" />
+			
+			setter 함수의 parameter 이름이 bean의 id와 같으면 찾아서 injection 된다.
+			원칙) @Resource (by name) 		
+		
+	 -->
+	 <context:annotation-config />
+	 <bean id="recoder" class="DI_Annotation_01.Recoder" />
+	 <bean id="monitorViewer" class="DI_Annotation_01.MonitorViewer" />
+</beans>
