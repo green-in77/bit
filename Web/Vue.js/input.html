@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Vue.js App</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p>{{ message }}</p>
+        <p>{{ count }}</p>
+        <input v-model="message">
+        <input v-model.number="count">
+    </div>
+    <script>
+        var app = new Vue({
+            el : '#app',
+            data : {
+                message : '초기메세지',
+                count : 100 
+            }
+        })
+    </script>
+</body>
+</html>

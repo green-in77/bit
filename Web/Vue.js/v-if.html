@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Vue.js App</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p v-if="show">Hello Vue.js!</p>
+        <!-- v-if show 속성이 true 일때만-->
+    </div>
+    <script>
+        var app = new Vue({
+            el : '#app',
+            data : {
+                show : true
+            }
+        })
+    </script>
+</body>
+</html>
