@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context 
+                           http://www.springframework.org/schema/context/spring-context.xsd">
+<!--  
+xml 파일
+IOC 컨테이너에 적재될 bean 객체 생성과 injection (DI)
+-->
+<!-- 
+	의존 관계에 필용한 빈 객체 자동 생성
+	<context:annotation-config>
+	@Autowired , @Resource 동작하기 위한 빈객체 .....
+	
+	**** <context:component-scan base-package="com.controller" /> *****
+	선언부에 있으면
+	@Component
+	@Repository
+	@Service
+	@Controller
+	
+	annotation 을 가진 class 에 대해서 
+	<bean id=""> 별도로 생성할 필요 없다
+	자동으로 빈 객체 생성 됩니다 
+	***********************************************
+ -->
+ 	<!-- 공통 bean -->
+ 	<context:annotation-config /> <!-- @Autowired 설정을 위한 bean 객체를 자동 생성 -->
+ 	<bean id="internalResourceViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix">
+			<value>/WEB-INF/views/</value>
+		</property>
+		
+		<property name="suffix">
+			<value>.jsp</value>
+		</property>
+		
+		<!--mav.setViewName("Hello"); //view 지정...
+			 /WEB-INF/views/Hello.jsp
+		-->
+	</bean>
+	
+ 	<!-- TEST_1 -->
+ 	<!-- 함수에 매핑되어있기 때문에 id기재할 필요 없음 -->
+	<bean class="com.controller.HelloController" />
+	
+	<!-- TEST_2 -->
+	<!-- 하나의 요청주소(전송방식) : GET(화면), POST(처리) : 요청주소가 같다. -->
+	<bean class="com.controller.NewArticleController" />
+	<bean class="com.service.ArticleService"/>
+	
+	<!-- TEST_3 -->
+	<!-- List<OrderItem> -->
+	<bean class="com.controller.OrderController" />
+   
+</beans> 
+
+
