@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="kr">
+    <head>
+        <meta charset="utf-8">
+        <title>08 텍스트와 속성 데이터 바인딩</title>
+    </head>
+    <body>
+        <div id="app">
+            <p>{{ page40 }}</p>
+            <!-- count 출력-->
+            <p>{{ count }}번 클릭했습니다.</p>
+            <!-- click 시 increment 실행-->
+            <button v-on:click="increment">카운트 하기</button>
+
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+        <!-- cdn 방식으로 vue 사용-->
+        <script>
+            new Vue({
+                el:'#app',
+                data : {
+                    // 객체 데이터
+                    page40 : '<p.42> ◆클릭으로 카운터의 수 늘리기',
+                    page41 : '<p.41> v-bind 장식자',
+                    count : 0
+                },
+                methods: {
+                    //버튼 클릭 시 핸들러
+                    increment: function(){
+                        //method 내에서는 this 붙여야 변수에 접근가능
+                        this.count += 1 // +1
+                    }
+                    // increment: function(){
+                    //     setTimeout(function(){this.count++},100) //잘못된사용 : 콜백 함수의 this 는 window
+                    // }
+
+                    // increment: function(){
+                    //     var vm = this; // 미리 변수에 대입해 두면 사용가능
+                    //     setTimeout(function(){vm.count++},100)
+                    // }
+
+                    // increment: function(){
+                    //     setTimeout(function(){this.count++}.bind(this),100) //bind 로 this 를 변경
+                    // }
+
+                    // increment: function(){
+                    //     setTimeout(()=>{this.count++},100) //화살표 함수를 사용하면 접근가능
+                    // }
+
+                    // increment: function(){
+                    //     setTimeout(this.collback,100) //익명함수가 아니라 method로 지정
+                    // }
+
+                    //method : {increment(){//이렇게 하면 vue 인스턴스를 this 로 사용할 수 있다.}}
+                }
+            })
+        </script>
+    </body>
+</html>

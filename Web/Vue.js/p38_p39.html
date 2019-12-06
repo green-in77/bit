@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="kr">
+    <head>
+        <meta charset="utf-8">
+        <title>08 텍스트와 속성 데이터 바인딩</title>
+    </head>
+    <body>
+        <div id="app">
+            <p>{{ page37 }}</p>
+            <p>{{ message.value }}</p><!--별도의 태그없이 중괄호 사용 : Mustache {{ }}-->
+            <hr>
+            <p>{{ page38 }}</p>
+            <p>{{ message.value }}</p>
+            <p>{{ message.value.length }}</p>
+            <p>{{ list[2] }}</p>
+            <p>{{ list[num] }}</p> <!--속성 조합해서 사용하기-->
+            <hr>
+            <p>{{ page39 }}</p>
+            <p>{{ 1 + 1 }}</p>
+            <!-- <p>{{ var foo = message }}</p> 식이 아니라 문장은 error --> 
+            <p>{{ message.length >= 10 ? '10글자 이상' : '10글자 미만'}}</p><!--산출속성-->
+            <p>{{ Math.round(3.14) }}</p><!--반올림-->
+            <hr>
+
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+        <!-- cdn 방식으로 vue 사용-->
+        <script>
+            new Vue({
+                el:'#app',
+                data : {
+                    // 객체 데이터
+                    page37 : '<p.37> ◆텍스트와 데이터바인딩',
+                    page38 : '<p.38> 객체와 배열 내부의 요소 출력하기',
+                    page39 : '<p.39> 표현식과 문장의 차이에 주의하기',
+                    message : {
+                        value : 'Hello Vue.js!'
+                    },
+                    //배열 데이터
+                    list : ['사과', '바나나', '딸기'],
+
+                    //다른 데이터를 사용해서 list 에서 값을 추출하기 위한 요소
+                    num :1
+                }
+            })
+        </script>
+    </body>
+</html>

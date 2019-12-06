@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="kr">
+    <head>
+        <meta charset="utf-8">
+        <title>08 텍스트와 속성 데이터 바인딩</title>
+    </head>
+    <body>
+        <div id="app">
+            <p>{{ page45 }}</p>
+            <p :class="{child:isChild, 'is-active':isActive}">Text</p>
+            <p :style="{color:textColor, backgroundColor:bgColor}">Text</p>
+            <hr>
+
+            <p>{{ page46 }}</p>
+            <!--플레인 속성과 함께 사용하는 경우 바인딩한 것이 덮여쓰여진다.-->
+            <p class="child" :class="{'is-active':isActive}">Text</p>
+            <p style="color:blue" :style="{color:textColor}">Text</p>
+            <!--
+                <p class="child is-active">Text</p>
+                <p style="color: red;">Text</p>
+            -->
+            <hr>
+
+            <p>{{ page47_1 }}</p>
+            <!--삼항연산자는 배열형식으로 사용한다.-->
+            <p :class="[isActive ? 'active' : 'normal', otherClass]">Text</p>
+            <hr>
+
+            <p>{{ page47_2 }}</p>
+            <p :class="classObject">Text</p>
+            <p :style="styleObject">Text</p>
+
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+        <!-- cdn 방식으로 vue 사용-->
+        <script>
+            new Vue({
+                el:'#app',
+                data : {
+                    // 객체 데이터
+                    page45 : '<p.45> ◆클래스와 스타일 데이터 바인딩',
+                    page46 : '<p.46> 플레인 속성과 함께 사용하는 경우',
+                    page47_1 : '<p.47> 클래스 조건에 삼항 연산자 사용하기',
+                    page47_2 : '<p.47> 객체 데이터 전달하기',
+                    isChild : true,
+                    isActive : true,
+                    textColor : 'red',
+                    bgColor : 'lightgray',
+                    classObject:{
+                        child:true,
+                        'is-active':false
+                    },
+                    styleObject: {
+                        color:'red',
+                        backgroundColor :'lightgray'
+                    }
+
+                }
+            })
+        </script>
+    </body>
+</html>

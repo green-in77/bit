@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="kr">
+    <head>
+        <meta charset="utf-8">
+        <title>08 텍스트와 속성 데이터 바인딩</title>
+    </head>
+    <body>
+        <div id="app">
+            <p>{{ page40 }}</p>
+            <!-- <input type="text" value="{{ message }}"> 속성에는 mustache 적용불가 -->
+            <input type="text" v-bind:value="message"> <!--속성에는 v-bind 사용-->
+            <input type="text" :value="message"> <!--속성에는 v-bind 생략 콜론만 기재-->
+            <hr>
+
+            <p>{{ page41 }}</p>
+            <div :text-content.prop="message">...</div><!--Dom의 textcontent 속성에 바인딩-->
+            <div :scroll-top.prop="scroll">...</div><!--Dom scroll-top 속성에 바인딩-->
+            <pre>{{$data}}</pre><!--현재 데이터의 상태를 JSON  형식으로 화면출력-->
+            <!--
+                {
+                    "page40": "<p.40> ◆속성 데이터 바인딩하기",
+                    "page41": "<p.41> v-bind 장식자",
+                    "message": "Hello Vue.js!",
+                    "scroll": 100
+                }
+            -->
+
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+        <!-- cdn 방식으로 vue 사용-->
+        <script>
+            new Vue({
+                el:'#app',
+                data : {
+                    // 객체 데이터
+                    page40 : '<p.40> ◆속성 데이터 바인딩하기',
+                    page41 : '<p.41> v-bind 장식자',
+                    message : "Hello Vue.js!",
+                    scroll : 0
+                },
+                mounted: function() {
+                    this.scroll = 100 //요소의 스크롤 양 조작하기
+                }
+            })
+        </script>
+    </body>
+</html>
