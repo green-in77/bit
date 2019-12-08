@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="kr">
+    <head>
+        <meta charset="utf-8">
+        <title>08 텍스트와 속성 데이터 바인딩</title>
+    </head>
+    <body>
+        <div id="app">
+            <p>{{ page48 }}</p>
+            <img v-bind:src="item.src" :alt="item.alt" :width="item.width" :height="item.height">
+            <img v-bind="item"> <!--위의 코드처럼 하나씩 지정하지 않아도 같은 출력결과-->
+            <img v-bind="item" :id="'thumb-' + item.id"><!--특정요소만 따로 지정도 가능-->
+                                <!-- id : thumb-1 -->
+            <hr>
+
+            <p>{{ page49 }}</p>
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+                <circle cx="100" cy="75" :r="radius" fill="lightpink"/>
+            </svg>
+            <input type="range" min="0" max="100" v-model="radius">
+            <!-- input 바를 움직이면 실시간으로 radius 값이 변화하면서 원의 크기 조절됨-->
+            
+
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+        <!-- cdn 방식으로 vue 사용-->
+        <script>
+            new Vue({
+                el:'#app',
+                data : {
+                    // 객체 데이터
+                    page48 : '<p.48> ◆여러개의 속성 데이터 바인딩하기',
+                    page49 : '<p.49> ◆SVG 데이터 바인딩하기',
+                    item : {
+                        id :1,
+                        src:'item1.jpg',
+                        alt:'상품1의 섬네일',
+                        width :200,
+                        height :200
+                    },
+                    radius :50
+                }
+            })
+        </script>
+    </body>
+</html>

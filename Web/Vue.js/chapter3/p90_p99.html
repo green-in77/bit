@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="kr">
+    <head>
+        <meta charset="utf-8">
+        <title>14 입력 양식 입력 핸들링</title>
+        <!--
+            .lazy : input 대신 change 이벤트시점에 변경(초점제거, 엔터키 등)
+            .numver : 값을 숫자로 변환하기(input value는 문자열, 이를 숫자로 받을 시 사용)
+            .trim : 값 양쪽에 있는 공백 제거(줄바꿈 또는 공백 등의 여백 제거)
+        -->
+    </head>
+    <body>
+        <div id="app">
+            <p>{{ page90 }}</p>
+            <input v-model="message">
+            <p>{{ message }}</p>
+            <hr>
+
+            <p>{{ page93 }}</p>
+            <textarea v-model="message"></textarea> <!--textarea 는 {{ message }} 사용불가-->
+            <pre>{{ message }}</pre>
+            <hr>
+
+            <p>{{ page94 }}</p>
+            <!--단일 체크박스는 boolean-->
+            <label>
+                <input type="checkbox" v-model="val"> {{ val }}
+            </label>
+            <hr>
+
+            <p>{{ page94_2 }}</p>
+            <!--다중 체크박스는 배열로-->
+            <label><input type="checkbox" v-model="val2" value="A"> A</label>
+            <label><input type="checkbox" v-model="val2" value="B"> B</label>
+            <label><input type="checkbox" v-model="val2" value="C"> C</label>
+            <p>{{ val2 }}</p>
+            <hr>
+
+            <p>{{ page95 }}</p>
+            <!--라디오 버튼은 문자열로 -->
+            <label><input type="radio" value="a" v-model="val3"> A</label>
+            <label><input type="radio" value="b" v-model="val3"> B</label>
+            <label><input type="radio" value="c" v-model="val3"> C</label>
+            <p>{{ val3 }}</p>
+            <hr>
+
+            <p>{{ page96_1 }}</p>
+            <!--하나의 요소 선택 문자열-->
+            <select v-model="val4">
+                <option disabled="disabled">선택해주세요.</option>
+                <option value='a'>A</option>
+                <option value='b'>B</option>
+                <option value='c'>C</option>
+            </select>
+            <hr>
+
+            <p>{{ page96_2 }}</p>
+            <!--다중 요소 선택 배열-->
+            <select v-model="val5" multiple>
+                <option value="a">A</option>
+                <option value="b">B</option>
+                <option value="c">C</option>
+            </select>
+            <p>{{ val5 }}</p>
+            <hr>
+
+            <p>{{ page97 }}</p>
+            <!-- file 타입에는 v-model 사용불가 / 리액티브 데이터와 동기화할때는 change 이벤트 사용-->
+            <input type="file" v-on:change="handleChange">
+            <div v-if="preview"><img v-bind:src="preview"></div>
+            <hr>
+
+            <p>{{ page98 }}</p>
+            <input type="range" v-model.number="val6"> {{ val6 }}
+            <hr>
+
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <!-- cdn 방식으로 vue 사용-->
+        <script>
+            new Vue({
+                el:'#app',
+                data : {
+                    // 객체 데이터
+                    page90 : '<p.90> ◆v-model 사용방법',
+                    page93 : '<p.93> ◆텍스트 에리어',
+                    page94 : '<p.94> ◆체크 박스',
+                    page94_2 : '<p.94> ◆여러 개의 요소를 선택',
+                    page95 : '<p.95> ◆라디오 버튼',
+                    page96_1 : '<p.96_1> ◆선택박스:하나의 요소 선택',
+                    page96_2 : '<p.96_2> ◆선택박스:다중 요소 선택',
+                    page97 : '<p.97> ◆이미지 파일',
+                    page98 : '<p.98> ◆다른 입력 타입',
+                    message : 'Hello!',
+                    val : true,
+                    val2 : [],
+                    val3 : '',
+                    val4 : '',
+                    val5 : [],
+                    val6 : 50,
+                    preview: ''
+                },
+                methods: {
+                    handleChange: function (event) {
+                        var file = event.target.files[0]
+                        //이미지 파일 입력되면 타입 비교하고 preview 에 미리보기 보여줌
+                        if (file && file.type.match(/^image\/(png|jpeg)$/)) {
+                            this.preview = window.URL.createObjectURL(file)
+                        }
+                    }
+                }
+            })
+            
+        </script>
+    </body>
+</html>

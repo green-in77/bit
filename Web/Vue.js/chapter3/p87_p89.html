@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="kr">
+    <head>
+        <meta charset="utf-8">
+        <title>13 이벤트 핸들링</title>
+        <!--
+            .enter : 엔터
+            .tab : 탭
+            .delete : 딜리트
+            .esc : esc
+            .space : 스페이스
+            .up : 화살표 위
+            .down : 화살표 아래
+            .left : 화살표 왼쪽
+            .right : 화살표 오른쪽
+
+            .ctrl : 컨트롤
+            .alt : 알트
+            .shift : 쉬프트
+            .meta : 메타
+
+        -->
+    </head>
+    <body>
+        <div id="app">
+            <p>{{ page87 }}</p>
+            <!-- 특정 키 코드 입력 시 핸들러 호출 : 둘다 enter-->
+            <p>enter evnet</p>
+            <input @keydown.13 = "handler">
+            <input @keydown.enter = "handler">
+            <hr>
+            <p>화살표 이벤트</p>
+            <input @keydown.up.down.left.right = "handler">
+            <hr>
+
+            <p>{{ page88 }}</p>
+            <button @click.shift="handler">shift event</button>
+
+
+            
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <!-- cdn 방식으로 vue 사용-->
+        <script>
+            new Vue({
+                el:'#app',
+                data : {
+                    // 객체 데이터
+                    page87 : '<p.87> ◆키 장식자',
+                    page88 : '<p.88> ◆시스템 장식자',
+                    
+                },
+                methods: {
+                    handler: function (comment) {
+                        console.log(comment)
+                    }
+                }
+            })
+            
+        </script>
+    </body>
+</html>

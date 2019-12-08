@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="kr">
+    <head>
+        <meta charset="utf-8">
+        <title>11 DOM을 직접 참조하는 $el 과 $refs</title>
+    </head>
+    <body>
+        <div id="app">
+            <p>{{ page69 }}</p>
+            <hr>
+
+            <p>{{ page70 }}</p>
+            <p ref="hello">Hello</p>
+            <!--p요소에 hello 라는 이름 붙이기-->
+            <hr>
+
+            <p>{{ page71 }}</p>
+            <!--span 값이 올라간다.-->
+            <button v-on:click = "handleClick">Count up</button>
+            <!--버튼 클릭시 보였다 안보였다-->
+            <button v-on:click = "show=!show">표시/비표시</button>
+            <!--count up 클릭 시 값이 변경되어 덮어쓰여짐-->
+            <!--표시/비표시 버튼 누르면 값이 다시 0으로 돌아감. 직접 DOM 을 이용해 텍스트를 변경한 것은 가상 DOM 에 영향이 없기 때문??-->
+            <span ref="count" v-if="show">0</span>
+            
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+        <!-- cdn 방식으로 vue 사용-->
+        <script>
+            new Vue({
+                el:'#app',
+                data : {
+                    // 객체 데이터
+                    page69 : '<p.69> ◆$el 사용방법',
+                    page70 : '<p.70> ◆$ref 사용방법',
+                    page71 : '<p.71> ◆$el, $ref 는 일시적인 변경',
+                    show : true
+                },
+                mounted: function(){
+                    console.log(this.$el) // <div id="app">...</div>
+                    console.log(this.$refs.hello) //p요소를 DOM 으로 다룰 수 있음
+                },
+                methods:{
+                    handleClick(){
+                        var count = this.$refs.count
+                        if(count){
+                            count.innerText = parseInt(count.innerText, 10) + 1
+                        }
+                    }
+                }
+            })
+            
+        </script>
+    </body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="kr">
+    <head>
+        <meta charset="utf-8">
+        <title>10 리스트 데이터 출력/변경하기</title>
+    </head>
+    <body>
+        <div id="app">
+            <p>{{ page58 }}</p>
+            <!--hp 300 이상이면 strong 클래스 적용 & 강하다 문자 출력-->
+            <ul>
+                <li v-for="item in list" :key="item.id" :class="{ strong:item.hp > 300}">
+                    ID.{{ item.id }} {{ item.name }} HP.{{ item.hp }}
+                    <span v-if="item.hp > 300">강하다!</span>
+                </li>
+            </ul>
+            <hr>
+
+            <p>{{ page59 }}</p>
+            <!-- hp 300미만 렌더링-->
+            <ul>
+                <li v-for="item in list" :key="item.id" v-if="item.hp < 300">
+                    ID.{{ item.id }} {{ item.name }} HP.{{ item.hp }}
+                    <span v-if="item.hp > 300">강하다!</span>
+                </li>
+            </ul>
+
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+        <!-- cdn 방식으로 vue 사용-->
+        <script>
+            new Vue({
+                el:'#app',
+                data : {
+                    // 객체 데이터
+                    page58 : '<p.58> ◆반복 렌더링하면서 다양한 조건 적용하기',
+                    page59 : '<p.59> ◆출력조건',
+                    list : [ //id = 유니크키 , 유니크 키가 있어야 가상 dom 으로 렌더링할때 최적화
+                        {id:1, name:'슬라임', hp:100},
+                        {id:2, name:'고블린', hp:200},
+                        {id:3, name:'드래곤', hp:500}
+                    ]
+                }
+            })
+        </script>
+    </body>
+</html>
