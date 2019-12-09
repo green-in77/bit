@@ -18,6 +18,7 @@ import com.model.OrderItem;
 @RequestMapping("/order/order.do")
 public class OrderController {
 	
+	//@GetMapping("/order/order.do")
 	@RequestMapping(method=RequestMethod.GET)
 	public String form() {
 		return "order/OrderForm";
@@ -29,6 +30,7 @@ public class OrderController {
 	//		-> List<OrderItem> list = new ...
 	//		-> list.add(new OrderItem());
 	
+	//@PostMapping()
 	@RequestMapping(method=RequestMethod.POST)
 	public String submit(OrderCommand orderCommand){
 		/*System.out.println("orderCommand 주소 : " + orderCommand);

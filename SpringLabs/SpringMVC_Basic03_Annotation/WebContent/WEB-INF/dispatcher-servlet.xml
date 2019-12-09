@@ -56,6 +56,28 @@ IOC 컨테이너에 적재될 bean 객체 생성과 injection (DI)
 	<!-- List<OrderItem> -->
 	<bean class="com.controller.OrderController" />
    
+	<!-- TEST_4 parameter 설정하기(@RequestParam)-->
+	<bean class="com.controller.SearchController" />
+	
+	<!-- TEST_5 @CookieValue  사용가디-->
+	<bean class="com.controller.CookieController" />
+	
+	<!-- TEST_6 파일 업로드-->
+	<!--
+		CommonsMultipartFile 을 사용하기 위해서는  CommonsMultipartResolver 객체가 IOC 컨테이너 안에 bean 객체로 생성되어 있어야 한다.
+		CommonsMultipartResolver의 역할 : 업로드 한 파일에 대한 정보 관리(크기...이름....)
+		
+		(반드시..)
+		의존객체 : com.springsource.org.apache.commons.fileupload-1.2.0.jar
+				com.springsource.org.apache.commons.io-1.4.0.jar
+				
+	 -->
+	<bean class="com.controller.ImageController" />
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="10485760"><!-- 10485760 == 10M 최대업로드용량-->
+		</property>
+	</bean>
+	
 </beans> 
 
 

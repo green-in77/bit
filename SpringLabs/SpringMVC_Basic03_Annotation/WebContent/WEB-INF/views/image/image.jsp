@@ -13,6 +13,8 @@
 		사진:<input type="file" name="file"><br>
 		<!--  private CommonsMultipartFile file; -->
 		<input type="submit" value="파일업로드">
+		<img src="../upload/Spring_MVC.jpg">
+		<!-- 현재 image 폴더안에 있기 때문에 하나 나가서 upload 를 찾아야 한다. -->
 	</form>
 </body>
 </html>
