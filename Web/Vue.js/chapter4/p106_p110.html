@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="kr">
+    <head>
+        <meta charset="utf-8">
+        <title>16 산출 속성으로 처리를 포함한 데이터 만들기</title>
+    </head>
+    <script src="https://cdn.jsdelivr.net/npm/smooth-scroll@12.1.5"></script>
+    <body>
+        <div id="app">
+            <p>{{ page106 }}</p>
+            <p>{{ width }}의 절반은 {{ halfwidth }} 입니다.</p>
+            <!-- 산출속성은 {{}} 안에 넣어서 사용할 수 있는건가-->
+            <hr>
+
+            <p>{{ page107 }}</p>
+            <p>X : {{ halfPoint.x }}</p>
+            <p>Y : {{ halfPoint.y }}</p>
+            <hr>
+
+            <p>{{ page108 }}</p>
+            <input v-model.number="width"> {{ width }}
+            <input v-model.numver="halfwidth2"> {{ halfwidth2 }}
+            <!-- getter setter 구현 : 양방향 흐름으로 항상 동기화처리-->
+            <hr>
+
+            <p>{{ page109 }}</p>
+            <!--산출속성 : 결과를 캐시 : 2개다 같은 결과 출력-->
+            <ol>
+                <li>{{ computedData }}</li>
+                <li>{{ computedData }}</li>
+            </ol>
+            <!--메서드 : 결과값 다름-->
+            <ol>
+                <li>{{ methodsData() }}</li>
+                <li>{{ methodsData() }}</li>
+            </ol>
+            <hr>
+ 
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+        
+        <!-- cdn 방식으로 vue 사용-->
+        <script>
+            new Vue({
+                el: '#app',
+                data: {
+                    page106 :'<p.106> ◆산출 속성 사용 방법',
+                    page107 :'<p.107> ◆산출 속성 조합해서 사용하기',
+                    page108 :'<p.108> ◆게터와 세터',
+                    page109 :'<p.109> ◆산출 속성 캐시 가능',
+                    width : 800,
+                    height : 600
+                },
+                computed : {
+                    //산출 속성 halfwidth 정의하기
+                    halfwidth:function() {
+                        return this.width /2
+                    },
+                    halfHeight : function() {
+                        return this.height /2
+                    },
+                    //'width x height'의 중심 좌표 객체 리턴하기
+                    halfPoint : function() {
+                        return {
+                            x : this.halfwidth,
+                            y : this.halfHeight
+                        }
+                    },
+                    halfwidth2 : {
+                        get : function() { return this.width / 2},
+                        set : function(val) { this.width = val * 2},
+                    },
+                    computedData : function() {return Math.random()}
+                },
+                methods : {
+                    methodsData : function() {return Math.random()}
+                }
+            })            
+        </script>
+    </body>
+</html>
