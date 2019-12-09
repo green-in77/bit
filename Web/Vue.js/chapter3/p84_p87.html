@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="kr">
+    <head>
+        <meta charset="utf-8">
+        <title>13 이벤트 핸들링</title>
+        <!--
+            .stop : event.stopPropagation()을 호출
+            .prevent : event.preventDefault()를 호출
+            .capture : 캡처모드로 DOM 이벤트를 핸들합니다.
+            .self : 이벤트가 해당 요소에서 직접 발생할 때만 핸들러를 호출
+            .native : 컴포넌트의 루트 요소 위에 있는 네이티브 이벤트를 핸들합니다.
+            .once : 한번만 핸들하게 합니다.
+            .passive : {passive:true}로 DOM 이벤트를 핸들합니다.
+
+            클릭이벤트
+            .left : 마우스 왼쪽
+            .right : 마우스 오른쪽
+            .middle : 마우스 중간
+        -->
+    </head>
+    <body>
+        <div id="app">
+            <p>{{ page84 }}</p>
+            <div v-on:click.right="handler">example</div>
+            <!-- 마우스 오른쪽 버튼을 눌렀을 때 컨텍스트 메뉴가 출력되지 않음 -->
+            <div v-on:click.right.prevent="handler">example</div>
+            <hr>
+
+            <p>{{ page85_1 }}</p>
+            <div v-on:click="handler('div1')">
+                div1
+                <!--stop 버블링을 막아줌-->
+                <a href="#top" v-on:click.stop="handler('div2')">div2</a>
+            </div>
+            <hr>
+
+            <p>{{ page85_2 }}</p>
+            <div v-on:click="handler('div1')">
+                div1
+                <!-- 링크이동 또는 submit 처럼 기본처리를 막음-->
+                <a href="http:www.naver.com" v-on:click.prevent="handler('div2')">div2</a>
+            </div>
+            <hr>
+
+            <p>{{ page86_1 }}</p>
+            <!--캡처모드 : 잘 모르겠다...-->
+            <div v-on:click.capture="handler('div1')">
+                div1
+                <div v-on:click="handler('div2')">
+                    div2
+                    <div v-on:click="handler('div3')">div3</div>
+                </div>
+            </div>
+            <hr>
+
+            <p>{{ page86_2 }}</p>
+            <!-- 모달 대화 상자의 배경부분을 클릭해서 닫는 경우 등에 사용-->
+            <!-- <div class="ovarlay" @click.self="close">...</div> -->
+            <hr>
+
+            <p>{{ page87 }}</p>
+            <!--?? 5장에서 컴포넌트로 UI 로 부품만들기...-->
+            <!-- 컴포넌트를 클릭하면 핸들러가 호출됨 -->
+            <my-component v-on:click.native="handler"></my-component>
+            <!-- 컴포넌트를 클릭하더라도 핸들러가 호출되지 않음 -->
+            <my-component v-on:click="handler"></my-component>
+
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <!-- cdn 방식으로 vue 사용-->
+        <script>
+            new Vue({
+                el:'#app',
+                data : {
+                    // 객체 데이터
+                    page84 : '<p.84> ◆이벤트 장식자',
+                    page85_1 : '<p.85> ◆.stop',
+                    page85_2 : '<p.85> ◆.prevent',
+                    page86_1 : '<p.86> ◆.capture',
+                    page86_2 : '<p.86> ◆.self',
+                    page87 : '<p.86> ◆.native',
+                },
+                methods: {
+                    handler: function (comment) {
+                        console.log(comment)
+                    }
+                }
+            })
+            
+        </script>
+    </body>
+</html>

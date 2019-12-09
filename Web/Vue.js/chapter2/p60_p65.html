@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="kr">
+    <head>
+        <meta charset="utf-8">
+        <title>10 리스트 데이터 출력/변경하기</title>
+    </head>
+    <body>
+        <div id="app">
+            <p>{{ page60 }}</p>
+            <p>{{ page60_1 }}</p>
+            <!--주의 : 인덱스 숫자를 사용한 배열 요소 변경, 이후에 추가된 속성변경 감지불가-->
+            이름 <input v-model="name">
+            <button v-on:click="doAdd">몬스터 추가하기</button>
+            <hr>
+
+            <p>{{ page61 }}</p>
+            <p>{{ page63 }}</p>
+            <p>{{ page65 }}</p>
+            <ul><!--pg65 : Hp가 50보다 적으면 큰 피해..!!출력 hp 없어지면 리스트에서 제거-->
+
+                <li v-for="(item, index) in list" :key="item.id" v-if="item.hp">
+                    ID.{{ item.id }} {{ item.name }} HP.{{ item.hp }}
+                    <span v-if="item.hp < 50">큰 피해..!</span>
+
+                    <button v-on:click="doEdit(index)">몬스터 변경하기</button>
+                    <!--삭제 버튼을 v-for 내부에 만들기 -->
+                    <button v-on:click="doRemove(index)">몬스터 제거하기</button>
+
+                    <button v-on:click="doAttack(index)">공격하기</button>
+
+                </li>
+            </ul>
+            <hr>
+           
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+        <!-- cdn 방식으로 vue 사용-->
+        <script>
+            //this.list = [] //속성 변경
+            //this.list[0].name = "NEW" //속성변경
+            //this.list[0] = "NEW" //이는 배열의 요소 변경이므로 안됨.
+
+            new Vue({
+                el:'#app',
+                data : {
+                    // 객체 데이터
+                    page60 : '<p.60> ◆리스트 변경하기',
+                    page60_1 : '<p.60> ◆리스트에 요소 추가하기',
+                    page61 : '<p.61> ◆리스트에 요소 제거하기',
+                    page63 : '<p.30> ◆리스트에 요소 변경하기',
+                    page65 : '<p.65> ◆리스트에 요소 속성 변경하기',
+                    name : '키메라',
+                    list : [
+                        {id:1, name:'슬라임', hp:100},
+                        {id:2, name:'고블린', hp:200},
+                        {id:3, name:'드래곤', hp:500}
+                    ]
+                },
+                methods : {
+                    //추가 버튼을 클릭했을 때의 핸들러
+                    doAdd : function() {
+                        //리스트 내부에서 가장 큰 ID 추출하기
+                        var max = this.list.reduce(function(a, b){
+                            return a > b.id ? a : b.id
+                        }, 0)
+                        //새로운 몬스터를 리스트에 추가하기
+                        this.list.push({
+                            id: max +1, // 현재 최대 ID에 1을 더해서 유니크 ID로 사용하기
+                            name : this.name, //현재 입력 양식의 값
+                            hp : 500
+                        })
+                    },
+                    //제거 버튼을 클릭했을 때의 핸들러
+                    doRemove: function(index){
+                        //전달받은 인덱스 위치에서 한 개만큼 제거하기
+                        this.list.splice(index,1);
+                    },
+                    doEdit: function(index){
+                        this.$set(this.list, index, {id:this.list[index].id, name:'대왕 '+this.list[index].name, hp:this.list[index].hp+300})
+                    },
+                    doAttack: function(index){
+                        this.list[index].hp -= 10// hp 감소시키기
+                    }
+                },
+                //여기는 잘 모르겠다.. 리액티브 데이터에 대한 개념 부족.
+                created: function() {
+                    //모든 요소에 active 속성 추가하기
+                    this.list.forEach(function(item){
+                        this.$set(item, 'active', false)
+                        //"item.active = false"로 지정하면 리액티브 데이터가 아니게 됨.
+                    },this)
+                }
+            })
+            /*
+            push
+            pop
+            shift
+            unshift
+            splice
+            sort
+            reverse
+            배열메서드 : 배열을 직접 변경
+            
+            vue.js는 index 숫자를 이용한 배열 요소 변경 불가
+            전역 API Vue.set 메서드 활용 (this.$set)
+            this.$set(<변경할 데이터>, <인덱스 또는 키>, <새로운 값>)
+
+            p65리스트 자체 변경하기(어디다 쓰라는건지 잘 모르겠다..)
+            리스트에 리턴값을 다시 할당해서 내용을 변경한다.
+            list 는 속성이므로 변경은 리액티브 하게 이루어진다.
+            this.list = this.list.filter(function(el){
+                return el.hp >= 100
+            })
+            */
+        </script>
+    </body>
+</html>

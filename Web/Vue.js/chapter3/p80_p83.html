@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="kr">
+    <head>
+        <meta charset="utf-8">
+        <title>13 이벤트 핸들링</title>
+    </head>
+    <body>
+        <div id="app">
+            <!-- <button v-on:click="<이벤트 핸들러>">클릭</button> -->
+            <p>{{ page80 }}</p>
+            <!-- <button v-on:click="handleClick">클릭</button> -->
+            <button @click="handleClick">클릭</button>
+            <hr>
+
+            <p>{{ page81 }}</p>
+            <button @click="count++">클릭</button><span>{{count}}</span>
+            <button @click="handleClick($event, item)">클릭</button>
+            <hr>
+
+            <p>{{ page82 }}</p>
+            <img src="image.png" v-on:load="show=true" :class="{hide:!show}">
+            <hr>
+
+            <p>{{ page83 }}</p>
+            <input :value="message" v-on:input="handleInput">
+
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <!-- cdn 방식으로 vue 사용-->
+        <script>
+            new Vue({
+                el:'#app',
+                data : {
+                    // 객체 데이터
+                    page80 : '<p.80> ◆메서드 이벤트 핸들러',
+                    page81 : '<p.81> ◆인라인 메서드 핸들링',
+                    page82 : '<p.82> ◆사용할 수 있는 이벤트',
+                    page83 : '<p.83> ◆입력 양식 입력 추출하기',
+                    count:0,
+                    item : '????',
+                    show : false,
+                    message : ''
+                },
+                methods:{
+                    handleClick : function() {
+                        swal('클릭했어요!','',"success")
+                    },
+                    handleInput : function(event){
+                        //할당 전에 어떤 처리하기
+                        this.message = event.target.value
+                    }
+
+                }
+            })
+            
+        </script>
+    </body>
+</html>

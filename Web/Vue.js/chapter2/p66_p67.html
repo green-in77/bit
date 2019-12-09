@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="kr">
+    <head>
+        <meta charset="utf-8">
+        <title>10 리스트 데이터 출력/변경하기</title>
+    </head>
+    <body>
+        <div id="app">
+            <p>{{ page66_1 }}</p>
+            <!-- 유니크 키가 없는 배열은 조작을 가하기에 적합하지 않지만 단순 출력용도로 사용가능-->
+            <select>
+                <option v-for="item in list">{{ item }}</option>
+            </select>
+            <hr>
+
+            <p>{{ page66_2 }}</p>
+            <span v-for="item in 15">{{ item }}</span><!--<span>1</span>~<span>15</span>까지 --><br>
+            <span v-for="item in [1,5,10,15]">{{ item }}</span><!--<span>1</span>~<span>15</span>까지 -->
+            <hr>
+
+            <p>{{ page67 }}</p>
+            <p v-for="item in text">{{ item }}</p><!--<p>V</p>  <p>u</p>  <p>e</p>-->
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+        <!-- cdn 방식으로 vue 사용-->
+        <script>
+            new Vue({
+                el:'#app',
+                data : {
+                    // 객체 데이터
+                    page66_1 : '<p.66> ◆유니크 키가 없는 배열',
+                    page66_2 : '<p.66> ◆리터럴에 직접 v-for 적용하기',
+                    page67 : '<p.67> ◆문자열에 v-for 적용하기',
+                    text: 'Vue',
+                    list : [
+                        '슬라임', '고블린', '드래곤'
+                    ]
+                },
+               
+            })
+            
+        </script>
+    </body>
+</html>

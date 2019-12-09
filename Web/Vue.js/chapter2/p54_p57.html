@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="kr">
+    <head>
+        <meta charset="utf-8">
+        <title>10 리스트 데이터 출력/변경하기</title>
+    </head>
+    <body>
+        <div id="app">
+            <p>{{ page54 }}</p>
+            <p>{{ page55 }}</p>
+            <!-- <li v-for="<각 요소를 할당할 변수 이름> in <반복 대상 배열 또는 객체>"> : 개선된 for문 형태-->
+            <ul>
+                <li v-for="item in list" :key="item.id">
+                    ID.{{ item.id }} {{ item.name }} HP.{{ item.hp }}
+                </li>
+            </ul>
+            <hr>
+
+            <p>{{ page56 }}</p>
+            <!--괄호로 감싸면 배열의 인덱스도 받을 수 있다. : 0부터 시작-->
+            <ul>
+                <li v-for="(item, index) in list">
+                    [Index.{{ index }}] ID.{{ item.id }} {{ item.name }} HP.{{ item.hp }}
+                </li>
+            </ul>
+
+            <!--객체의 경우 값, 키, 인덱스 순서-->
+            <!-- <li v-for="(item, key, index) in list"> -->
+            
+
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+        <!-- cdn 방식으로 vue 사용-->
+        <script>
+            new Vue({
+                el:'#app',
+                data : {
+                    // 객체 데이터
+                    page54 : '<p.54> 10 리스트 데이터 출력/변경하기',
+                    page55 : '<p.55> ◆요소를 반복해서 렌더링하기',
+                    page56 : '<p.56> ◆인덱스와 객체 키 사용하기',
+
+                    list : [ //id = 유니크키 , 유니크 키가 있어야 가상 dom 으로 렌더링할때 최적화
+                        {id:1, name:'슬라임', hp:100},
+                        {id:2, name:'고블린', hp:200},
+                        {id:3, name:'드래곤', hp:500}
+                    ]
+                }
+            })
+        </script>
+    </body>
+</html>
