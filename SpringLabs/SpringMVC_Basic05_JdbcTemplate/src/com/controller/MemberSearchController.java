@@ -24,8 +24,38 @@ import com.model.MemberVO;
  */
 
 @Controller
+@RequestMapping("/check.do")
 public class MemberSearchController {
+	private MemberDAO memberdao;
+	@Autowired
+	public void setMemberdao(MemberDAO memberdao) {
+		this.memberdao = memberdao;
+	}
 	
+	@RequestMapping(method = RequestMethod.GET)
+	public String form() {
+		return "memberSearch";
+	}
+	
+	@RequestMapping(method = RequestMethod.POST)
+	public ModelAndView submit(String id) {
+		ModelAndView mav = new ModelAndView();
+		
+		try {
+			MemberVO membervo = memberdao.selectMemberById(id);
+			
+			if(membervo != null) {
+				mav.addObject("membervo", membervo);
+				mav.setViewName("memberResult");
+			}else {
+				mav.setViewName("memberSearch");
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("check : " + e.getMessage());
+		}
+		return mav;
+	}
 	
 	/*
 	@RequestMapping(value="/check.do" , method=RequestMethod.POST)

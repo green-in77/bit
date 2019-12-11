@@ -12,7 +12,7 @@
 	<property name="jdbctemplate" ref="driverManagerDataSource"></property>
 </bean> 
 -->
-<context:annotation-config />
+<context:annotation-config /><!-- injection annotation 사용 -->
 <bean class="com.model.MemberDAOImpl"></bean>
 
 <!--  
@@ -47,7 +47,3 @@ JoinControler ... 자동 빈
  -->
 <bean id="" class="com.controller.MemberSearchController"></bean>
 </beans>
-
-
-
-

@@ -26,17 +26,36 @@ import com.model.MemberDAO;
 @Controller
 @RequestMapping("/login.do")
 public class LoginController {
-   
+	@Autowired //memberfield 주입 가능하나 사용하지말자.. xml에서 표현할 수 없다..
+	private MemberDAO memberdao;
+	
+	/*
+	public void setMemberdao(MemberDAO memberdao) {
+		this.memberdao = memberdao;
+	}*/
+
+	//Get 로그인 화면
+	@RequestMapping(method = RequestMethod.GET)
+	public String form() {
+		return "loginForm";
+	}
+	
+	//Post 로그인 처리
+	@RequestMapping(method = RequestMethod.POST)
+	public String submit(String id, String pwd, HttpSession session) {
+		String view = null;
+		try {
+			boolean loginresult = memberdao.memberCheck(id, pwd);
+			if(loginresult) {
+				session.setAttribute("USERID", id);
+				view = "loginSuccess";
+			}else {
+				view = "loginForm";
+			}
+		} catch (SQLException e) {
+			System.out.println("login : " + e.getMessage());
+		}
+		return view;
+	}
 
 }
-
-
-
-
-
-
-
-
-
-
-

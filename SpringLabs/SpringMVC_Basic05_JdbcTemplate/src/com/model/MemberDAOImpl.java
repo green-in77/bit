@@ -29,7 +29,7 @@ public class MemberDAOImpl implements MemberDAO{
 	*/
 	private JdbcTemplate jdbctemplate;
 	
-	@Autowired //root 컨테이너에 있는  jdbctemplate 객체를 주입한다.
+	@Autowired //root 컨테이너에 있는  jdbctemplate 객체를 주입한다. 다른 컨테이너라면 꼭 root 에 있어야 주입가능
 	public void setJdbctemplate(JdbcTemplate jdbctemplate) {
 		this.jdbctemplate = jdbctemplate;
 	}

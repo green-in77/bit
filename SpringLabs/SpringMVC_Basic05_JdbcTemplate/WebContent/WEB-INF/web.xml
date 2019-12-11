@@ -12,14 +12,17 @@
   	org.springframework.web.context.ContextLoaderListener
   -->
   <listener>
-  	<listener-class></listener-class>
+  	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
+  
+  <!-- root Containe 설정 -->
   <context-param>
   	<param-name>ContextConfigLocation</param-name>
   	<param-value>
   		/WEB-INF/applicationContext.xml
   	</param-value>
   </context-param>
+  
   
   <servlet>
   	 <servlet-name>dispatcher</servlet-name>
@@ -32,6 +35,7 @@
     	</param-value>
    	 </init-param> -->
   </servlet>
+  
   <servlet-mapping>
   	<servlet-name>dispatcher</servlet-name>
   	<url-pattern>*.do</url-pattern>
@@ -42,7 +46,7 @@
   org.springframework.web.filter.CharacterEncodingFilter
   -->
   
-  <!-- 한글처리 -->
+  <!--모든요청에 대한 한글처리 -->
   <filter>
   	<filter-name>EncodingFilter</filter-name>
   	<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
