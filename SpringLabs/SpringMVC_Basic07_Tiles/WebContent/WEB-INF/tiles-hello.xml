@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+	<definition name="hello" template="/template/layout.jsp">
+		<put-attribute name="title" value="[layout master page]" />
+		<put-attribute name="header" value="/template/header.jsp" />
+		<put-attribute name="menu" value="/template/menu.jsp" />
+		<put-attribute name="body" value="/hello_body.jsp" />
+		<put-attribute name="footer" value="/template/footer.jsp" />
+	</definition>
+	
+	<!-- 문제점
+	위와 같은 구성이라면 컨텐츠가 100개page 면 100개의 definition 설정이 필요.
+	-->
+	
+	<definition name="itworld.base" template="/template/layout.jsp">
+		<put-attribute name="title" value="itworld" />
+		<put-attribute name="header" value="/template/header.jsp" />
+		<put-attribute name="menu" value="/template/menu.jsp" />
+		<put-attribute name="body" value="/hello_body.jsp" />
+		<put-attribute name="footer" value="/template/footer.jsp" />
+	</definition>
+	
+	<!-- 상속개념 -->
+	<definition name="itworldsub" extends="itworld.base">
+		<put-attribute name="title" value="subworld" />
+	</definition>
+	
+</tiles-definitions>
