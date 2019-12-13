@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.or.bit.dao.Empdao">
+<!--
+	//emp empno조건 조회
+	public Emp getEmpListEmpno(String empno);
+	
+	//emp deptno 조건 조회
+	public List<Emp> getEmpListDeptno(String deptno);
+	
+-->
+
+	<!-- int adminLogin(String userid, String pwd) -->
+	<select id="adminLogin" resultType="int">
+		select COUNT(*) CNT
+		from adminlist
+		where userid=#{param1} and pwd=#{param2}
+	</select>
+	
+	<!-- int getEmpTotalCount(); -->
+	<select id="getEmpTotalCount" resultType="int">
+		select count(*) cnt from emp
+	</select>
+	
+	<!-- List<Emp> getEmpListAll(int cp) cp * 4 - (4-1) //  cp * 4-->
+	<select id="getEmpListAll" parameterType="int" resultType="kr.or.bit.dto.Emp">
+  		<!-- <![CDATA[ -->
+		select *
+		from (
+			  select ROWNUM RN, e.empno, e.ename, e.job, e.mgr, e.hiredate, e.sal, e.comm, e.deptno, i.ORIGN_PICTURE, i.SAVE_PICTURE, i.SAVEFOLDER
+			  from EMP e join emp_img i on e.EMPNO = i.EMPNO
+			  WHERE ROWNUM <![CDATA[<]]>= #{cp} * 4
+			 )
+		where RN >= #{cp} * 4 - (4-1)<!-- ]]> -->
+	</select>
+	
+	<!-- Emp getEmpListEmpno(String empno); -->
+	<select id="getEmpListEmpno" resultType="kr.or.bit.dto.Emp">
+		select e.empno, e.ename, e.job, e.mgr, e.hiredate, e.sal, e.comm, e.deptno, i.ORIGN_PICTURE, i.SAVE_PICTURE, i.SAVEFOLDER
+		from emp e join emp_img i on e.EMPNO = i.EMPNO
+		where e.Empno = #{empno}
+	</select>
+	
+	<!-- int empEdit1(Emp emp); -->
+	<update id="empEdit1" parameterType="kr.or.bit.dto.Emp">
+		update emp set job=#{job}, mgr=#{mgr}, sal=#{sal}, comm=#{comm}, deptno=#{deptno} where empno=#{empno}
+	</update>
+	<!-- int empEdit2(Emp emp); -->
+	<update id="empEdit2" parameterType="kr.or.bit.dto.Emp">
+		update emp_img set orign_picture=#{orign_picture}, save_picture=#{save_picture}, savefolder=#{savefolder} where empno=#{empno}
+	</update>
+	
+	<!-- int empRegister1(Emp emp) -->
+	<insert id="empRegister1" parameterType="kr.or.bit.dto.Emp">
+		INSERT INTO EMP(empno, ename, job, mgr, hiredate, sal, comm, deptno)
+		VALUES (
+				#{empno},
+				#{ename},
+				#{job},
+				#{mgr},
+				#{hiredate},
+				#{sal},
+				#{comm},
+				#{deptno}
+		)
+	</insert>
+	
+	<!-- int empRegister2(Emp emp) -->
+	<insert id="empRegister2" parameterType="kr.or.bit.dto.Emp">
+		INSERT INTO EMP_IMG(empno, orign_picture, save_picture, savefolder)
+		VALUES (
+				#{empno},
+				#{orign_picture},
+				#{save_picture},
+				#{savefolder}
+		)
+	</insert>
+	
+	<!-- int empDelete(String empno) -->
+	<delete id="empDelete1">
+		delete from emp_img where empno=#{empno}
+	</delete>
+	<delete id="empDelete2">
+		delete from emp where empno=#{empno}
+	</delete>
+	
+	<!-- List<Dept> getDeptno(); -->
+	<select id="getDeptno">
+		select deptno, dname, loc from dept
+	</select>
+	
+	
+</mapper>
