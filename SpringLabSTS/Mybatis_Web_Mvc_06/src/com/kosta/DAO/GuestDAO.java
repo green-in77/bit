@@ -21,20 +21,22 @@ public class GuestDAO {
 		try{
 			//factory.openSession(true); autocommit
 			//factory.openSession(); app (commit ,rollback)
-					
+									//비워두면 commit, rollback 제어 가능 		
 			session = factory.openSession();//작업을 method 단위
 			
 			int result = session.insert("GUEST.insertGuest",guestobj);
 			session.commit();
 			return result;
+			
 		}catch(Exception e){
-			session.rollback();
+			session.rollback();//DB에러시 rollback
 			return 0;
 		}finally{
 			if(session != null){session.close();}
 		}
 		
 	}
+	
 	public int delete(int num){
 		SqlSession session = null;
 		try{
@@ -53,6 +55,7 @@ public class GuestDAO {
 		}
 		
 	}
+	
 	public int update(GuestDTO guestObj){
 		//코드 완성하세요 ******************************
 		SqlSession session=null;
