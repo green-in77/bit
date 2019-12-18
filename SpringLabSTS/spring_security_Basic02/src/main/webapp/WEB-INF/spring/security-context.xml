@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+    xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/security
+						http://www.springframework.org/schema/security/spring-security.xsd
+						http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+    
+    <!-- 검사 URL 
+    	 intercept 순서가 [우선 순위] : 먼저 쓴것이 우선
+    -->
+    <http use-expressions="true">
+		<intercept-url pattern="/login/loginForm.do" access="permitAll" />
+		<intercept-url pattern="/home.do" access="permitAll" />
+        <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
+        <intercept-url pattern="/**" access="hasAnyRole('ROLE_USER, ROLE_ADMIN')" />
+        
+        <!-- 제일 마지막에 모든페이지에 대한 보안을 걸었지만 상단에 걸려있는 보안이 우선한다. -->
+        <!-- 리디랙션횟수 : 서버 요청횟수가 넘쳐서 막힘 : 보안이 걸렸을 경우 페이지에 접근이 불가해서 계속적인 요청발생 -->
+        
+        <!-- authentication-failure-url : 로그인 실패 시 error parameter 를 가지고 간다.
+        	username-parameter : loginform input name <input type="text" id="id" name="id" />
+        -->
+        <form-login login-page="/login/loginForm.do"
+                    default-target-url="/home.do"
+                    authentication-failure-url="/login/loginForm.do?error"
+                    username-parameter="id"
+                    password-parameter="password" />
+        
+        <logout logout-url="/logout"
+                logout-success-url="/home.do" />
+                
+        <access-denied-handler error-page="/login/accessDenied.do" />
+    </http>
+    
+    <!--  provider  -->
+    <authentication-manager>
+        <authentication-provider>
+            <user-service>
+                <user name="user" password="1004" authorities="ROLE_USER" />
+                <user name="admin" password="1004" authorities="ROLE_ADMIN" />
+            </user-service>
+        </authentication-provider>
+    </authentication-manager>
+    
+</beans:beans>
