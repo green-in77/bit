@@ -15,26 +15,14 @@
 		}
 	</style>
 </head>
-<body onload="openSocket('전체채팅방')">
+<body onload="openSocket('${roomName}')">
 	<se:authentication property="name" var="loginuser" />
 	
 	<div>
 		[${loginuser}] 님 반갑습니다.
 		<input type="hidden" id="sender" value="${loginuser}">
-		채팅방목록
-		<select id="chatList">
-			<c:forEach var="chat" items="${roomList}">
-				<option value="${chat}">${chat}</option>
-			</c:forEach>
-		</select>
+
 		<button type="button" onclick="closeSocket();">채팅종료</button>
-		<button type="button" onclick="moveSocket();">채팅방이동</button>
-		
-		
-		<form action="create.do" method="post">
-			<input type="text" name="roomName" placeholder="채팅방이름">
-			<input type="submit" value="채팅방만들기">
-		</form>
 		
 	</div>
 		
@@ -64,7 +52,9 @@
         }
         
 		function moveSocket(){
-			window.open("chat.do?roomName="+$('#chatList').val(),$('#chatList').val(),"width=700,height=600");
+			window.open("")
+			//console.log($('#chatList').val());
+			openSocket($('#chatList').val());
 		}
 		
 		function openSocket(room){
@@ -99,6 +89,7 @@
         
         function closeSocket(){
             ws.close();
+            window.close();
         }
         
         function writeResponse(text){

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="se"	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,11 +12,20 @@
 	</script>
 </head>
 <body>
-	<a href="${pageContext.request.contextPath}/chatAll.do">채팅입장</a><br>
+	<!-- spring security 제공하는 script 언어 -->
+	<se:authorize access="!hasRole('ROLE_USER')">
+	   <a href="${pageContext.request.contextPath}/login">로그인</a>
+	</se:authorize>
+	<se:authentication property="name" var="loginuser"  />
+	<!-- name 값이 가지는 값을 loginuser 변수에 할당 
+		 pageContext.request.userPrincipal.name
+	-->
+	<se:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_USER')">
+		<a href="${pageContext.request.contextPath}/logout">
+			(${loginuser})로그아웃</a>
+	</se:authorize>
+
+	<a href="${pageContext.request.contextPath}/chat/chatAll.do">채팅입장</a><br>
 	
-	<form action="create.do" method="post">
-		<input type="text" name="roomName" placeholder="채팅방이름">
-		<input type="submit" value="채팅방만들기">
-	</form>
 </body>
 </html>
